@@ -12,6 +12,7 @@ tags:
   - complex-analysis
 share: true
 read_time: true
+excerpt: "The Riemann zeta function ζ(s) is a cornerstone of analytic number theory, encoding the distribution of prime numbers through its Euler product, non-trivial zeros, and the celebrated Riemann Hypothesis. This article walks through 10 concrete instantiations — from the Basel problem to the explicit formula for π(x) — showing exactly how primes are hidden inside ζ(s)."
 ---
 
 The Riemann zeta function, denoted $\zeta(s)$, is one of the most profound objects in analytic number theory. Originally studied by Leonhard Euler for real arguments $s>1$, it was extended to the complex plane by Bernhard Riemann in 1859. For $\Re(s)>1$, it is defined by the Dirichlet series:
