@@ -17,7 +17,7 @@ read_time: true
 excerpt: "You know n! = 1·2·3⋯n. But what is (½)! ? The answer involves √π — and the moment you see why, the Gamma function stops being an obscure special function and becomes the most natural thing in the world. From the Gaussian integral to the volume of n-dimensional spheres, from Stirling's approximation to the Beta function of quantum field theory, this is the story of how Euler's integral Γ(z) secretly organizes vast swaths of mathematics and physics."
 ---
 
-**Challenge to the reader:** Compute \\((-\frac12)!\\) using the Gamma function. The answer will surprise you.
+**Challenge to the reader:** Compute $(-\frac12)!$ using the Gamma function. The answer will surprise you.
 
 ---
 
@@ -25,9 +25,9 @@ The **Gamma function** is one of the most important objects in mathematics.
 
 It generalizes the factorial:
 
-\\[
+$$
 n! = 1\cdot2\cdot3\cdots n
-\\]
+$$
 
 to:
 
@@ -37,15 +37,15 @@ to:
 
 The core identity is:
 
-\\[
+$$
 \Gamma(n+1)=n!
-\\]
+$$
 
-for integers \\(n\ge 0\\).
+for integers $n\ge 0$.
 
-\\[
+$$
 \Gamma(z+1)=z\Gamma(z)
-\\]
+$$
 
 ---
 
@@ -53,27 +53,27 @@ for integers \\(n\ge 0\\).
 
 Factorials are defined only for integers:
 
-\\[
+$$
 1!,2!,3!,\dots
-\\]
+$$
 
 Question: Can we define:
 
-\\[
+$$
 \left(\frac12\right)!
-\\]
+$$
 
 or:
 
-\\[
+$$
 \pi!
-\\]
+$$
 
 or even:
 
-\\[
+$$
 (2+3i)!
-\\]
+$$
 
 Euler solved this by constructing the Gamma function.
 
@@ -83,15 +83,15 @@ Euler solved this by constructing the Gamma function.
 
 The Gamma function is defined by:
 
-\\[
+$$
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}\,dt
-\\]
+$$
 
 valid for:
 
-\\[
+$$
 \Re(z)>0
-\\]
+$$
 
 ---
 
@@ -101,24 +101,23 @@ The key property comes from integration by parts.
 
 Take:
 
-\\[
+$$
 \Gamma(z+1) = \int_0^\infty t^z e^{-t}dt
-\\]
+$$
 
-Use \\(u=t^z, dv=e^{-t}dt\\). Then \\(du=z t^{z-1}dt, v=-e^{-t}\\).
+Use $u=t^z$, $dv=e^{-t}dt$. Then $du=z t^{z-1}dt$, $v=-e^{-t}$.
 
 Integration by parts gives:
 
-\\[
-\Gamma(z+1) = \left[-t^z e^{-t}\right]_0^\infty
-+ z\int_0^\infty t^{z-1}e^{-t}dt
-\\]
+$$
+\Gamma(z+1) = \left[-t^z e^{-t}\right]_0^\infty + z\int_0^\infty t^{z-1}e^{-t}dt
+$$
 
 Boundary term vanishes:
 
-\\[
+$$
 \Gamma(z+1) = z\Gamma(z)
-\\]
+$$
 
 **This is the fundamental recursion.**
 
@@ -128,29 +127,29 @@ Boundary term vanishes:
 
 Now compute:
 
-\\[
+$$
 \Gamma(1) = \int_0^\infty e^{-t}dt = 1
-\\]
+$$
 
 Then:
 
-\\[
+$$
 \Gamma(2)=1\cdot\Gamma(1)=1
-\\]
+$$
 
-\\[
+$$
 \Gamma(3)=2\cdot\Gamma(2)=2
-\\]
+$$
 
-\\[
+$$
 \Gamma(4)=3\cdot\Gamma(3)=6
-\\]
+$$
 
 Thus:
 
-\\[
+$$
 \Gamma(n+1)=n!
-\\]
+$$
 
 exactly.
 
@@ -160,51 +159,51 @@ exactly.
 
 One of the most famous results:
 
-\\[
+$$
 \Gamma\left(\frac12\right)=\sqrt{\pi}
-\\]
+$$
 
-This is astonishing because factorials suddenly connect to \\(\pi\\), Gaussian integrals appear, and probability theory emerges.
+This is astonishing because factorials suddenly connect to $\pi$, Gaussian integrals appear, and probability theory emerges.
 
 ---
 
-## 6. Derivation of \\(\Gamma(1/2)\\)
+## 6. Derivation of $\Gamma(1/2)$
 
 Start with:
 
-\\[
+$$
 \Gamma\left(\frac12\right) = \int_0^\infty t^{-1/2}e^{-t}dt
-\\]
+$$
 
-Substitute \\(t=x^2\\). Then \\(dt=2x\,dx\\) and \\(t^{-1/2}=\frac1x\\).
+Substitute $t=x^2$. Then $dt=2x\,dx$ and $t^{-1/2}=\frac1x$.
 
 So:
 
-\\[
+$$
 \Gamma\left(\frac12\right) = 2\int_0^\infty e^{-x^2}dx
-\\]
+$$
 
 Now use the Gaussian integral:
 
-\\[
+$$
 \int_{-\infty}^\infty e^{-x^2}dx = \sqrt{\pi}
-\\]
+$$
 
 Thus:
 
-\\[
+$$
 \int_0^\infty e^{-x^2}dx = \frac{\sqrt{\pi}}2
-\\]
+$$
 
 Therefore:
 
-\\[
+$$
 \Gamma\left(\frac12\right)=\sqrt{\pi}
-\\]
+$$
 
 ---
 
-**Challenge to the reader:** Derive \\(\Gamma\left(\frac32\right)\\) without looking at the next section. What about \\(\Gamma\left(\frac52\right)\\)? Can you spot the pattern?
+**Challenge to the reader:** Derive $\Gamma\left(\frac32\right)$ without looking at the next section. What about $\Gamma\left(\frac52\right)$? Can you spot the pattern?
 
 ---
 
@@ -212,39 +211,39 @@ Therefore:
 
 Using recursion:
 
-\\[
+$$
 \Gamma\left(\frac32\right) = \frac12\Gamma\left(\frac12\right) = \frac{\sqrt{\pi}}2
-\\]
+$$
 
-\\[
+$$
 \Gamma\left(\frac52\right) = \frac32\cdot\frac12\sqrt{\pi} = \frac{3\sqrt{\pi}}4
-\\]
+$$
 
 Thus:
 
-\\[
+$$
 \left(\frac12\right)! = \Gamma\left(\frac32\right) = \frac{\sqrt{\pi}}2
-\\]
+$$
 
 ---
 
 ## 8. Analytic continuation
 
-The integral definition works only for \\(\Re(z)>0\\).
+The integral definition works only for $\Re(z)>0$.
 
 But the recursion:
 
-\\[
+$$
 \Gamma(z)=\frac{\Gamma(z+1)}{z}
-\\]
+$$
 
 extends Gamma to almost all complex numbers.
 
 The only singularities occur at:
 
-\\[
+$$
 z=0,-1,-2,-3,\dots
-\\]
+$$
 
 These are simple poles.
 
@@ -254,9 +253,9 @@ These are simple poles.
 
 Euler discovered:
 
-\\[
+$$
 \Gamma(z)\Gamma(1-z) = \frac{\pi}{\sin(\pi z)}
-\\]
+$$
 
 This connects:
 
@@ -271,35 +270,33 @@ This connects:
 
 Gamma has an infinite-product structure:
 
-\\[
-\frac1{\Gamma(z)} = ze^{\gamma z}
-\prod_{n=1}^\infty
-\left(1+\frac zn\right)e^{-z/n}
-\\]
+$$
+\frac1{\Gamma(z)} = ze^{\gamma z} \prod_{n=1}^\infty \left(1+\frac zn\right)e^{-z/n}
+$$
 
-where \\(\gamma\\) is the Euler–Mascheroni constant.
+where $\gamma$ is the Euler–Mascheroni constant.
 
 This reveals the zeros, poles, and entire-function structure.
 
 ---
 
-**Challenge to the reader:** Use the reflection formula to prove \\(\Gamma\left(\frac12\right)=\sqrt{\pi}\\) in one line.
+**Challenge to the reader:** Use the reflection formula to prove $\Gamma\left(\frac12\right)=\sqrt{\pi}$ in one line.
 
 ---
 
 ## 11. Stirling's approximation
 
-For large \\(n\\):
+For large $n$:
 
-\\[
+$$
 n! \sim \sqrt{2\pi n}\left(\frac ne\right)^n
-\\]
+$$
 
 equivalently:
 
-\\[
+$$
 \Gamma(z) \sim \sqrt{2\pi}\, z^{z-\frac12}e^{-z}
-\\]
+$$
 
 This is foundational in:
 
@@ -314,15 +311,15 @@ This is foundational in:
 
 The Beta function:
 
-\\[
+$$
 B(x,y) = \int_0^1 t^{x-1}(1-t)^{y-1}dt
-\\]
+$$
 
 satisfies:
 
-\\[
+$$
 B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}
-\\]
+$$
 
 This identity drives huge parts of:
 
@@ -336,9 +333,9 @@ This identity drives huge parts of:
 
 Recall:
 
-\\[
+$$
 (a)_k = \frac{\Gamma(a+k)}{\Gamma(a)}
-\\]
+$$
 
 Thus hypergeometric coefficients are fundamentally Gamma ratios. The entire hypergeometric universe is built from Gamma functions.
 
@@ -350,15 +347,15 @@ Gamma appears naturally in probability distributions:
 
 * Gamma distribution
 * Beta distribution
-* Chi-square distribution (\\(\chi^2\\))
+* Chi-square distribution ($\chi^2$)
 * Student-t distribution
 * Dirichlet distribution
 
 Normalization constants are Gamma ratios. Example:
 
-\\[
+$$
 f(x)= \frac{x^{k-1}e^{-x/\theta}} {\Gamma(k)\theta^k}
-\\]
+$$
 
 ---
 
@@ -366,17 +363,17 @@ f(x)= \frac{x^{k-1}e^{-x/\theta}} {\Gamma(k)\theta^k}
 
 Gamma measures generalized volume growth.
 
-Volume of the \\(n\\)-sphere:
+Volume of the $n$-sphere:
 
-\\[
+$$
 V_n = \frac{\pi^{n/2}}{\Gamma\left(\frac n2+1\right)}
-\\]
+$$
 
 This is why Gamma appears in geometry, statistical mechanics, and high-dimensional spaces.
 
 ---
 
-**Challenge to the reader:** Compute \\(V_4\\) (the 4-dimensional volume of a unit 4-sphere) using this formula. Is the result larger or smaller than \\(V_3\\)? What does this tell you about high-dimensional geometry?
+**Challenge to the reader:** Compute $V_4$ (the 4-dimensional volume of a unit 4-sphere) using this formula. Is the result larger or smaller than $V_3$? What does this tell you about high-dimensional geometry?
 
 ---
 
@@ -391,9 +388,9 @@ Gamma is:
 
 It is essentially the unique analytic continuation of factorial satisfying:
 
-\\[
+$$
 f(z+1)=zf(z)
-\\]
+$$
 
 with mild regularity conditions (Bohr–Mollerup theorem).
 
@@ -403,11 +400,11 @@ with mild regularity conditions (Bohr–Mollerup theorem).
 
 Using Laplace's method on:
 
-\\[
+$$
 \Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt
-\\]
+$$
 
-observe exponent: \\((z-1)\ln t - t\\). Maximum occurs near \\(t=z\\). Expanding around the saddle point produces Stirling's formula.
+observe exponent: $(z-1)\ln t - t$. Maximum occurs near $t=z$. Expanding around the saddle point produces Stirling's formula.
 
 **This is the birth of steepest-descent asymptotics.**
 
@@ -436,4 +433,4 @@ That is why it becomes unavoidable across mathematics and physics.
 
 ---
 
-**Final challenge:** The Gamma function is the Mellin transform of \\(e^{-t}\\). Show that this observation, combined with the Mellin convolution theorem, gives a one-line proof that \\(B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}\\). This is a glimpse into why integral transforms are the hidden machinery behind special functions.
+**Final challenge:** The Gamma function is the Mellin transform of $e^{-t}$. Show that this observation, combined with the Mellin convolution theorem, gives a one-line proof that $B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x+y)}$. This is a glimpse into why integral transforms are the hidden machinery behind special functions.
