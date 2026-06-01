@@ -25,7 +25,7 @@ excerpt: "Ramanujan recorded thousands of identities without proof — each one 
 
 ## 1. The Lost Notebook Style
 
-Ramanujan recorded thousands of identities without proof — often on a single line, without commentary. Each one is a compressed universe of mathematical truth that researchers are still unpacking over a century later. His compositions share a distinctive fingerprint:
+Ramanujan  recorded thousands of identities without proof — often on a single line, without commentary. Each one is a compressed universe of mathematical truth that researchers are still unpacking over a century later. His compositions share a distinctive fingerprint:
 
 - **Theta functions and $q$-series** are the fundamental vocabulary
 - **Continued fractions** appear as naturally as polynomials
