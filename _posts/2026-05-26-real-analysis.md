@@ -91,41 +91,99 @@ This guide is structured around how expert analysts teach and learn the subject:
 *Structure per entry:* **Theorem → Dropped Hypothesis → Counterexample → Why It Matters**
 
 ### 🔹 Limits & Continuity
-| Theorem | Dropped Hypothesis | Counterexample | Why It Matters |
-|---------|-------------------|----------------|----------------|
-| Continuous on `[a,b]` ⇒ uniformly continuous | Compact domain | `f(x)=1/x` on `(0,1)` | Shows uniform continuity is a *global* property; fails near boundary singularities |
-| `fₙ → f` pointwise, `fₙ` continuous ⇒ `f` continuous | Uniform convergence | `fₙ(x)=xⁿ` on `[0,1]` | Pointwise limits can create jumps; uniform convergence preserves continuity |
-| `f` differentiable at `c` ⇒ `f` continuous at `c` | Differentiability | `f(x)=|x|` at `0` | Continuity is strictly weaker; cusp breaks derivative but not limit |
+
+**Theorem:** Continuous on `[a,b]` ⇒ uniformly continuous
+  - **Dropped:** Compact domain
+  - **Counterexample:** `f(x)=1/x` on `(0,1)`
+  - **Why:** Shows uniform continuity is a *global* property; fails near boundary singularities
+
+**Theorem:** `fₙ → f` pointwise, `fₙ` continuous ⇒ `f` continuous
+  - **Dropped:** Uniform convergence
+  - **Counterexample:** `fₙ(x)=xⁿ` on `[0,1]`
+  - **Why:** Pointwise limits can create jumps; uniform convergence preserves continuity
+
+**Theorem:** `f` differentiable at `c` ⇒ `f` continuous at `c`
+  - **Dropped:** Differentiability
+  - **Counterexample:** `f(x)=|x|` at `0`
+  - **Why:** Continuity is strictly weaker; cusp breaks derivative but not limit
 
 ### 🔹 Differentiation
-| Theorem | Dropped Hypothesis | Counterexample | Why It Matters |
-|---------|-------------------|----------------|----------------|
-| `f'` exists on `(a,b)` ⇒ `f'` is continuous | Continuity of derivative | `f(x)=x²sin(1/x)` (0 at 0) | Derivatives satisfy Darboux property but need not be continuous |
-| Mean Value Theorem | Continuity on `[a,b]` | `f(x)=1/x` on `[-1,1]` (undefined at 0) or step function | MVT requires connected domain + continuity; breaks with jumps/asymptotes |
-| `f'(c)>0` ⇒ `f` increasing near `c` | `f'` continuous near `c` | `f(x)=x + 2x²sin(1/x)` at 0 | Derivative can be positive at a point but oscillate wildly nearby |
+
+**Theorem:** `f'` exists on `(a,b)` ⇒ `f'` is continuous
+  - **Dropped:** Continuity of derivative
+  - **Counterexample:** `f(x)=x²sin(1/x)` (0 at 0)
+  - **Why:** Derivatives satisfy Darboux property but need not be continuous
+
+**Theorem:** Mean Value Theorem
+  - **Dropped:** Continuity on `[a,b]`
+  - **Counterexample:** `f(x)=1/x` on `[-1,1]` (undefined at 0) or step function
+  - **Why:** MVT requires connected domain + continuity; breaks with jumps/asymptotes
+
+**Theorem:** `f'(c)>0` ⇒ `f` increasing near `c`
+  - **Dropped:** `f'` continuous near `c`
+  - **Counterexample:** `f(x)=x + 2x²sin(1/x)` at 0
+  - **Why:** Derivative can be positive at a point but oscillate wildly nearby
 
 ### 🔹 Sequences & Series
-| Theorem | Dropped Hypothesis | Counterexample | Why It Matters |
-|---------|-------------------|----------------|----------------|
-| Cauchy sequence ⇒ convergent | Completeness of space | `aₙ = (1+1/n)ⁿ` in `ℚ` | Convergence depends on space; ℚ lacks limit points for irrationals |
-| Absolutely convergent ⇒ convergent | Absolute convergence | `∑(-1)ⁿ/n` | Conditional convergence relies on cancellation; fragile under rearrangement |
-| Rearrangement preserves sum | Absolute convergence | Riemann rearrangement of `∑(-1)ⁿ/n` | Order matters for conditional series; absolute convergence removes this dependence |
-| Bounded monotone ⇒ convergent | Monotonicity | `aₙ = (-1)ⁿ(1−1/n)` | Boundedness alone doesn't prevent oscillation |
+
+**Theorem:** Cauchy sequence ⇒ convergent
+  - **Dropped:** Completeness of space
+  - **Counterexample:** `aₙ = (1+1/n)ⁿ` in `ℚ`
+  - **Why:** Convergence depends on space; ℚ lacks limit points for irrationals
+
+**Theorem:** Absolutely convergent ⇒ convergent
+  - **Dropped:** Absolute convergence
+  - **Counterexample:** `∑(-1)ⁿ/n`
+  - **Why:** Conditional convergence relies on cancellation; fragile under rearrangement
+
+**Theorem:** Rearrangement preserves sum
+  - **Dropped:** Absolute convergence
+  - **Counterexample:** Riemann rearrangement of `∑(-1)ⁿ/n`
+  - **Why:** Order matters for conditional series; absolute convergence removes this dependence
+
+**Theorem:** Bounded monotone ⇒ convergent
+  - **Dropped:** Monotonicity
+  - **Counterexample:** `aₙ = (-1)ⁿ(1−1/n)`
+  - **Why:** Boundedness alone doesn't prevent oscillation
 
 ### 🔹 Integration
-| Theorem | Dropped Hypothesis | Counterexample | Why It Matters |
-|---------|-------------------|----------------|----------------|
-| Continuous ⇒ Riemann integrable | Continuity | Dirichlet function: `1_ℚ` on `[0,1]` | Riemann integral fails when discontinuities are dense; motivates Lebesgue |
-| `fₙ → f` pointwise ⇒ `∫fₙ → ∫f` | Uniform convergence / Dominated convergence | `fₙ(x)=n·1_{(0,1/n)}` on `[0,1]` | Mass can escape to infinity or concentrate; need uniform/DCT control |
-| `F(x)=∫ₐˣ f` ⇒ `F'=f` | Continuity of `f` | `f(x)=0` for `x<0`, `1` for `x≥0` | FTC requires continuity at point; jump discontinuities break differentiability of integral |
+
+**Theorem:** Continuous ⇒ Riemann integrable
+  - **Dropped:** Continuity
+  - **Counterexample:** Dirichlet function: `1_ℚ` on `[0,1]`
+  - **Why:** Riemann integral fails when discontinuities are dense; motivates Lebesgue
+
+**Theorem:** `fₙ → f` pointwise ⇒ `∫fₙ → ∫f`
+  - **Dropped:** Uniform convergence / Dominated convergence
+  - **Counterexample:** `fₙ(x)=n·1_{(0,1/n)}` on `[0,1]`
+  - **Why:** Mass can escape to infinity or concentrate; need uniform/DCT control
+
+**Theorem:** `F(x)=∫ₐˣ f` ⇒ `F'=f`
+  - **Dropped:** Continuity of `f`
+  - **Counterexample:** `f(x)=0` for `x<0`, `1` for `x≥0`
+  - **Why:** FTC requires continuity at point; jump discontinuities break differentiability of integral
 
 ### 🔹 Compactness & Topology
-| Theorem | Dropped Hypothesis | Counterexample | Why It Matters |
-|---------|-------------------|----------------|----------------|
-| Closed + bounded ⇒ compact (ℝⁿ) | Boundedness | `ℤ ⊂ ℝ` | Unbounded closed sets lack convergent subsequences |
-| Closed + bounded ⇒ compact | Closedness | `(0,1) ⊂ ℝ` | Missing boundary points allow sequences to "escape" |
-| Continuous image of compact is compact | Compact domain | `f(x)=1/x` on `(0,1)` | Image can be unbounded or non-closed |
-| Nested intervals with `|Iₙ|→0` have unique intersection | Closed intervals | `Iₙ=(0,1/n)` | Intersection empty without closed endpoints |
+
+**Theorem:** Closed + bounded ⇒ compact (ℝⁿ)
+  - **Dropped:** Boundedness
+  - **Counterexample:** `ℤ ⊂ ℝ`
+  - **Why:** Unbounded closed sets lack convergent subsequences
+
+**Theorem:** Closed + bounded ⇒ compact
+  - **Dropped:** Closedness
+  - **Counterexample:** `(0,1) ⊂ ℝ`
+  - **Why:** Missing boundary points allow sequences to "escape"
+
+**Theorem:** Continuous image of compact is compact
+  - **Dropped:** Compact domain
+  - **Counterexample:** `f(x)=1/x` on `(0,1)`
+  - **Why:** Image can be unbounded or non-closed
+
+**Theorem:** Nested intervals with `|Iₙ|→0` have unique intersection
+  - **Dropped:** Closed intervals
+  - **Counterexample:** `Iₙ=(0,1/n)`
+  - **Why:** Intersection empty without closed endpoints
 
 ---
 
