@@ -2,4 +2,30 @@
 
 <!-- insert favicons. use http://realfavicongenerator.net/ -->
 
+<!-- 3-column grid layout for homepage -->
+<style>
+  .entries-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    .entries-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 550px) {
+    .entries-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Widen the page container for 3 columns */
+  .layout--home.page--wide .page-wrapper {
+    max-width: 1400px;
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+</style>
+
 <!-- end custom head snippets -->
