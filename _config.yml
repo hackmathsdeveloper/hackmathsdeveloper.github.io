@@ -1,4 +1,5 @@
 # Site settings
+future: true
 locale: en-US
 title: "Hackmaths: Mathematical Hacking with AI"
 description: "Exploring the frontier of mathematical reasoning, number theory, and prime distributions through the lens of artificial intelligence."
