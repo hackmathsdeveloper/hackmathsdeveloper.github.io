@@ -79,7 +79,7 @@ Scatter 2-3 additional challenges at midpoints and one final challenge at the en
 
 ## 5. Math rendering rules
 
-From `change_for_math.md`, applied to every post:
+Applied to every post:
 
 | Rule | Do | Don't |
 |------|----|-------|
