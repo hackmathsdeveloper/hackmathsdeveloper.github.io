@@ -188,6 +188,86 @@ If math blocks show raw LaTeX:
 
 ---
 
+## 11. Post-publish: homepage and build verification
+
+After the blog posts are deployed, always verify the homepage and site health.
+
+### 11a. Homepage must show new posts
+
+Visit `https://hackmathsdeveloper.github.io/` and confirm the new posts appear. If they don't:
+
+| Symptom | Likely cause | Fix |
+|---------|-------------|-----|
+| Latest posts missing from homepage | Posts have future dates relative to build time (Jekyll excludes future-dated posts by default) | Add `future: true` to `_config.yml` |
+| Homepage shows wrong layout | Wrong `index` file is active | Ensure `index.html` (not `index.md`) is committed — `.html` wins when both exist, and `jekyll-paginate` requires `.html` |
+| Pagination broken / only some posts show | `paginate: false` set in index, or `index.md` overriding `index.html` | Use `index.html` with `paginate: true`; delete `index.md` to avoid conflicts |
+| Stale content after push | One of the dual workflows was cancelled; or the deploy workflow didn't finish | Check both workflow runs at GitHub Actions tab; re-trigger if needed |
+
+### 11b. Verify index file state
+
+The site requires `index.html` at the root (not `index.md`) because the `jekyll-paginate` plugin generates numbered pages from it. Run:
+
+```bash
+# Check which index files are tracked
+git ls-files index.html index.md
+
+# Check for untracked index files
+git status -- index.html index.md
+```
+
+Expected: `index.html` is tracked, `index.md` is NOT tracked.
+
+### 11c. Verify site config for future posts
+
+```bash
+# config must include future: true to show posts dated ahead of build time
+grep 'future:' _config.yml
+```
+
+Expected output: `future: true`. If missing, add it under the `# Site settings` line.
+
+### 11d. Check both GitHub Actions workflows
+
+The repo has two deploy workflows (`.github/workflows/jekyll.yml` and `jekyll-gh-pages.yml`). Both trigger on push to `main`. At least one must complete with `success` for the site to update. Check:
+
+```
+https://github.com/hackmathsdeveloper/hackmathsdeveloper.github.io/actions
+```
+
+If the latest run of either workflow shows `cancelled`, the deployment may still be fine if the other workflow succeeded — but verify the live site. If both failed/cancelled, push an empty commit to re-trigger:
+
+```bash
+git commit --allow-empty -m "Re-trigger build"
+git push
+```
+
+### 11e. Verify individual post pages
+
+Pick 2-3 new post URLs from the homepage and curl them to confirm HTTP 200:
+
+```bash
+curl -sI https://hackmathsdeveloper.github.io/category/mathematics/post-slug/ | head -3
+```
+
+A 404 on a new post usually means the post was excluded at build time (future date — see 11a).
+
+### 11f. Homepage layout requirements
+
+The homepage (`index.html`) should have:
+
+```yaml
+---
+layout: home
+show_excerpts: true
+paginate: true
+entries_layout: grid   # 3-column grid; use 'list' for single-column
+---
+```
+
+The 3-column grid is configured in `_includes/head-custom.html`. If the grid breaks, check that file for the `.entries-grid` CSS override and the `.layout--home.page--wide .page-wrapper` width setting (default: 1400px).
+
+---
+
 ## Quick reference card
 
 ```
@@ -202,4 +282,8 @@ If math blocks show raw LaTeX:
 □ grep checks pass
 □ git commit + push
 □ Live URL verified
+□ Homepage shows new posts (check future:true in _config.yml)
+□ Both GitHub Actions workflows succeeded (or at least one)
+□ index.html tracked, index.md removed
+□ Individual post pages return HTTP 200
 ```
