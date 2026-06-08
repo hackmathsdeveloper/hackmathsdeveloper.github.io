@@ -148,6 +148,13 @@ For check 2 and 3, manually verify that any matches are:
 - HTML tags like `</script>` (legitimate)
 - LaTeX commands like `\lt`, `\gt`, `\langle` (legitimate in `$$`/`$`)
 
+For check 2, also scan for `|` (pipe) inside inline `$...$` math on the same line —
+kramdown interprets pipes as table column separators, shattering inline math into
+broken HTML table cells. Pattern: `$...|...$` → use `\lvert`/`\rvert` instead:
+```bash
+grep -n '\$.*|.*\$' _posts/NEW-FILE.md
+```
+
 ---
 
 ## 9. Git workflow
@@ -278,6 +285,7 @@ The 3-column grid is configured in `_includes/head-custom.html`. If the grid bre
 □ No markdown inside $$ blocks
 □ No raw < > in math mode
 □ No \#, \{, \} in inline $...$ math (use \lbrace, \rbrace, \lvert, \rvert)
+□ No | (pipe) in inline $...$ math (use \lvert, \rvert — avoids table parsing)
 □ Inline matrices: \\ doubled to \\\\ (only inside $...$, not $$...$$)
 □ Prefer display math $$...$$ for matrices (keeps \\ as-is)
 □ 2-3 additional challenges scattered through post
@@ -365,10 +373,32 @@ Is the LaTeX inside $...$ (inline) or $$...$$ (display)?
        │    └─ YES → replace with \lvert...\rvert or rewrite
        ├─ Contains \{ or \} (set braces)?
        │    └─ YES → replace with \lbrace and \rbrace
+       ├─ Contains | (pipe)?
+       │    └─ YES → replace with \lvert and \rvert
        └─ None of the above → write normally
 ```
 
-### 12e. Preferred alternative: move matrices to display math
+### 12e. The `|` (pipe) problem — kramdown table parsing
+
+kramdown interprets `|` characters as markdown table column separators, **even inside `$...$` inline math**. This shatters the math into broken HTML `<table>` cells:
+
+| Source (single line) | kramdown output |
+|---|---|
+| `The set $\lbrace z : \|z\| \ge 1\rbrace$ is...` | `<td>The set $\lbrace z :</td><td>z</td><td>\ge 1\rbrace$ is...</td>` |
+
+A single `|` inside `$...$` on a line with two or more pipes triggers table parsing. The math gets split across `<td>` cells and becomes unrenderable.
+
+**Fix:** Replace `|` inside inline math with `\lvert` and `\rvert`:
+
+```markdown
+<!-- WRONG — pipes trigger table parsing -->
+The set $\lbrace z : |z| \ge 1\rbrace$ is a fundamental domain
+
+<!-- CORRECT — \lvert/\rvert are letter-based, safe from kramdown -->
+The set $\lbrace z : \lvert z\rvert \ge 1\rbrace$ is a fundamental domain
+```
+
+### 12f. Preferred alternative: move matrices to display math
 
 When a matrix is complex or contains multiple rows, prefer `$$...$$` display math. It avoids the escaping problem entirely and is more readable:
 
