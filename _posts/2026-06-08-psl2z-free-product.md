@@ -29,7 +29,7 @@ $$
 PSL_2(\mathbb{Z}) = SL_2(\mathbb{Z}) / \{\pm I\}.
 $$
 
-The elements of this group are equivalence classes (cosets) of the form $[A] = \{A, -A\}$ for any matrix $A \in SL_2(\mathbb{Z})$. The identity element of this quotient group is $[I] = \{I, -I\}$.
+The elements of this group are equivalence classes (cosets) of the form $[A] = \lbrace A, -A\rbrace$ for any matrix $A \in SL_2(\mathbb{Z})$. The identity element of this quotient group is $[I] = \lbrace I, -I\rbrace$.
 
 ---
 

@@ -113,7 +113,7 @@ where $z_n$ are the zeros of $f$.
 
 $\arctan z$ is not a suitable candidate for such a product:
 
-- **$\arctan z$ is not entire.** It is only analytic on $\mathbb{C} \setminus \{i, -i\}$ because it satisfies $\tan(\arctan z) = z$ and $\tan w$ has poles at $\frac{\pi}{2} + k\pi$, which translate into logarithmic branch points for $\arctan$ in its complex definition.
+- **$\arctan z$ is not entire.** It is only analytic on $\mathbb{C} \setminus \lbrace i, -i\rbrace$ because it satisfies $\tan(\arctan z) = z$ and $\tan w$ has poles at $\frac{\pi}{2} + k\pi$, which translate into logarithmic branch points for $\arctan$ in its complex definition.
 
 - **$\arctan z$ has no nontrivial zeros.** Over $\mathbb{C}$, the standard branch of $\arctan z$ has no zeros other than $z = 0$, so there is no nontrivial infinite set of zeros to encode in a product. A product with only one factor is just a linear function — not an infinite product at all.
 

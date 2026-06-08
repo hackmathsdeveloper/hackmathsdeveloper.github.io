@@ -31,7 +31,7 @@ $$
 Q(x) = Q(S^{-1}y) = \sum_{i=1}^n b_i y_i^2,
 $$
 
-where each $b_i \in \{1, -1, 0\}$.
+where each $b_i \in \lbrace 1, -1, 0\rbrace$.
 
 Let:
 - $p = \lvert\lbrace i : b_i = 1\rbrace\rvert$,
@@ -100,7 +100,7 @@ $$
 A = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}, \qquad B = \begin{pmatrix} 2 & 0 \\ 0 & \frac{1}{2} \end{pmatrix}
 $$
 
-have different eigenvalues ($\{1,1\}$ vs $\{2, \frac{1}{2}\}$) but the same inertia $(2, 0, 0)$, and indeed they are congruent (take $S = \operatorname{diag}(\sqrt{2}, 1/\sqrt{2})$).
+have different eigenvalues ($\lbrace 1,1\rbrace$ vs $\lbrace 2, \frac{1}{2}\rbrace$) but the same inertia $(2, 0, 0)$, and indeed they are congruent (take $S = \operatorname{diag}(\sqrt{2}, 1/\sqrt{2})$).
 
 ---
 
