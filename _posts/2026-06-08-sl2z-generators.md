@@ -103,7 +103,7 @@ Under this action:
 - $T: z \mapsto z + 1$ is a horizontal translation by 1.
 - $S: z \mapsto -1/z$ is an inversion through the unit circle followed by reflection.
 
-The region $\lbrace z \in \mathbb{H} : |z| \ge 1, |\operatorname{Re}(z)| \le 1/2\rbrace$ is a fundamental domain — every point in $\mathbb{H}$ can be mapped into it by repeated application of $S$ and $T$. This geometric fact proves that $S$ and $T$ generate the group.
+The region $\lbrace z \in \mathbb{H} : \lvert z\rvert \ge 1, \lvert\operatorname{Re}(z)\rvert \le 1/2\rbrace$ is a fundamental domain — every point in $\mathbb{H}$ can be mapped into it by repeated application of $S$ and $T$. This geometric fact proves that $S$ and $T$ generate the group.
 
 ---
 
