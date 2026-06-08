@@ -1,4 +1,11 @@
 
+
+https://www.theoremoftheday.org/Docs/Teitler2014.pdf.%20%20%20%20%20%20%20https://www.theoremoftheday.org/Theorems.html
+
+
+https://kconrad.math.uconn.edu/blurbs/
+
+
 https://www.theoremoftheday.org/Resources/Bibliography.htm#JMLandsberg
 
 https://www.theoremoftheday.org/Theorems.html
