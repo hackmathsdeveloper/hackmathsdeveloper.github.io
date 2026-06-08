@@ -34,9 +34,9 @@ $$
 where each $b_i \in \{1, -1, 0\}$.
 
 Let:
-- $p = \#\{i : b_i = 1\}$,
-- $q = \#\{i : b_i = -1\}$,
-- $r = \#\{i : b_i = 0\}$.
+- $p = \\#\{i : b_i = 1\}$,
+- $q = \\#\{i : b_i = -1\}$,
+- $r = \\#\{i : b_i = 0\}$.
 
 **Sylvester's law of inertia** says that the triple $(p, q, r)$ is uniquely determined by $Q$ and does not depend on which invertible change of variables $S$ you use.
 
