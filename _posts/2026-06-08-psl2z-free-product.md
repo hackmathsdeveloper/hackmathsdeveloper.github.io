@@ -97,7 +97,7 @@ $$
 
 Since $s$ and $t$ generate the group, and $t$ can be written entirely in terms of $s$ and $u$, **the elements $s$ and $u$ generate all of $PSL_2(\mathbb{Z})$**.
 
-**Challenge to the reader:** Express the matrix $\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$ as a product of $s$ and $u$ in $PSL_2(\mathbb{Z})$. Write out the alternating word explicitly.
+**Challenge to the reader:** Express the matrix $\begin{pmatrix} 2 & 1 \\\\ 1 & 1 \end{pmatrix}$ as a product of $s$ and $u$ in $PSL_2(\mathbb{Z})$. Write out the alternating word explicitly.
 
 ---
 

@@ -17,7 +17,7 @@ read_time: true
 excerpt: "To prove S and T generate SL₂(ℤ), you use the Euclidean algorithm — the same one you learned for integers. Multiply a matrix on the right by T⁻ⁿ to reduce the top-left entry, then by S to swap rows, and repeat. Each step strictly decreases entries until you hit ±I, proving every matrix is a finite word in S and T."
 ---
 
-**Challenge to the reader:** Start with $M = \begin{pmatrix} 5 & 2 \\ 2 & 1 \end{pmatrix}$. Apply one step of the reduction: divide $5$ by $2$ (quotient $2$, remainder $1$), right-multiply by $T^{-2}$, then by $S$. What matrix do you get? Compare the entries with the original — notice they got smaller.
+**Challenge to the reader:** Start with $M = \begin{pmatrix} 5 & 2 \\\\ 2 & 1 \end{pmatrix}$. Apply one step of the reduction: divide $5$ by $2$ (quotient $2$, remainder $1$), right-multiply by $T^{-2}$, then by $S$. What matrix do you get? Compare the entries with the original — notice they got smaller.
 
 ---
 
@@ -31,15 +31,15 @@ $$
 T^n = \begin{pmatrix} 1 & n \\ 0 & 1 \end{pmatrix}, \qquad T^{-n} = \begin{pmatrix} 1 & -n \\ 0 & 1 \end{pmatrix}.
 $$
 
-**Action on a matrix** $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
+**Action on a matrix** $M = \begin{pmatrix} a & b \\\\ c & d \end{pmatrix}$:
 - **Right multiplication by $T^n$:** Adds $n$ times column 2 to column 1 (an elementary column operation).
-- **Right multiplication by $S$:** Swaps columns with a sign change: $\begin{pmatrix} a & b \\ c & d \end{pmatrix} S = \begin{pmatrix} -b & a \\ -d & c \end{pmatrix}$.
+- **Right multiplication by $S$:** Swaps columns with a sign change: $\begin{pmatrix} a & b \\\\ c & d \end{pmatrix} S = \begin{pmatrix} -b & a \\\\ -d & c \end{pmatrix}$.
 
 ---
 
 ## 2. The Reduction Algorithm
 
-Given any $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in SL_2(\mathbb{Z})$, we reduce it to $\pm I$:
+Given any $M = \begin{pmatrix} a & b \\\\ c & d \end{pmatrix} \in SL_2(\mathbb{Z})$, we reduce it to $\pm I$:
 
 **Step 1: If $c = 0$.** Then $ad = 1$, so $a = d = \pm 1$, and $M = \pm T^b$. Done — it is already a product of generators.
 
@@ -50,13 +50,13 @@ Given any $M = \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in SL_2(\mathbb{Z})
 
 The process terminates because the absolute values of the entries strictly decrease at each stage — exactly as in the Euclidean algorithm.
 
-**Challenge to the reader:** Apply the reduction to $\begin{pmatrix} 7 & 3 \\ 3 & 1 \end{pmatrix}$. Perform the Euclidean steps: $7 = 2 \cdot 3 + 1$, right-multiply by $T^{-2}$, then by $S$. Record the sequence of $T$ and $S$ multiplications that leads to $\pm I$.
+**Challenge to the reader:** Apply the reduction to $\begin{pmatrix} 7 & 3 \\\\ 3 & 1 \end{pmatrix}$. Perform the Euclidean steps: $7 = 2 \cdot 3 + 1$, right-multiply by $T^{-2}$, then by $S$. Record the sequence of $T$ and $S$ multiplications that leads to $\pm I$.
 
 ---
 
 ## 3. Concrete Example 1
 
-Let us generate $M = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}$:
+Let us generate $M = \begin{pmatrix} 2 & 1 \\\\ 1 & 1 \end{pmatrix}$:
 
 Working backwards from $M$ to $I$:
 
@@ -80,7 +80,7 @@ $$
 
 ## 4. Concrete Example 2
 
-Generate $M = \begin{pmatrix} 3 & 2 \\ 1 & 1 \end{pmatrix}$:
+Generate $M = \begin{pmatrix} 3 & 2 \\\\ 1 & 1 \end{pmatrix}$:
 
 Using the Euclidean algorithm on the first column $(3, 1)$:
 - $3 = 3 \cdot 1 + 0$
@@ -95,7 +95,7 @@ $$
 
 ## 5. The General Pattern
 
-Any matrix $\begin{pmatrix} a & b \\ c & d \end{pmatrix}$ can be written as:
+Any matrix $\begin{pmatrix} a & b \\\\ c & d \end{pmatrix}$ can be written as:
 
 $$
 M = \pm T^{a_1} S T^{a_2} S \cdots T^{a_k} S T^{a_{k+1}},
