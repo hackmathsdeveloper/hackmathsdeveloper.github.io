@@ -277,13 +277,111 @@ The 3-column grid is configured in `_includes/head-custom.html`. If the grid bre
 □ All math uses $$ / $ delimiters
 □ No markdown inside $$ blocks
 □ No raw < > in math mode
+□ No \#, \{, \} in inline $...$ math (use \lbrace, \rbrace, \lvert, \rvert)
+□ Inline matrices: \\ doubled to \\\\ (only inside $...$, not $$...$$)
+□ Prefer display math $$...$$ for matrices (keeps \\ as-is)
 □ 2-3 additional challenges scattered through post
 □ Final challenge at end
-□ grep checks pass
+□ grep checks pass (all 5 checks from section 8 + 12c)
 □ git commit + push
 □ Live URL verified
 □ Homepage shows new posts (check future:true in _config.yml)
 □ Both GitHub Actions workflows succeeded (or at least one)
 □ index.html tracked, index.md removed
 □ Individual post pages return HTTP 200
+```
+
+---
+
+## 12. kramdown escaping pitfalls in math mode
+
+kramdown (Jekyll's markdown processor) treats certain backslash-character combinations as markdown escapes, **even inside `$...$` inline math spans**. This silently corrupts LaTeX before it reaches MathJax. Display math `$$...$$` blocks are **not affected**.
+
+### 12a. The `\#`, `\{`, `\}` problem
+
+kramdown interprets `\#`, `\{`, `\}` as escaped markdown special characters and strips the backslash, producing bare `#`, `{`, `}` in the HTML output:
+
+| Source | kramdown output | MathJax sees | Result |
+|--------|----------------|-------------|--------|
+| `\#` | `#` | `#` | **Error:** "macro parameter character # in math mode" |
+| `\{` | `{` | `{` | Invisible grouping brace — set notation vanishes |
+| `\}` | `}` | `}` | Invisible grouping brace — set notation vanishes |
+
+**Fix:** Use letter-based LaTeX commands instead. kramdown only strips backslashes before markdown special characters — backslash-letter sequences pass through unchanged:
+
+| Bad (markdown special char) | Good (letter-based command) |
+|-----------------------------|---------------------------|
+| `\#` (cardinality) | `\lvert ... \rvert` for bars, or `\#` cannot be used |
+| `\{` (left brace) | `\lbrace` |
+| `\}` (right brace) | `\rbrace` |
+| `\#{i : b_i = 1}` | `\lvert\lbrace i : b_i = 1\rbrace\rvert` |
+
+### 12b. The `\\` line-break problem in inline matrices
+
+kramdown processes `\\` inside inline `$...$` math as an escaped backslash, consuming one `\` and leaving `\ ` — which MathJax treats as a **control space** instead of a line break. This causes `pmatrix`, `bmatrix`, and other matrix environments to render as a single horizontal row.
+
+| Source | kramdown output | MathJax sees | Result |
+|--------|----------------|-------------|--------|
+| `\begin{pmatrix} a & b \\ c & d \end{pmatrix}` | `\begin{pmatrix} a & b \ c & d \end{pmatrix}` | Control space `\ ` | Matrix renders as one row |
+
+**Fix:** Double `\\` to `\\\\` in **inline math only**. kramdown processes `\\\\` as two escaped backslashes → `\\`, which MathJax correctly interprets as a line break:
+
+```markdown
+<!-- WRONG — renders as single row -->
+$\begin{pmatrix} a & b \\ c & d \end{pmatrix}$
+
+<!-- CORRECT — \\\\ becomes \\ after kramdown -->
+$\begin{pmatrix} a & b \\\\ c & d \end{pmatrix}$
+```
+
+**Display math `$$...$$` does NOT need this fix** — `\\` passes through unchanged.
+
+### 12c. Pre-publish grep for these issues
+
+Add these checks to the section 8 verification:
+
+```bash
+# 4. Inline matrices with single \\ (should print nothing — or verify
+#    matches are only inside $$...$$ display math blocks)
+grep -n '\$.*\\\\begin{pmatrix}.*[^\\]\\\\[^\\].*\\\\end{pmatrix}' _posts/NEW-FILE.md
+
+# 5. \#, \{, or \} inside inline math (should print nothing)
+grep -n '\$.*\\[#{}]' _posts/NEW-FILE.md
+```
+
+For check 4, if output appears, verify each match is inside a `$$...$$` block — not inside `$...$`. For check 5, all matches must be replaced with letter-based commands.
+
+### 12d. Quick decision tree
+
+When writing math in a blog post:
+
+```
+Is the LaTeX inside $...$ (inline) or $$...$$ (display)?
+  ├─ $$...$$ (display): write LaTeX normally, no special escaping
+  └─ $...$ (inline):
+       ├─ Contains \begin{pmatrix} / \begin{bmatrix} / etc.?
+       │    └─ YES → double all \\ to \\\\
+       ├─ Contains \# (hash)?
+       │    └─ YES → replace with \lvert...\rvert or rewrite
+       ├─ Contains \{ or \} (set braces)?
+       │    └─ YES → replace with \lbrace and \rbrace
+       └─ None of the above → write normally
+```
+
+### 12e. Preferred alternative: move matrices to display math
+
+When a matrix is complex or contains multiple rows, prefer `$$...$$` display math. It avoids the escaping problem entirely and is more readable:
+
+```markdown
+<!-- Instead of inline: -->
+The matrix $M = \begin{pmatrix} a & b \\\\ c & d \end{pmatrix}$ has ...
+
+<!-- Use display math: -->
+The matrix
+
+$$
+M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+$$
+
+has ...
 ```
