@@ -20,7 +20,7 @@ read_time: true
 excerpt: "Third in a series: the coprimality-descent proof is a gateway to p-adic valuations, Néron–Tate canonical heights, SL(2,Z) actions on rationals, resultants in algebraic geometry, and the finiteness of ideal class groups. Ten advanced mathematical tools, all variations on a single theme — define a measure that must drop."
 ---
 
-**Challenge to the reader:** The [first post](/category/number-theory/proving-coprimality-descent/) proved that a certain recurrence eventually produces coprime pairs. The [second](/category/number-theory/proving-coprimality-related-techniques/) connected this to ten classics. Now: for each of the ten advanced topics below, identify *where* the "descent of a complexity measure" appears. Some are obvious, others subtle. If you can spot all ten, you've internalized one of mathematics' deepest patterns.
+**Challenge to the reader:** The [first post](/number%20theory/mathematics/coprimality-descent-proof/) proved that a certain recurrence eventually produces coprime pairs. The [second](/number%20theory/mathematics/coprimality-related-techniques/) connected this to ten classics. Now: for each of the ten advanced topics below, identify *where* the "descent of a complexity measure" appears. Some are obvious, others subtle. If you can spot all ten, you've internalized one of mathematics' deepest patterns.
 
 ---
 
@@ -200,7 +200,7 @@ Minkowski used the geometry of numbers; we used elementary inequalities. The log
 
 ## The Meta-Technique, Fully Generalized
 
-Across all twenty problems — the ten from the [companion post](/category/number-theory/proving-coprimality-related-techniques/) and these ten — the same pattern recurs:
+Across all twenty problems — the ten from the [companion post](/number%20theory/mathematics/coprimality-related-techniques/) and these ten — the same pattern recurs:
 
 > **Define a complexity measure, valued in a well-founded set (usually $$\mathbb{Z}_{>0}$$), that strictly decreases under every "undesirable" transition. Conclude that undesirable transitions can occur only finitely often.**
 

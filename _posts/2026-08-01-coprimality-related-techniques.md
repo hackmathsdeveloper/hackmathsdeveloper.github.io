@@ -24,7 +24,7 @@ excerpt: "A companion to the coprimality-descent proof: ten classic results from
 
 ---
 
-In a [companion post](/category/number-theory/proving-coprimality-descent/) we proved that for the recurrence
+In a [companion post](/number%20theory/mathematics/coprimality-descent-proof/) we proved that for the recurrence
 
 $$
 \frac{m_k}{n_k} = \frac{2m_{k-1} + 1}{2n_{k-1} + 1} \quad \text{(reduced)},
@@ -183,7 +183,7 @@ All ten problems share the same skeleton:
 
 > **Define a measure of "badness" or "complexity" that is bounded below and strictly decreases under the operation you're studying. Conclude termination, stabilization, or eventual simplification.**
 
-In the [next post](/category/number-theory/proving-coprimality-advanced-techniques/) we push this idea further — into p-adic valuations, height functions in arithmetic dynamics, group actions, resultants, ergodic theory, and the finiteness of ideal class groups.
+In the [next post](/number%20theory/mathematics/coprimality-advanced-techniques/) we push this idea further — into p-adic valuations, height functions in arithmetic dynamics, group actions, resultants, ergodic theory, and the finiteness of ideal class groups.
 
 ---
 
