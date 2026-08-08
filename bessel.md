@@ -1,15 +1,9 @@
 
 https://www.perplexity.ai/search/f446aae2-51df-4615-b3ab-e4d5393f4e90
 
-
-elaborate on this with lots of actual examples and original equations:
-
-Bessel functions also appear in other fields, such as [signal processing](https://en.wikipedia.org/wiki/Signal_processing "Signal processing") (e.g., see [FM audio synthesis](https://en.wikipedia.org/wiki/Frequency_modulation_synthesis "Frequency modulation synthesis"), [Kaiser window](https://en.wikipedia.org/wiki/Kaiser_window "Kaiser window"), or [Bessel filter](https://en.wikipedia.org/wiki/Bessel_filter "Bessel filter")). They also appear in pure mathematics as part of the Fourier expansion of [Maass forms](https://en.wikipedia.org/wiki/Maass_forms "Maass forms").
-
-
 # elaborate on this with lots of actual examples and original equations:
 
-Bessel functions also appear in other fields, such as [signal processing](https://en.wikipedia.org/wiki/Signal_processing) (e.g., see [FM audio synthesis](https://en.wikipedia.org/wiki/Frequency_modulation_synthesis), [Kaiser window](https://en.wikipedia.org/wiki/Kaiser_window), or [Bessel filter](https://en.wikipedia.org/wiki/Bessel_filter)). They also appear in pure mathematics as part of the Fourier expansion of [Maass forms](https://en.wikipedia.org/wiki/Maass_forms).
+Bessel functions also appear in other fields, such as [signal processing](https://en.wikipedia.org/wiki/Signal_processing "Signal processing") (e.g., see [FM audio synthesis](https://en.wikipedia.org/wiki/Frequency_modulation_synthesis "Frequency modulation synthesis"), [Kaiser window](https://en.wikipedia.org/wiki/Kaiser_window "Kaiser window"), or [Bessel filter](https://en.wikipedia.org/wiki/Bessel_filter "Bessel filter")). They also appear in pure mathematics as part of the Fourier expansion of [Maass forms](https://en.wikipedia.org/wiki/Maass_forms "Maass forms").
 
 Bessel functions enter signal processing and Maass forms in very concrete, computational ways: they literally show up as the coefficients of Fourier expansions or as closed‑form expressions for design parameters. Below are several worked examples and explicit equations.
 
