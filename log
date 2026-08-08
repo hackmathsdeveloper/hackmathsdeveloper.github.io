@@ -1,0 +1,627 @@
+
+
+❯ submit the two article basel_problem.md and  unit_distance_problem.md  
+  for blog posting.   please follow instruction at                       
+  pre-blog-posting-task.md                                               
+
+  Thought for 8s, read 3 files (ctrl+o to expand)
+
+● Let me also look at an existing blog post for style reference, and check the
+  change_for_math.md file.
+
+  Thought for 1s, read 1 file, listed 1 directory (ctrl+o to expand)
+
+● Let me check one existing post for style reference.
+
+  Thought for 11s, read 1 file (ctrl+o to expand)
+
+● Now I have a clear picture of the requirements and the source material. Let me
+  create tasks and work on both blog posts.
+
+  Thought for 1s (ctrl+o to expand)
+
+  Thought for 3s (ctrl+o to expand)
+
+● Write(_posts/2026-05-31-basel-problem.md)
+     
+────────────────────────────────────────────────────────────────────────────────
+ Create file
+ _posts/2026-05-31-basel-problem.md
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+    1 ---
+    2 title: "π²/6: How Euler Cracked the Sum That Stumped a Century — And 20
+       Ways It Secretly Appears Everywhere"
+    3 date: 2026-05-31
+    4 categories:
+    5   - Number Theory
+    6   - Mathematics
+    7 tags:
+    8   - basel-problem
+    9   - riemann-zeta
+   10   - infinite-series
+   11   - euler
+   12   - fourier-series
+   13   - harmonic-numbers
+   14   - generating-functions
+   15 share: true
+   16 read_time: true
+   17 excerpt: "Why does 1 + 1/4 + 1/9 + 1/16 + ... equal π²/6? Euler's answe
+      r to the Basel problem is one of the most beautiful results in all of m
+      athematics — and it spawns an entire universe of related series. From p
+      rime reciprocals to Fibonacci squares, here are 20 variations that reve
+      al how deeply π²/6 is woven into the fabric of analysis."
+   18 ---
+   19
+   20 **Challenge to the reader:** Without using a calculator or looking it u
+      p, compute $\sum_{n=1}^{\infty} \frac{1}{(2n-1)^2}$ given that $\sum_{n
+      =1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}$.
+   21
+   22 ---
+   23
+   24 ## 1. The Classical Basel Problem
+   25
+   26 The **Basel Problem** is to evaluate
+   27
+   28 $$
+   29 \zeta(2) = \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{1}{1^2} + \frac{1}
+      {2^2} + \frac{1}{3^2} + \cdots
+   30 $$
+   31
+   32 In 1734, Leonhard Euler proved the astonishing result:
+   33
+   34 $$
+   35 \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+   36 $$
+   37
+   38 The problem had resisted the Bernoulli brothers, Leibniz, and Stirling
+      for nearly a century. Euler's proof — using the infinite product expans
+      ion of $\sin x$ — was a stroke of genius that launched the modern theor
+      y of the Riemann zeta function.
+   39
+   40 ---
+   41
+   42 ## 2. Why It Matters
+   43
+   44 The appearance of $\pi$ in a sum of reciprocal integers is deeply surpr
+      ising. This result:
+   45
+   46 - Launched the systematic study of $\zeta(s) = \sum_{n=1}^\infty n^{-s}
+      $
+   47 - Connects number theory to complex analysis
+   48 - Gives exact values for $\zeta(2k)$ for all positive integers $k$
+   49 - Appears in quantum field theory, probability, and random matrix theor
+      y
+   50
+   51 ---
+   52
+   53 ## 3. Direct Variants
+   54
+   55 Once you know $\zeta(2) = \pi^2/6$, a family of related sums follows by
+       elementary manipulation.
+   56
+   57 ### 3.1 Even terms only
+   58
+   59 $$
+   60 \sum_{n=1}^{\infty} \frac{1}{(2n)^2} = \frac{1}{4}\sum_{n=1}^{\infty} \
+      frac{1}{n^2} = \frac{\pi^2}{24}
+   61 $$
+   62
+   63 **Challenge:** Derive this in your head. It takes one line.
+   64
+   65 ### 3.2 Odd terms only
+   66
+   67 Subtracting the even terms from the total:
+   68
+   69 $$
+   70 \sum_{n=1}^{\infty} \frac{1}{(2n-1)^2} = \sum_{n=1}^{\infty}\frac{1}{n^
+      2} - \sum_{n=1}^{\infty}\frac{1}{(2n)^2} = \frac{\pi^2}{6} - \frac{\pi^
+      2}{24} = \frac{\pi^2}{8}
+   71 $$
+   72
+   73 ### 3.3 Alternating series
+   74
+   75 The alternating sum yields a smaller multiple of $\pi^2$:
+   76
+   77 $$
+   78 \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^2} = \frac{\pi^2}{12}
+   79 $$
+   80
+   81 This follows from splitting even and odd terms with signs: $\eta(2) = (
+      1 - 2^{1-2})\zeta(2) = \frac{1}{2}\zeta(2)$.
+   82
+   83 ---
+   84
+   85 ## 4. Higher Powers: $\zeta(2k)$
+   86
+   87 Euler went further and computed $\zeta(2k)$ for all positive integers $
+      k$ in terms of Bernoulli numbers:
+   88
+   89 $$
+   90 \zeta(2k) = \frac{(-1)^{k+1} B_{2k} (2\pi)^{2k}}{2(2k)!}
+   91 $$
+   92
+   93 ### 4.1 $\zeta(4)$
+   94
+   95 $$
+   96 \sum_{n=1}^{\infty} \frac{1}{n^4} = \frac{\pi^4}{90}
+   97 $$
+   98
+   99 ### 4.2 $\zeta(6)$
+  100
+  101 $$
+  102 \sum_{n=1}^{\infty} \frac{1}{n^6} = \frac{\pi^6}{945}
+  103 $$
+  104
+  105 ### 4.3 General even argument
+  106
+  107 For any positive integer $k$, $\zeta(2k)$ is a rational multiple of $\p
+      i^{2k}$. The rational coefficients involve the Bernoulli numbers $B_{2k
+      }$, which grow super-exponentially — yet the resulting sum is always a
+      rational number times the appropriate power of $\pi$.
+  108
+  109 **Challenge:** Compute $\zeta(8)$ using the Bernoulli number $B_8 = -1/
+      30$. You should get $\pi^8/9450$.
+  110
+  111 ---
+  112
+  113 ## 5. Restricted-Index Variants
+  114
+  115 What happens when we sum only over primes, triangular numbers, or Fibon
+      acci numbers?
+  116
+  117 ### 5.1 Sum over primes
+  118
+  119 $$
+  120 \sum_{p \text{ prime}} \frac{1}{p^2} \approx 0.4522474200\ldots
+  121 $$
+  122
+  123 This is the *prime zeta function* at $s=2$. Unlike $\zeta(2)$, it has n
+      o known closed form in terms of familiar constants. Its value can be ex
+      pressed using the Möbius inversion formula:
+  124
+  125 $$
+  126 P(2) = \sum_{k=1}^{\infty} \frac{\mu(k)}{k} \log \zeta(2k)
+  127 $$
+  128
+  129 ### 5.2 Arithmetic progression
+  130
+  131 For fixed integers $a, b$ (with no zero denominator):
+  132
+  133 $$
+  134 \sum_{n=1}^{\infty} \frac{1}{(an+b)^2}
+  135 $$
+  136
+  137 can be expressed using the **Hurwitz zeta function** $\zeta(2, b/a)$, o
+      r equivalently in terms of the **digamma function** (trigamma, specific
+      ally).
+  138
+  139 ### 5.3 Triangular numbers
+  140
+  141 Let $T_n = \frac{n(n+1)}{2}$ be the $n$-th triangular number. Then:
+  142
+  143 $$
+  144 \sum_{n=1}^{\infty} \frac{1}{T_n^2} = 4\sum_{n=1}^{\infty} \frac{1}{n^2
+      (n+1)^2}
+  145 $$
+  146
+  147 This can be evaluated exactly using partial fractions and telescoping,
+      yielding a rational combination of $\pi^2$ and rational numbers.
+  148
+  149 ### 5.4 Fibonacci reciprocals
+  150
+  151 $$
+  152 \sum_{n=1}^{\infty} \frac{1}{F_n^2}
+  153 $$
+  154
+  155 where $F_n$ is the $n$-th Fibonacci number. This sum converges rapidly
+      (the Fibonacci numbers grow exponentially), but it is not known to have
+       a simple closed form. It is related to the *reciprocal Fibonacci const
+      ant* and the theory of $q$-series.
+  156
+  157 ---
+  158
+  159 ## 6. Harmonic-Mixed Variants
+  160
+  161 Sums involving harmonic numbers $H_n = \sum_{k=1}^n \frac{1}{k}$ produc
+      e *Euler sums* or *multiple zeta values*. These were studied extensivel
+      y by Euler and are connected to deep algebraic structures.
+  162
+  163 ### 6.1 Linear Euler sum
+  164
+  165 $$
+  166 \sum_{n=1}^{\infty} \frac{H_n}{n^2} = 2\zeta(3)
+  167 $$
+  168
+  169 This is a celebrated result: the sum of $H_n/n^2$ evaluates to *twice A
+      péry's constant*.
+  170
+  171 ### 6.2 Generalized harmonic numbers
+  172
+  173 Let $H_n^{(2)} = \sum_{k=1}^n \frac{1}{k^2}$. Then:
+  174
+  175 $$
+  176 \sum_{n=1}^{\infty} \frac{H_n^{(2)}}{n^2} = \frac{7}{4}\zeta(4) = \frac
+      {7\pi^4}{360}
+  177 $$
+  178
+  179 ### 6.3 Higher-weight Euler sum
+  180
+  181 $$
+  182 \sum_{n=1}^{\infty} \frac{H_n}{n^3} = \frac{5}{4}\zeta(4) = \frac{\pi^4
+      }{72}
+  183 $$
+  184
+  185 ### 6.4 Alternating harmonic sum
+  186
+  187 $$
+  188 \sum_{n=1}^{\infty} \frac{(-1)^{n-1} H_n}{n^2}
+  189 $$
+  190
+  191 This is an alternating Euler sum that evaluates to a combination of $\z
+      eta(3)$ and products of $\zeta(2)$ with $\log 2$, involving the triloga
+      rithm $\operatorname{Li}_3(1/2)$.
+  192
+  193 ---
+  194
+  195 ## 7. Function-Based Derivations
+  196
+  197 The original Basel sum can be derived through multiple independent rout
+      es — each illuminating a different mathematical structure.
+  198
+  199 ### 7.1 Infinite product for sine
+  200
+  201 Euler's original approach: equate the power series and infinite product
+       for $\sin x$:
+  202
+  203 $$
+  204 \frac{\sin x}{x} = \prod_{n=1}^{\infty} \left(1 - \frac{x^2}{n^2 \pi^2}
+      \right)
+  205 $$
+  206
+  207 Expanding both sides and comparing the coefficient of $x^2$ yields $\ze
+      ta(2) = \pi^2/6$.
+  208
+  209 ### 7.2 Fourier series / Parseval
+  210
+  211 Expand $f(x) = x$ or $f(x) = x^2$ on $[-\pi, \pi]$ as a Fourier series
+      and apply Parseval's identity:
+  212
+  213 $$
+  214 \frac{1}{\pi}\int_{-\pi}^{\pi} |f(x)|^2\,dx = \frac{a_0^2}{2} + \sum_{n
+      =1}^{\infty} (a_n^2 + b_n^2)
+  215 $$
+  216
+  217 For $f(x) = x$, the coefficients are $b_n = 2(-1)^{n+1}/n$, and Parseva
+      l gives:
+  218
+  219 $$
+  220 \frac{2\pi^2}{3} = \sum_{n=1}^{\infty} \frac{4}{n^2} \quad\Longrightarr
+      ow\quad \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}
+  221 $$
+  222
+  223 **Challenge:** Repeat this derivation using $f(x) = x^2$ on $[-\pi, \pi
+      ]$ and confirm you get the same result.
+  224
+  225 ### 7.3 Parameter-dependent sum
+  226
+  227 For real $x > 0$:
+  228
+  229 $$
+  230 \sum_{n=1}^{\infty} \frac{1}{n^2 + x^2} = \frac{\pi}{2x}\coth(\pi x) -
+      \frac{1}{2x^2}
+  231 $$
+  232
+  233 Taking the limit $x \to 0^+$ recovers $\zeta(2) = \pi^2/6$ via the Laur
+      ent expansion of $\coth$.
+  234
+  235 ---
+  236
+  237 ## 8. Multidimensional and Parameter Variants
+  238
+  239 ### 8.1 The Riemann zeta function
+  240
+  241 Study the analytic continuation of:
+  242
+  243 $$
+  244 \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s}, \quad \Re(s) > 1
+  245 $$
+  246
+  247 At $s = 2$ we have the Basel result. At $s = 3$, Apéry proved in 1978 t
+      hat $\zeta(3)$ is irrational — but no simple closed form in terms of $\
+      pi^3$ exists. At $s = 4$, we get $\pi^4/90$. The pattern breaks: odd po
+      sitive integers $s = 3, 5, 7, \ldots$ have no known closed form.
+  248
+  249 ### 8.2 Double sum
+  250
+  251 Does the double sum converge?
+  252
+  253 $$
+  254 \sum_{m=1}^{\infty} \sum_{n=1}^{\infty} \frac{1}{(m+n)^2}
+  255 $$
+  256
+  257 Let $k = m+n$. The number of pairs $(m,n)$ with $m,n \ge 1$ and $m+n =
+      k$ is $k-1$. So:
+  258
+  259 $$
+  260 \sum_{m,n \ge 1} \frac{1}{(m+n)^2} = \sum_{k=2}^{\infty} \frac{k-1}{k^2
+      } = \sum_{k=2}^{\infty} \left(\frac{1}{k} - \frac{1}{k^2}\right)
+  261 $$
+  262
+  263 The harmonic series $\sum 1/k$ diverges, so the double sum **diverges**
+       — despite each individual sum over $m$ or $n$ converging.
+  264
+  265 ---
+  266
+  267 ## 9. Deeper Significance
+  268
+  269 The Basel problem is far more than a single sum. It teaches us:
+  270
+  271 - **Generating functions** encode combinatorial structure in analytic f
+      orm
+  272 - **Symmetry** (even vs. odd, alternating signs) partitions infinite se
+      ries into algebraic families
+  273 - **Special values** of $L$-functions at integer arguments are the key
+      to deep arithmetic
+  274 - **Multiple zeta values** form a graded algebra with rich relations —
+      Euler sums are its weight-2 and weight-3 entries
+  275
+  276 The fact that $\zeta(2) = \pi^2/6$ is the tip of an iceberg that leads
+      directly to the Riemann hypothesis, modular forms, and the Langlands pr
+      ogram.
+  277
+  278 ---
+  279
+  280 ## 10. Quick Reference: All 20 Variants
+  281
+  282 | # | Series | Value / Status |
+  283 |---|--------|---------------|
+  284 | 1 | $\sum 1/(2n)^2$ | $\pi^2/24$ |
+  285 | 2 | $\sum 1/(2n-1)^2$ | $\pi^2/8$ |
+  286 | 3 | $\sum (-1)^{n-1}/n^2$ | $\pi^2/12$ |
+  287 | 4 | $\sum 1/n^4$ | $\pi^4/90$ |
+  288 | 5 | $\sum 1/n^6$ | $\pi^6/945$ |
+  289 | 6 | $\sum 1/n^{2k}$ | $(-1)^{k+1} B_{2k} (2\pi)^{2k} / (2(2k)!)$ |
+  290 | 7 | $\sum_{p} 1/p^2$ | No simple closed form |
+  291 | 8 | $\sum 1/(an+b)^2$ | Hurwitz zeta / trigamma |
+  292 | 9 | $\sum 1/T_n^2$ | Closed form in $\pi^2$ + rational |
+  293 | 10 | $\sum 1/F_n^2$ | No known closed form |
+  294 | 11 | $\sum H_n/n^2$ | $2\zeta(3)$ |
+  295 | 12 | $\sum H_n^{(2)}/n^2$ | $7\pi^4/360$ |
+  296 | 13 | $\sum H_n/n^3$ | $\pi^4/72$ |
+  297 | 14 | $\sum (-1)^{n-1} H_n/n^2$ | $\operatorname{Li}_3(1/2)$ combinati
+      on |
+  298 | 15 | Sine product proof | Euler, 1734 |
+  299 | 16 | Fourier/Parseval proof | Standard textbook |
+  300 | 17 | Fourier expansion of $x^2$ | Yields $\zeta(2)$ |
+  301 | 18 | $\sum 1/(n^2+x^2)$ | $\frac{\pi}{2x}\coth\pi x - \frac{1}{2x^2}$
+       |
+  302 | 19 | $\zeta(s)$ at nearby $s$ | $\zeta(2)=\pi^2/6$, $\zeta(3)$ irrati
+
+  Thought for 11s, read 1 file (ctrl+o to expand)
+
+● Now I have a clear picture of the requirements and the source material. Let me
+  create tasks and work on both blog posts.
+
+  Thought for 1s (ctrl+o to expand)
+
+  Thought for 3s (ctrl+o to expand)
+
+● Write(_posts/2026-05-31-basel-problem.md)
+  ⎿  Wrote 307 lines to _posts/2026-05-31-basel-problem.md
+       2 title: "π²/6: How Euler Cracked the Sum That Stumped a Century —
+          And 20 Ways It Secretly Appears Everywhere"
+       3 date: 2026-05-31
+       4 categories:
+       5   - Number Theory
+       6   - Mathematics
+       7 tags:
+       8   - basel-problem
+       9   - riemann-zeta
+      10   - infinite-series
+     … +370 lines (ctrl+o to expand)
+
+  Thought for 8s (ctrl+o to expand)
+
+  Thought for 1s (ctrl+o to expand)
+
+● Write(_posts/2026-05-31-unit-distance-problem.md)
+  ⎿  Wrote 285 lines to _posts/2026-05-31-unit-distance-problem.md
+       2 title: "Erdős's $500 Problem: The Maximum Number of Unit Distanc
+         es Among n Points — And Why No One Has Solved It Since 1946"
+       3 date: 2026-05-31
+       4 categories:
+       5   - Combinatorial Geometry
+       6   - Mathematics
+       7 tags:
+       8   - unit-distance-problem
+       9   - erdos
+      10   - combinatorial-geometry
+     … +359 lines (ctrl+o to expand)
+
+  Thought for 2s (ctrl+o to expand)
+
+  Thought for 1s (ctrl+o to expand)
+
+● Now let me run the pre-publish verification checks on both files.
+
+  Thought for 9s, searched for 3 patterns (ctrl+o to expand)
+
+● Let me verify the matches from checks 2 and 3:
+     
+  Check 2 results: All --- lines are either frontmatter delimiters (lines 1, 18
+  in both files) or section separators — all outside $$...$$ blocks. ✅
+  Legitimate.
+
+  Check 3 results:
+  - basel_problem.md:227 — $x > 0$ → > inside inline math ✅
+  - basel_problem.md:244 — \Re(s) > 1 → > inside $$...$$ block ✅
+  - unit_distance_problem.md:28 — > as markdown blockquote prefix ✅
+  - unit_distance_problem.md:206 — $c > 0$ → > inside inline math ✅
+  
+  All checks pass. Now let me commit and push.
+
+  Thought for 2s (ctrl+o to expand)
+
+● Bash(git add _posts/2026-05-31-basel-problem.md
+      _posts/2026-05-31-unit-distance-problem.md && git commit -m "Add Basel
+      problem and Unit Distance problem blog posts…)
+  ⎿  Waiting…
+     
+────────────────────────────────────────────────────────────────────────────────
+ Bash command
+
+   git add _posts/2026-05-31-basel-problem.md
+   _posts/2026-05-31-unit-distance-problem.md && git commit -m "Add Basel
+   problem and Unit Distance problem blog posts
+
+   The Basel problem post covers 20 variants of Euler's π²/6 sum, from direct
+   generalisations (ζ(2k), alternating series, arithmetic progressions) to
+   harmonic-mixed Euler sums and function-based derivations via sine products
+   and Fourier/Parseval methods.
+  - unit_distance_problem.md:28 — > as markdown blockquote prefix ✅
+  - unit_distance_problem.md:206 — $c > 0$ → > inside inline math ✅
+
+  All checks pass. Now let me commit and push.
+
+  Thought for 2s (ctrl+o to expand)
+
+● Bash(git add _posts/2026-05-31-basel-problem.md
+      _posts/2026-05-31-unit-distance-problem.md && git commit -m "Add Basel
+      problem and Unit Distance problem blog posts…)
+  ⎿  [main 083688d] Add Basel problem and Unit Distance problem blog posts
+      2 files changed, 592 insertions(+)
+      create mode 100644 _posts/2026-05-31-basel-problem.md
+      create mode 100644 _posts/2026-05-31-unit-distance-problem.md
+
+  Thought for 3s (ctrl+o to expand)
+  - basel_problem.md:244 — \Re(s) > 1 → > inside $$...$$ block ✅
+  - unit_distance_problem.md:28 — > as markdown blockquote prefix ✅
+  - unit_distance_problem.md:206 — $c > 0$ → > inside inline math ✅
+
+  All checks pass. Now let me commit and push.
+
+  Thought for 2s (ctrl+o to expand)
+
+  All checks pass. Now let me commit and push.
+
+  Thought for 2s (ctrl+o to expand)
+
+● Bash(git add _posts/2026-05-31-basel-problem.md _posts/2026-05-31-unit-distance-problem.md && git commit -m "Add Basel problem and Unit Distance problem blog posts…)
+  ⎿  [main 083688d] Add Basel problem and Unit Distance problem blog posts
+      2 files changed, 592 insertions(+)
+      create mode 100644 _posts/2026-05-31-basel-problem.md
+      create mode 100644 _posts/2026-05-31-unit-distance-problem.md
+
+  Thought for 3s (ctrl+o to expand)
+
+● Bash(git push)
+  ⎿  To https://github.com/hackmathsdeveloper/hackmathsdeveloper.github.io.git
+        17ade62..083688d  main -> main
+
+  Thought for 6s (ctrl+o to expand)
+
+  Thought for 1s (ctrl+o to expand)
+
+● Both blog posts have been created, verified, and pushed. Here's a summary:
+
+  ---
+  ✅ Basel Problem — _posts/2026-05-31-basel-problem.md
+
+  - Title: π²/6: How Euler Cracked the Sum That Stumped a Century — And 20 Ways It Secretly Appears Everywhere
+  - Structure: 10 sections covering the classical problem, why it matters, direct variants, higher powers ζ(2k), restricted-index variants (primes, Fibonacci, triangular numbers), harmonic-mixed Euler sums, function-based derivations (sine product, Fourier/Parseval), multidimensional variants, deeper
+  significance, and a summary table of all 20 variants.
+  - Challenges: 4 total — opening, mid-post (2), and final (Bernoulli numbers verification).
+
+  ✅ Unit Distance Problem — _posts/2026-05-31-unit-distance-problem.md
+
+  - Title: Erdős's $500 Problem: The Maximum Number of Unit Distances Among n Points — And Why No One Has Solved It Since 1946
+  - Structure: 12 sections covering the problem statement, small n values, triangular lattice constructions, hexagonal patch formulas, square grid comparisons, regular polygons, large-scale asymptotics, best known bounds ($\Omega(n^{1+c/\log\log n})$ vs $O(n^{4/3})$), the unit distance graph, deeper
+  significance, and related topics.
+  - Challenges: 3 total — opening (construct configurations), mid-post (Szemerédi-Trotter reasoning), and final (Moser spindle + chromatic number of the plane).
+
+  ✅ Verification checks all passed:
+
+  1. No old-style \[/\]/\( delimiters
+  2. All --- lines are legitimate frontmatter/section separators (outside math blocks)
+  3. All </> occurrences are inside $...$/$$...$$ or are markdown blockquotes
+
+  ✅ Git: Committed 083688d and pushed to main
+
+  ---
+  Post-publish verification: Wait ~2 minutes for GitHub Pages to rebuild, then check:
+  - https://hackmathsdeveloper.github.io/ — both posts should appear in the listing
+  - Individual post pages should render all $$ math blocks correctly
+
+✻ Sautéed for 3m 48s
+
+❯ repeat for "ramanujan_10_questions.md"                                                                                                                                                                                                                                                                              
+
+  Thought for 18s, read 1 file (ctrl+o to expand)
+
+● Write(_posts/2026-06-01-ramanujan-10-questions.md)
+  ⎿  Wrote 330 lines to _posts/2026-06-01-ramanujan-10-questions.md
+       1 ---
+       2 title: "10 Questions from Ramanujan's Lost Notebook — The Identities That Prove Mathematics Is Haunted"
+       3 date: 2026-06-01
+       4 categories:
+       5   - Number Theory
+       6   - Mathematics
+       7 tags:
+       8   - ramanujan
+       9   - theta-functions
+      10   - continued-fractions
+     … +328 lines (ctrl+o to expand)
+
+  Thought for 1s (ctrl+o to expand)
+
+● Now let me run the verification checks.
+
+  Thought for 6s, searched for 3 patterns (ctrl+o to expand)
+
+● Check 3 is clean. Let me verify the check 1 hit on line 138 — the \\[4pt] is a LaTeX spacing command inside $$...$$, not an old-style math delimiter.
+     
+  Thought for 2s, read 1 file (ctrl+o to expand)
+
+● Confirmed: \\[4pt] is inside a $$...$$ cases environment — legitimate LaTeX spacing, not an old-style delimiter. All checks pass.
+
+● Bash(git add _posts/2026-06-01-ramanujan-10-questions.md && git commit -m "Add Ramanujan's Lost Notebook: 10 questions blog post…)
+  ⎿  [main a85f491] Add Ramanujan's Lost Notebook: 10 questions blog post
+      1 file changed, 330 insertions(+)
+      create mode 100644 _posts/2026-06-01-ramanujan-10-questions.md
+
+  Thought for 1s (ctrl+o to expand)
+
+● Bash(git push)
+  ⎿  To https://github.com/hackmathsdeveloper/hackmathsdeveloper.github.io.git
+        083688d..a85f491  main -> main
+
+  Thought for 1s (ctrl+o to expand)
+
+● Done. Here's the summary:
+
+  ---
+  ✅ Ramanujan's Lost Notebook — _posts/2026-06-01-ramanujan-10-questions.md
+  
+  - Title: 10 Questions from Ramanujan's Lost Notebook — The Identities That Prove Mathematics Is Haunted
+  - Date: 2026-06-01 (today's date)
+  - Categories: Number Theory, Mathematics
+  - Structure: 13 sections covering all 10 questions plus a connection table and deeper significance section:
+    a. Partition congruences and the crank
+    b. Rogers-Ramanujan continued fraction reciprocity
+    c. Eisenstein series differential equations
+    d. Bessel function double series (Voronoï summation)
+    e. Rogers-Ramanujan function identities
+    f. Nested radical identities (componendo et dividendo)
+    g. Highly composite numbers and representation by squares
+    h. Partial theta function transformations
+    i. Continued fraction zero asymptotics
+    j. Integral analogues of Gauss sums
+  - Challenges: 5 total — opening, 3 mid-post, and final (choose one question and prove it)
+  - Verification checks: All passed (the \\[4pt] match is legitimate LaTeX inside $$...$$)
+
+  ✅ Git: Committed a85f491 and pushed to main
+
+  Wait ~2 minutes for GitHub Pages to rebuild, then verify at https://hackmathsdeveloper.github.io/.
+
+✻ Sautéed for 2m 13s
+
