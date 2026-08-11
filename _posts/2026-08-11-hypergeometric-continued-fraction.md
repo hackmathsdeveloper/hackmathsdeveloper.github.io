@@ -24,8 +24,8 @@ excerpt: "Gauss discovered that the ratio of two contiguous $${}_2F_1$$ function
 Gauss's continued fraction expresses a ratio of contiguous Gaussian hypergeometric functions as a continued fraction. A standard form is
 
 $$
-\frac{{}_2F_1(a,b+1;c+1;z)}
-{{}_2F_1(a,b;c;z)}
+\frac{ {}_2F_1(a,b+1;c+1;z)}
+{ {}_2F_1(a,b;c;z)}
 =
 \cfrac{1}{
 1-\cfrac{
@@ -69,8 +69,8 @@ It converts a hypergeometric-function ratio into a three-term-recurrence structu
 You will often see the same fraction written as
 
 $$
-\frac{{}_2F_1(a+1,b;c+1;z)}
-{{}_2F_1(a,b;c;z)}
+\frac{ {}_2F_1(a+1,b;c+1;z)}
+{ {}_2F_1(a,b;c;z)}
 =
 \cfrac{1}{
 1+\cfrac{k_1z}{
