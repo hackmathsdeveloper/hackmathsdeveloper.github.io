@@ -1,3 +1,13 @@
+duplication:
+
+./_posts/2026-06-01-catalan-numbers-standard-continued-fraction.md
+./_posts/2026-06-08-continued-fraction-catalan-standard.md
+./_posts/2026-06-08-continued-fraction-catalan-generating-function.md
+./_posts/2026-06-01-continued-fraction-catalan-generating-function.md
+
+
+
+
 http://www.mathstudio.co.uk/ContFractions-Nov2013-AL.pdf.
 https://math.stackexchange.com/questions/44836/gcd-and-lcm-of-fractions.
 https://r-knott.surrey.ac.uk/fibonacci/CFintro.html.
