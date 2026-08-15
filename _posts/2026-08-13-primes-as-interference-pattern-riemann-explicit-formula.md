@@ -44,7 +44,20 @@ $$
 
 It is a staircase: it jumps by $1$ exactly at $2,3,5,7,11,\dots$ and is flat everywhere else. The first few values — $\pi(10)=4$, $\pi(100)=25$ — are easy, but the function resists smooth analysis because it is constant except at isolated, irregularly spaced jumps.
 
-Two classical observations tame the *average* behavior. The density $\pi(x)/x$ falls as $x$ grows (primes thin out), and the average gap $x/\pi(x)$ grows roughly like $\log x$. That heuristic becomes the Prime Number Theorem:
+Two classical observations tame the *average* behavior. The density $\pi(x)/x$ falls as $x$ grows (primes thin out), and the average gap $x/\pi(x)$ grows roughly like $\log x$. Here is the progress of the staircase at the powers of ten:
+
+| $x$ | $\pi(x)$ | $\pi(x)/x$ | $1/\pi(x)$ | $x/\pi(x)$ |
+|---:|---:|---:|---:|---:|
+| $10$ | $4$ | $0.4$ | $0.25$ | $2.5$ |
+| $10^2$ | $25$ | $0.25$ | $0.04$ | $4$ |
+| $10^3$ | $168$ | $0.168$ | $0.005952$ | $5.952$ |
+| $10^4$ | $1\,229$ | $0.1229$ | $0.0008137$ | $8.137$ |
+| $10^5$ | $9\,592$ | $0.09592$ | $0.00010425$ | $10.43$ |
+| $10^6$ | $78\,498$ | $0.078498$ | $0.000012739$ | $12.74$ |
+| $10^7$ | $664\,579$ | $0.0664579$ | $0.000001505$ | $15.05$ |
+| $10^8$ | $5\,761\,455$ | $0.05761455$ | $0.0000001736$ | $17.36$ |
+
+Read down the columns. $\pi(x)$ climbs, the density $\pi(x)/x$ drifts toward zero (primes thin out, slowly), and $1/\pi(x)$ collapses — nothing in the first four columns happens quickly. The last column, the average gap $x/\pi(x)$, is the informative one: compare it with $\log x = 2.303, 4.605, 6.908, 9.210, 11.513, 13.816, 16.118, 18.421$ at the same points. The gap tracks $\log x$ with a nearly constant offset — indeed $\log x - x/\pi(x)$ settles down toward about $1.08$. That heuristic becomes the Prime Number Theorem:
 
 $$
 \pi(x)\sim\frac{x}{\log x},
@@ -61,13 +74,42 @@ The link between primes and analysis begins with Euler, and it begins with a tri
 Start with the zeta series
 
 $$
-\zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}=1+\frac{1}{2^s}+\frac{1}{3^s}+\cdots,
+\zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^s}
+=1+\frac{1}{2^s}+\frac{1}{3^s}+\frac{1}{4^s}+\frac{1}{5^s}+\frac{1}{6^s}+\cdots,
 $$
 
-which converges for $\Re(s) \gt 1$. Multiply by $1-2^{-s}$: every term $n^{-s}$ whose $n$ is divisible by $2$ cancels. Multiply again by $1-3^{-s}$: every remaining term divisible by $3$ is removed. Continuing over all primes, each integer $n$ is deleted exactly once — at the prime it "carries" in its factorization — until only $n=1$ survives. What is left is the identity
+which converges for $\Re(s) \gt 1$. This is the **additive format**: one term for every integer. The sieve will convert it into the **multiplicative format**: one factor for every prime.
+
+Multiply by $1-2^{-s}$ and watch the terms cancel in pairs:
 
 $$
-\zeta(s)=\prod_{p}\left(1-\frac{1}{p^s}\right)^{-1},
+\begin{aligned}
+(1-2^{-s})\,\zeta(s)
+&=\Bigl(1+\frac{1}{2^s}+\frac{1}{3^s}+\frac{1}{4^s}+\frac{1}{5^s}+\frac{1}{6^s}+\cdots\Bigr)
+-\Bigl(\frac{1}{2^s}+\frac{1}{4^s}+\frac{1}{6^s}+\frac{1}{8^s}+\frac{1}{10^s}+\frac{1}{12^s}+\cdots\Bigr)\\
+&=1+\frac{1}{3^s}+\frac{1}{5^s}+\frac{1}{7^s}+\frac{1}{9^s}+\cdots.
+\end{aligned}
+$$
+
+Every term whose denominator is divisible by $2$ has canceled; the odd denominators survive. Multiply again by $1-3^{-s}$: every surviving term whose denominator is divisible by $3$ is removed, and what remains are the integers divisible by neither $2$ nor $3$:
+
+$$
+(1-3^{-s})(1-2^{-s})\,\zeta(s)
+=1+\frac{1}{5^s}+\frac{1}{7^s}+\frac{1}{11^s}+\frac{1}{13^s}+\frac{1}{17^s}+\cdots.
+$$
+
+One more factor, $1-5^{-s}$, strips out the multiples of $5$:
+
+$$
+(1-5^{-s})(1-3^{-s})(1-2^{-s})\,\zeta(s)
+=1+\frac{1}{7^s}+\frac{1}{11^s}+\frac{1}{13^s}+\frac{1}{17^s}+\frac{1}{19^s}+\frac{1}{23^s}+\cdots.
+$$
+
+Continuing over all primes, each integer $n$ is deleted exactly once — at the prime it "carries" in its factorization — until only $n=1$ survives. Rearranging what is left gives the identity
+
+$$
+\zeta(s)=\frac{1}{(1-2^{-s})(1-3^{-s})(1-5^{-s})(1-7^{-s})\cdots}
+=\prod_{p}\left(1-\frac{1}{p^s}\right)^{-1},
 $$
 
 the **Euler product**.
@@ -77,10 +119,11 @@ The bridge, stated plainly: *the sieve works because every integer has a unique 
 The factor $(1-p^{-s})^{-1}$ deserves one more look, because it will recur in disguise. Expanding it as a geometric series:
 
 $$
-\left(1-\frac{1}{p^s}\right)^{-1}=1+\frac{1}{p^s}+\frac{1}{p^{2s}}+\frac{1}{p^{3s}}+\cdots.
+\left(1-\frac{1}{p^s}\right)^{-1}
+=1+\frac{1}{p^s}+\frac{1}{p^{2s}}+\frac{1}{p^{3s}}+\frac{1}{p^{4s}}+\frac{1}{p^{5s}}+\frac{1}{p^{6s}}+\cdots.
 $$
 
-Each prime contributes not just $p^{-s}$ but *all* powers $p^{-ms}$. We are about to take a logarithm to see those powers explicitly.
+Each prime contributes not just $p^{-s}$ but *all* powers $p^{-ms}$ — here is where the extra terms are *generated*: every factor of the product, expanded, produces an entire infinite series of prime powers, and because each integer has a unique factorization, multiplying all of these series together reassembles the original additive series term by term. The product and the sum encode exactly the same information; the product is simply organized prime-by-prime instead of integer-by-integer. We are about to take a logarithm to see those powers explicitly.
 
 **Challenge to the reader:** Multiply out the truncated product $(1-2^{-s})^{-1}(1-3^{-s})^{-1}(1-5^{-s})^{-1}$ as a power series in $n^{-s}$. Which integer coefficients are now equal to $1$, and which are missing? How does this partial product differ from $\zeta(s)$?
 
