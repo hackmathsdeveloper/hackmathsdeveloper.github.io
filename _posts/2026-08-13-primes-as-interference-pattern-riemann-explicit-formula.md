@@ -171,16 +171,22 @@ $$
 
 Concretely: the prime $2$ contributes $1$, the prime power $2^2=4$ contributes $1/2$, $2^3=8$ contributes $1/3$, and so on. Because $J(x)$ jumps at every *prime power* (not just at primes), and because its jump heights shrink as $1/m$, it is *smoother* than $\pi(x)$ in a precise sense — its jumps are smaller and more regularly layered, which is exactly what makes it tractable to analytic techniques.
 
-Two worked values make the definition concrete:
+Worked values make the definition concrete, and it is worth starting at the bottom. Nothing up to and including $1$ is a prime power, so the sum is empty:
 
 $$
-J(10)=4+\frac12+\frac12+\frac13=\frac{16}{3},
+J(1)=0.
 $$
 
-where the terms come from the primes $2,3,5,7$ (each weight $1$), then $4=2^2$ and $9=3^2$ (each weight $1/2$), and $8=2^3$ (weight $1/3$). Similarly,
+The staircase sits at zero until its very first jump — of height $1$ — at $x=2$. At $x=10$,
 
 $$
-J(100)=25+4\left(\frac12\right)+2\left(\frac13\right)+2\left(\frac14\right)+\frac15+\frac16=\frac{428}{15}.
+J(10)=\underbrace{4}_{\text{primes }2,3,5,7}+\underbrace{\frac12+\frac12}_{4=2^2,\ 9=3^2}+\underbrace{\frac13}_{8=2^3}=\frac{16}{3}\approx 5.33.
+$$
+
+At $x=100$ there are $25$ primes, plus four squares ($2^2,3^2,5^2,7^2$), two cubes ($2^3,3^3$), two fourth powers ($2^4,3^4$), one fifth power ($2^5$), and one sixth power ($2^6$):
+
+$$
+J(100)=25+4\left(\frac12\right)+2\left(\frac13\right)+2\left(\frac14\right)+\frac15+\frac16=\frac{428}{15}\approx 28.53.
 $$
 
 There is a direct relationship between the two staircases, and it is the key to moving between them. A prime power $p^m\le x$ is the same thing as a prime $p\le x^{1/m}$. Counting the latter with $\pi$ and weighting by $1/m$ gives
@@ -190,7 +196,32 @@ J(x)=\sum_{m\ge 1}\frac{1}{m}\,\pi\!\left(x^{1/m}\right)
 =\pi(x)+\frac12\pi(\sqrt x)+\frac13\pi(x^{1/3})+\cdots.
 $$
 
-So $J(x)$ is the prime staircase $\pi(x)$ plus all of its "prime-power layers." This is not just notation: it tells us that $J$ and $\pi$ contain the *same information*, just packaged differently — and that packaging is about to be inverted.
+So $J(x)$ is the prime staircase $\pi(x)$ plus all of its "prime-power layers." The layered form also makes larger values mechanical to compute, because each layer is just $\pi$ evaluated at an $m$-th root. At $x=1000$ the layers are: $168$ primes ($m=1$); $\pi(\sqrt{1000})=\pi(31)=11$ squares; $\pi(\sqrt[3]{1000})=\pi(10)=4$ cubes; $\pi(1000^{1/4})=\pi(5)=3$ fourth powers; two fifth powers ($2^5=32$, $3^5=243$) and two sixth powers ($2^6=64$, $3^6=729$); then only powers of $2$ survive, one per layer from $m=7$ through $m=9$:
+
+$$
+J(1000)=168+11\left(\frac12\right)+4\left(\frac13\right)+3\left(\frac14\right)+2\left(\frac15\right)+2\left(\frac16\right)+\frac17+\frac18+\frac19=\frac{445273}{2520}\approx 176.70.
+$$
+
+At $x=10^4$ the pattern continues — $25$ squares ($p\le 100$), $8$ cubes ($p\le 21$), $4$ fourth powers ($p\le 10$), $3$ fifths ($p\le 6$), two sixths, two sevenths, and two eighths ($p\le 4$, $p\le 3$, $p\le 3$), and then single powers of $2$ from $m=9$ through $m=13$:
+
+$$
+J(10^4)=1229+25\left(\frac12\right)+8\left(\frac13\right)+4\left(\frac14\right)+3\left(\frac15\right)+2\left(\frac16\right)+2\left(\frac17\right)+2\left(\frac18\right)+\frac19+\frac1{10}+\frac1{11}+\frac1{12}+\frac1{13}\approx 1247.10.
+$$
+
+The progression is worth tabulating:
+
+| $x$ | $\pi(x)$ | $J(x)$ | $J(x)-\pi(x)$ |
+|---:|---:|---:|---:|
+| $1$ | $0$ | $0$ | $0$ |
+| $10$ | $4$ | $16/3\approx 5.33$ | $1.33$ |
+| $10^2$ | $25$ | $428/15\approx 28.53$ | $3.53$ |
+| $10^3$ | $168$ | $\approx 176.70$ | $8.70$ |
+| $10^4$ | $1\,229$ | $\approx 1247.10$ | $18.10$ |
+| $10^5$ | $9\,592$ | $\approx 9633.77$ | $41.77$ |
+
+Two features of the table are worth saying out loud. First, **the expansion terminates:** layer $m$ exists only while $x^{1/m}\ge 2$, i.e. while $m\le\log_2 x$. That is why $J(10)$ has $3$ layers, $J(100)$ six, $J(1000)$ nine, $J(10^4)$ thirteen, $J(10^5)$ sixteen — each decade of $x$ buys about $\log_2 10\approx 3.32$ new layers. Second, **the layers form only a thin crust:** at $x=10^4$ the entire excess over $\pi(x)$ is a mere $18$, and most of it — $25/2=12.5$ — comes from the square layer alone. Because the crust is dominated by $\tfrac12\pi(\sqrt x)$, it grows like $\sqrt{x}/\log x$, a vanishing fraction of $\pi(x)$ itself.
+
+This is not just notation: it tells us that $J$ and $\pi$ contain the *same information*, just packaged differently — and that packaging is about to be inverted.
 
 ---
 
