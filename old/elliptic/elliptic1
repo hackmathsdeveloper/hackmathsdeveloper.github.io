@@ -1,0 +1,55 @@
+
+An **elliptic curve** is a smooth, non-singular algebraic curve defined by a cubic equation. Despite the name, an elliptic curve is **not an ellipse**; historically, the term arises because these equations were used to calculate the arc length of ellipses (via *elliptic integrals* and *elliptic functions*).
+
+An elliptic curve over a field (such as the real numbers $\mathbb{R}$) is typically expressed in **short Weierstrass form**:
+
+$$y^2 = x^3 + ax + b$$
+
+To ensure the curve is smooth (has no sharp cusps, self-intersections, or singular points), the discriminant of the cubic polynomial must be non-zero:
+
+$$4a^3 + 27b^2 \neq 0$$
+
+---
+
+## 1. Geometric & Algebraic Properties
+
+Elliptic curves possess unique properties that set them apart from standard algebraic curves:
+
+* **Symmetry:** Because of the $y^2$ term, the curve is always symmetric across the horizontal axis ($x$-axis). For every point $(x, y)$ on the curve, its reflection $(x, -y)$ is also on the curve.
+* **Point at Infinity ($\mathcal{O}$):** To make the curve structurally complete, mathematicians include an idealized "point at infinity," denoted as $\mathcal{O}$. It acts as the identity element (zero) in group operations.
+* **Group Law (Chord-and-Tangent Method):** The set of points on an elliptic curve forms an **abelian group** under an addition operation defined geometrically:
+1. Take two points $P$ and $Q$ on the curve and draw a line through them.
+2. The line will intersect the curve at a third point, $R'$.
+3. Reflect $R'$ across the $x$-axis to get point $R$. We define $P + Q = R$.
+4. If $P = Q$, draw the tangent line at $P$, find the second intersection point, and reflect it (Point Doubling: $2P$).
+
+
+
+---
+
+## 2. Elliptic Functions
+
+While an elliptic curve is a geometric object, an **elliptic function** is a complex-analytic function used to parameterize or evaluate properties associated with these curves.
+
+* **Definition:** An elliptic function is a **doubly periodic function** defined on the complex plane $\mathbb{C}$. That is, it repeats in two distinct complex directions:
+
+$$f(z + \omega_1) = f(z) \quad \text{and} \quad f(z + \omega_2) = f(z)$$
+
+
+
+where the period ratio $\omega_1 / \omega_2$ is non-real.
+* **Weierstrass $\wp$-Function:** The quintessential elliptic function is the Weierstrass $\wp$-function. It provides a direct bridge between complex analysis and algebraic geometry because the pair $(\wp(z), \wp'(z))$ satisfies an elliptic curve equation:
+
+$$(\wp'(z))^2 = 4\wp(z)^3 - g_2\wp(z) - g_3$$
+
+
+
+---
+
+## 3. Major Applications
+
+| Domain | Key Mechanism & Importance |
+| --- | --- |
+| **Cryptography (ECC)** | Defines curves over finite fields ($\mathbb{F}_p$). The **Elliptic Curve Discrete Logarithm Problem (ECDLP)** makes computing $k$ from $P$ and $Q = kP$ computationally infeasible, enabling secure public-key encryption, ECDSA signatures, and TLS with significantly shorter key sizes than RSA. |
+| **Number Theory** | Central to solving Diophantine equations. Andrew Wiles used the **Modularity Theorem**—which states that every elliptic curve over $\mathbb{Q}$ is parameterized by a modular form—to prove **Fermat's Last Theorem**. |
+| **Theoretical Physics** | Used in string theory, integrable systems, and conformal field theory to compute partition functions and torus compactifications. |

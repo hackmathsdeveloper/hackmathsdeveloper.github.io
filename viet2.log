@@ -1,0 +1,976 @@
+▗ ▗   ▖ ▖  Claude Code v2.1.251
+           deepseek-v4-pro · API Usage Billing
+  ▘▘ ▝▝    ~/hackmathsdeveloper.github.io
+
+
+❯ prepare the three article pi_viet*md for submission as article, following the 
+  instruction inside the writeup "submit_posting.md".                           
+
+  Thought for 59s, read 4 files (ctrl+o to expand)
+
+⏺ I'll start by reading the submission checklist (done) and exploring the repo
+  to match existing post conventions.
+
+  Thought for 7s, listed 2 directories, ran 1 shell command (ctrl+o to expand)
+
+⏺ The gate hook wants facts stated for Bash use — noting them here: (1) User 
+  request: prepare the three pi_viet*.md articles for blog submission per
+  submit_posting.md; (2) Commands so far verified future: true in _config.yml,
+  index.html tracked / index.md not tracked (both ✔ per section 11b/11c), and
+  listed existing posts.
+
+  Let me check an existing post's frontmatter style to match conventions:
+
+  Thought for 10m 0s, read 1 file (ctrl+o to expand)
+
+⏺ The checklist is clear. Let me set up task tracking, then write the three
+  posts.
+
+  Thought for 6s (ctrl+o to expand)
+
+⏺ Write(_posts/2026-08-31-viete-formula-nested-radicals.md)
+  ⎿  Error: [Fact-Forcing Gate]
+
+     Before creating /Users/tthtlc/hackmathsdeveloper.github.io/_posts/2026-08-3
+     1-viete-formula-nested-radicals.md, present these facts:
+
+     1. Name the file(s) and line(s) that will call this new file
+     2. Confirm no existing file serves the same purpose (search the tree — 
+     Glob/Grep, or find/grep via Bash)
+     3. If this file reads/writes data files, show field names, structure, and 
+     date format (use redacted or synthetic values, not raw production data)
+     4. Quote the user's current instruction verbatim
+
+     Present the facts, then retry the same operation.
+     … +4 lines (ctrl+o to expand)
+
+  Thought for 5s (ctrl+o to expand)
+
+⏺ The gate hook wants facts before first-touch writes. Presenting them:
+
+  1. Callers of the new file: none in code — Jekyll auto-discovers _posts/*.md.
+     It will be referenced by the two sibling posts via {% post_url 
+     2026-08-31-viete-formula-nested-radicals %} cross-links.
+  2. No existing file serves this purpose — verifying by search:
+  3. Data files: none; it's a Jekyll post with YAML frontmatter (title string,
+     date YYYY-MM-DD, categories/tags lists, share/read_time booleans, excerpt
+     string).
+  4. User instruction verbatim: "prepare the three article pi_viet*md for
+     submission as article, following the instruction inside the writeup
+     "submit_posting.md"."
+
+  Thought for 9m 57s, listed 1 directory (ctrl+o to expand)
+
+⏺ Facts for the gate: (1) Current user request: prepare the three pi_viet*.md
+  articles for blog submission per submit_posting.md. (2) This command verifies
+  no existing _posts file already covers Viète/van Ceulen and no same-date posts
+  exist, confirming the new filenames don't duplicate anything.
+
+  Thought for 1s, listed 1 directory (ctrl+o to expand)
+
+⏺ Confirmed: no existing post covers Viète/van Ceulen, and no 2026-08-31 posts
+  exist. Retrying the write:
+
+⏺ API Error: Your computer went to sleep mid-response. The response 
+  above may be incomplete.
+
+✻ Cooked for 1h 19m 40s · done 1:11 AM
+
+❯ /export viet.log                                                              
+  ⎿  Conversation exported to:
+     /Users/tthtlc/hackmathsdeveloper.github.io/viet.log
+
+❯ continue                                                                      
+  Thought for 3s (ctrl+o to expand)
+
+⏺ Write(_posts/2026-08-31-viete-formula-nested-radicals.md)
+  ⎿  Error: [Fact-Forcing Gate]
+
+     Before creating /Users/tthtlc/hackmathsdeveloper.github.io/_posts/2026-08-3
+     1-viete-formula-nested-radicals.md, present these facts:
+
+     1. Name the file(s) and line(s) that will call this new file
+     2. Confirm no existing file serves the same purpose (search the tree — 
+     Glob/Grep, or find/grep via Bash)
+     3. If this file reads/writes data files, show field names, structure, and 
+     date format (use redacted or synthetic values, not raw production data)
+     4. Quote the user's current instruction verbatim
+
+     Present the facts, then retry the same operation.
+     … +4 lines (ctrl+o to expand)
+
+  Thought for 4s (ctrl+o to expand)
+
+⏺ Presenting the required facts before retrying the write:
+
+  1. Callers: Jekyll auto-discovers _posts/*.md (no code references it). The two
+     sibling posts will reference it via {% post_url 
+     2026-08-31-viete-formula-nested-radicals %} in their series lines.
+  2. No existing file serves this purpose: grep -ril 'viete\|van ceulen' _posts/
+     returned nothing, and ls _posts/2026-08-31* found no files (verified
+     above). The raw source pi_viet.md remains untouched as the draft.
+  3. Data files: none. The file is a Jekyll markdown post; its frontmatter
+     fields are title (string), date (YYYY-MM-DD), categories (list: Analysis,
+     Mathematics), tags (kebab-case list), share: true, read_time: true, excerpt
+     (string, ≤300 chars).
+  4. User instruction verbatim: "prepare the three article pi_viet*md for
+     submission as article, following the instruction inside the writeup
+     "submit_posting.md"."
+
+⏺ Write(_posts/2026-08-31-viete-formula-nested-radicals.md)
+  ⎿  Wrote 193 lines to _posts/2026-08-31-viete-formula-nested-radicals.md
+       1 ---
+       2 title: "Why π Lives Inside an Infinite Tower of Square Roots — V
+         iète's Secret Product"
+       3 date: 2026-08-31
+       4 categories:
+       6   - Mathematics
+       7 tags:
+       8   - vietes-formula
+       9   - pi
+      10   - half-angle-identities
+     … +242 lines (ctrl+o to expand)
+
+  Thought for 6s (ctrl+o to expand)
+
+⏺ Post 1 done. Writing post 2 — gate facts: (1) Callers: Jekyll auto-discovers
+  _posts/*.md; posts 1 and 3 link it via {% post_url 
+  2026-08-31-van-ceulen-35-digits-pi %}. (2) No existing file: the earlier grep 
+  -ril 'viete\|van ceulen\|van-ceulen' _posts/ returned no matches. (3) Data 
+  files: none — same frontmatter schema as post 1 (title, date YYYY-MM-DD,
+  categories, tags, share, read_time, excerpt). (4) User instruction verbatim:
+  "prepare the three article pi_viet*md for submission as article, following the
+  instruction inside the writeup "submit_posting.md"."
+
+⏺ Write(_posts/2026-08-31-van-ceulen-35-digits-pi.md)
+  ⎿  Error: [Fact-Forcing Gate]
+
+     Before creating /Users/tthtlc/hackmathsdeveloper.github.io/_posts/2026-08-3
+     1-van-ceulen-35-digits-pi.md, present these facts:
+
+     1. Name the file(s) and line(s) that will call this new file
+     2. Confirm no existing file serves the same purpose (search the tree — 
+     Glob/Grep, or find/grep via Bash)
+     3. If this file reads/writes data files, show field names, structure, and 
+     date format (use redacted or synthetic values, not raw production data)
+     4. Quote the user's current instruction verbatim
+
+     Present the facts, then retry the same operation.
+     … +4 lines (ctrl+o to expand)
+
+  Thought for 9s (ctrl+o to expand)
+
+⏺ Presenting the facts (text-only):
+
+  1. Callers: Jekyll auto-discovers _posts/*.md; post 1
+     (2026-08-31-viete-formula-nested-radicals.md) and post 3 will link it via
+     {% post_url 2026-08-31-van-ceulen-35-digits-pi %} in their series lines.
+  2. No existing file serves this purpose: grep -ril 'viete\|van 
+     ceulen\|van-ceulen' _posts/ returned no matches; ls _posts/2026-08-31*
+     found no files (verified earlier this session).
+  3. Data files: none. Frontmatter schema identical to post 1: title (string),
+     date (YYYY-MM-DD), categories (list: History of Mathematics, Mathematics),
+     tags (kebab-case list), share: true, read_time: true, excerpt (string ≤300
+     chars).
+  4. User instruction verbatim: "prepare the three article pi_viet*md for
+     submission as article, following the instruction inside the writeup
+     "submit_posting.md"."
+
+⏺ Write(_posts/2026-08-31-van-ceulen-35-digits-pi.md)
+  ⎿  Wrote 353 lines to _posts/2026-08-31-van-ceulen-35-digits-pi.md
+       1 ---
+       2 title: "The 4.6-Quintillion-Sided Polygon That Trapped π — Van C
+         eulen's 35-Digit Secret"
+       3 date: 2026-08-31
+       4 categories:
+       6   - Mathematics
+       7 tags:
+       8   - pi
+       9   - van-ceulen
+      10   - polygon-approximation
+     … +418 lines (ctrl+o to expand)
+
+  Thought for 10s (ctrl+o to expand)
+
+⏺ Gate facts for the third file:
+
+  1. Callers: Jekyll auto-discovers _posts/*.md; post 1 and post 2 reference it
+     via {% post_url 2026-08-31-viete-formula-twenty-variations %} in their
+     series lines.
+  2. No existing file serves this purpose: the earlier grep -ril 'viete\|van 
+     ceulen\|van-ceulen' _posts/ returned no matches; no other 2026-08-31 posts
+     exist.
+  3. Data files: none. Frontmatter schema identical to the first two posts:
+     title (string), date (YYYY-MM-DD), categories (list: Analysis,
+     Mathematics), tags (kebab-case list), share: true, read_time: true, excerpt
+     (string ≤300 chars).
+  4. User instruction verbatim: "prepare the three article pi_viet*md for
+     submission as article, following the instruction inside the writeup
+     "submit_posting.md"."
+
+⏺ Write(_posts/2026-08-31-viete-formula-twenty-variations.md)
+  ⎿  Error: [Fact-Forcing Gate]
+
+     Before creating /Users/tthtlc/hackmathsdeveloper.github.io/_posts/2026-08-3
+     1-viete-formula-twenty-variations.md, present these facts:
+
+     1. Name the file(s) and line(s) that will call this new file
+     2. Confirm no existing file serves the same purpose (search the tree — 
+     Glob/Grep, or find/grep via Bash)
+     3. If this file reads/writes data files, show field names, structure, and 
+     date format (use redacted or synthetic values, not raw production data)
+     4. Quote the user's current instruction verbatim
+
+     Present the facts, then retry the same operation.
+     … +4 lines (ctrl+o to expand)
+
+  Thought for 4s (ctrl+o to expand)
+
+⏺ Presenting the facts again alongside the retry:
+
+  1. Callers: Jekyll auto-discovers _posts/*.md; posts 1 and 2 reference this
+     file via {% post_url 2026-08-31-viete-formula-twenty-variations %} in their
+     series lines.
+  2. No existing file serves this purpose: grep -ril 'viete\|van 
+     ceulen\|van-ceulen' _posts/ returned no matches; ls _posts/2026-08-31*
+     found no files before I created the first two posts.
+  3. Data files: none. Frontmatter schema identical to the other two posts:
+     title (string), date (YYYY-MM-DD), categories (list: Analysis,
+     Mathematics), tags (kebab-case list), share: true, read_time: true, excerpt
+     (string ≤300 chars).
+  4. User instruction verbatim: "prepare the three article pi_viet*md for
+     submission as article, following the instruction inside the writeup
+     "submit_posting.md"."
+
+⏺ Write(_posts/2026-08-31-viete-formula-twenty-variations.md)
+  ⎿  Wrote 356 lines to
+     _posts/2026-08-31-viete-formula-twenty-variations.md
+       1 ---
+       2 title: "One Formula, Twenty Faces: Every Pattern Hidden Inside V
+         iète's Product"
+       3 date: 2026-08-31
+       4 categories:
+       6   - Mathematics
+       7 tags:
+       8   - vietes-formula
+       9   - pi
+      10   - nested-radicals
+     … +413 lines (ctrl+o to expand)
+
+  Thought for 4s (ctrl+o to expand)
+
+⏺ All three posts written. Now running the pre-publish verification greps
+  (checklist §8 + §12c).
+
+  Gate facts: (1) User request: prepare the three pi_viet*.md articles for blog
+  submission per submit_posting.md. (2) This command verifies the three new
+  _posts files contain no old-style math delimiters, no raw </>, no bad
+  inline-math escapes — the checklist's section-8 greps.
+
+  Thought for 2s, ran 1 shell command (ctrl+o to expand)
+⏺ Facts: (1) Current user request: prepare the three pi_viet*.md articles for
+  blog submission following submit_posting.md. (2) This command runs the
+  checklist's six pre-publish greps (old-style math delimiters, line-leading
+  =/--, raw </>, pipes in inline math, bad inline escapes, inline matrices)
+  against the three new _posts files and prints only violations for manual
+  review.
+
+  Thought for 1m 30s, ran 1 shell command (ctrl+o to expand)
+
+⏺ Analysis of the grep results:
+
+  - Check 1 (old delimiters): clean ✓
+  - Check 3 (raw </>): clean ✓
+  - Check 5, 6 (bad inline escapes, inline matrices): clean ✓
+  - Check 4 (pipe): one match in post 2 — it's the §5 table row; the pipes are
+    table separators outside the $2/\pi$ and $\pi$ spans → legitimate, verified
+    manually ✓
+  - Check 2: the --- lines are legitimate separators ✓, but the =-only lines
+    inside $$...$$ blocks are a real hazard (kramdown can read a line-leading =
+    as a setext-heading underline). I'll collapse all display equations so no
+    line inside math starts with =.
+
+  Rewriting the three files with single-line display equations:
+
+⏺ Write(_posts/2026-08-31-viete-formula-nested-radicals.md)
+  ⎿  Added 8 lines, removed 30 lines
+      25  **Viète's formula (1593).**
+      26  
+      27  $$
+      28 -\frac{2}{\pi}                                                  
+      29 -=                                                              
+      30 -\frac{\sqrt{2}}{2}                                             
+      28 +\frac{2}{\pi} = \frac{\sqrt{2}}{2}                             
+      29  \cdot
+      30  \frac{\sqrt{2+\sqrt{2}}}{2}
+      31  \cdot
+     ...
+      44  The entire derivation runs on one identity — the cosine half-an
+          gle formula:
+      45  
+      46  $$
+      49 -\cos\left(\frac{\theta}{2}\right)                              
+      50 -=                                                              
+      51 -\sqrt{\frac{1+\cos\theta}{2}},                                 
+      52 -\qquad 0 \le \theta \le \pi.                                   
+      47 +\cos\left(\frac{\theta}{2}\right)=\sqrt{\frac{1+\cos\theta}{2}}
+         +,\qquad 0 \le \theta \le \pi.                                  
+      48  $$
+      49  
+      50  One application halves the angle at the cost of exactly one new
+           square root. The sine companion
+      51  
+      52  $$
+      58 -\sin\left(\frac{\theta}{2}\right)                              
+      59 -=                                                              
+      60 -\sqrt{\frac{1-\cos\theta}{2}}                                  
+      53 +\sin\left(\frac{\theta}{2}\right)=\sqrt{\frac{1-\cos\theta}{2}}
+      54  $$
+      55  
+      56  drives the side lengths of the polygons instead. Using the Pyth
+          agorean identity $\cos\theta=\sqrt{1-\sin^2\theta}$, it can be 
+          written entirely in terms of sine:
+      57  
+      58  $$
+      66 -\sin\left(\frac{\theta}{2}\right)                              
+      67 -=                                                              
+      68 -\frac{\sqrt{2-\sqrt{4-4\sin^2\theta}}}{2}                      
+      69 -=                                                              
+      70 -\frac{\sqrt{2-\sqrt{2^2-(2\sin\theta)^2}}}{2}.                 
+      59 +\sin\left(\frac{\theta}{2}\right)=\frac{\sqrt{2-\sqrt{4-4\sin^2
+         +\theta}}}{2}=\frac{\sqrt{2-\sqrt{2^2-(2\sin\theta)^2}}}{2}.    
+      60  $$
+      61  
+      62  ---
+     ...
+      100  $k$ times:
+      101  
+      102  $$
+      114 -\sin x                                                        
+      115 -=                                                             
+      116 -2^k \sin\left(\frac{x}{2^k}\right)                            
+      117 -\prod_{j=1}^{k} \cos\left(\frac{x}{2^j}\right).               
+      103 +\sin x = 2^k \sin\left(\frac{x}{2^k}\right) \prod_{j=1}^{k} \c
+          +os\left(\frac{x}{2^j}\right).                                 
+      104  $$
+      105  
+      106  Set $x=\pi/2$ and use $\sin(\pi/2)=1$:
+      107  
+      108  $$
+      123 -1                                                             
+      124 -=                                                             
+      125 -2^k \sin\left(\frac{\pi}{2^{k+1}}\right)                      
+      126 -\prod_{j=1}^{k} \cos\left(\frac{\pi}{2^{j+1}}\right),         
+      109 +1 = 2^k \sin\left(\frac{\pi}{2^{k+1}}\right) \prod_{j=1}^{k} \
+          +cos\left(\frac{\pi}{2^{j+1}}\right),                          
+      110  $$
+      111  
+      112  so
+      113  
+      114  $$
+      132 -\prod_{j=1}^{k} \cos\left(\frac{\pi}{2^{j+1}}\right)          
+      133 -=                                                             
+      134 -\frac{1}{2^k \sin\left(\pi/2^{k+1}\right)}.                   
+      115 +\prod_{j=1}^{k} \cos\left(\frac{\pi}{2^{j+1}}\right) = \frac{1
+          +}{2^k \sin\left(\pi/2^{k+1}\right)}.                          
+      116  $$
+      117  
+      118  As $k\to\infty$ the denominator tends to $\pi/2$, because $2^k
+           \sin(\pi/2^{k+1})\to\pi/2$ — this is the sinc limit $\sin u/u\
+           to 1$ in disguise. Hence
+      119  
+      120  $$
+      140 -\frac{2}{\pi}                                                 
+      141 -=                                                             
+      142 -\prod_{j=1}^{\infty} \cos\left(\frac{\pi}{2^{j+1}}\right)     
+      143 -=                                                             
+      121 +\frac{2}{\pi} = \prod_{j=1}^{\infty} \cos\left(\frac{\pi}{2^{j
+          ++1}}\right) =                                                 
+      122  \frac{\sqrt{2}}{2}
+      123  \cdot
+      124  \frac{\sqrt{2+\sqrt{2}}}{2}
+
+  Thought for 2s (ctrl+o to expand)
+
+⏺ Write(_posts/2026-08-31-van-ceulen-35-digits-pi.md)
+  ⎿  Added 21 lines, removed 85 lines
+      59  Dividing by $2$ gives direct lower and upper bounds for $\pi$:
+      60  
+      61  $$
+      62 -n\sin\left(\frac{\pi}{n}\right)                                
+      63 -\lt                                                            
+      64 -\pi                                                            
+      65 -\lt                                                            
+      66 -n\tan\left(\frac{\pi}{n}\right).                               
+      62 +n\sin\left(\frac{\pi}{n}\right) \lt \pi \lt n\tan\left(\frac{\p
+         +i}{n}\right).                                                  
+      63  $$
+      64  
+      65  The formulae come from one of the $n$ congruent central triangl
+          es:
+      66  
+      67  $$
+      72 -p_n = 2n\sin\left(\frac{\pi}{n}\right),                        
+      73 -\qquad                                                         
+      74 -P_n = 2n\tan\left(\frac{\pi}{n}\right).                        
+      68 +p_n = 2n\sin\left(\frac{\pi}{n}\right), \qquad P_n = 2n\tan\lef
+         +t(\frac{\pi}{n}\right).                                        
+      69  $$
+      70  
+      71  Van Ceulen did not possess modern trigonometric notation in thi
+          s form, but his chord and tangent calculations implement exactl
+          y these quantities.
+     ...
+       97  This is the cosine half-angle formula in geometric disguise. T
+           o see it, write
+       98  
+       99  $$
+      106 -s_n = 2\sin\theta,                                            
+      107 -\qquad                                                        
+      108 -\theta = \frac{\pi}{n}.                                       
+      100 +s_n = 2\sin\theta, \qquad \theta = \frac{\pi}{n}.             
+      101  $$
+      102  
+      103  Then
+      104  
+      105  $$
+      114 -s_{2n}                                                        
+      115 -=                                                             
+      116 -2\sin\left(\frac{\theta}{2}\right)                            
+      117 -=                                                             
+      118 -\sqrt{2-2\cos\theta},                                         
+      106 +s_{2n} = 2\sin\left(\frac{\theta}{2}\right) = \sqrt{2-2\cos\th
+          +eta},                                                         
+      107  $$
+      108  
+      109  and since
+      110  
+      111  $$
+      124 -\cos\theta                                                    
+      125 -=                                                             
+      126 -\sqrt{1-\sin^2\theta}                                         
+      127 -=                                                             
+      128 -\sqrt{1-\frac{s_n^2}{4}},                                     
+      112 +\cos\theta = \sqrt{1-\sin^2\theta} = \sqrt{1-\frac{s_n^2}{4}},
+      113  $$
+      114  
+      115  we get
+     ...
+      123  For circumscribed polygons, the corresponding tangent-side rec
+           urrence is
+      124  
+      125  $$
+      142 -t_{2n}                                                        
+      143 -=                                                             
+      144 -\frac{2t_n}{\sqrt{4+t_n^2}+2},                                
+      126 +t_{2n} = \frac{2t_n}{\sqrt{4+t_n^2}+2},                       
+      127  $$
+      128  
+      129  where
+     ...
+      143  One clean way to reproduce the method uses polygon half-perime
+           ters directly. Let
+      144  
+      145  $$
+      164 -a_n = n\sin\left(\frac{\pi}{n}\right),                        
+      165 -\qquad                                                        
+      166 -b_n = n\tan\left(\frac{\pi}{n}\right).                        
+      146 +a_n = n\sin\left(\frac{\pi}{n}\right), \qquad b_n = n\tan\left
+          +(\frac{\pi}{n}\right).                                        
+      147  $$
+      148  
+      149  Then
+     ...
+      155  Start with an inscribed square and a circumscribed square:
+      156  
+      157  $$
+      178 -a_4                                                           
+      179 -=                                                             
+      180 -4\sin\left(\frac{\pi}{4}\right)                               
+      181 -=                                                             
+      182 -2\sqrt{2}                                                     
+      183 -\approx 2.8284271247,                                         
+      158 +a_4 = 4\sin\left(\frac{\pi}{4}\right) = 2\sqrt{2} \approx 2.82
+          +84271247,                                                     
+      159  $$
+      160  
+      161  $$
+      187 -b_4                                                           
+      188 -=                                                             
+      189 -4\tan\left(\frac{\pi}{4}\right)                               
+      190 -=                                                             
+      191 -4.                                                            
+      162 +b_4 = 4\tan\left(\frac{\pi}{4}\right) = 4.                    
+      163  $$
+      164  
+      165  Therefore,
+     ...
+      171  After doubling to an octagon,
+      172  
+      173  $$
+      203 -a_8                                                           
+      204 -=                                                             
+      205 -8\sin\left(\frac{\pi}{8}\right)                               
+      206 -=                                                             
+      207 -4\sqrt{2-\sqrt{2}}                                            
+      208 -\approx 3.0614674589,                                         
+      174 +a_8 = 8\sin\left(\frac{\pi}{8}\right) = 4\sqrt{2-\sqrt{2}} \ap
+          +prox 3.0614674589,                                            
+      175  $$
+      176  
+      177  $$
+      212 -b_8                                                           
+      213 -=                                                             
+      214 -8\tan\left(\frac{\pi}{8}\right)                               
+      215 -=                                                             
+      216 -8(\sqrt{2}-1)                                                 
+      217 -\approx 3.3137084990.                                         
+      178 +b_8 = 8\tan\left(\frac{\pi}{8}\right) = 8(\sqrt{2}-1) \approx 
+          +3.3137084990.                                                 
+      179  $$
+      180  
+      181  Hence,
+     ...
+      199  At a very large $n$, both expressions are extremely close to $
+           \pi$:
+      200  
+      201  $$
+      241 -n\sin\left(\frac{\pi}{n}\right)                               
+      242 -\approx                                                       
+      243 -\pi - \frac{\pi^3}{6n^2},                                     
+      202 +n\sin\left(\frac{\pi}{n}\right) \approx \pi - \frac{\pi^3}{6n^
+          +2},                                                           
+      203  $$
+      204  
+      205  $$
+      247 -n\tan\left(\frac{\pi}{n}\right)                               
+      248 -\approx                                                       
+      249 -\pi + \frac{\pi^3}{3n^2}.                                     
+      206 +n\tan\left(\frac{\pi}{n}\right) \approx \pi + \frac{\pi^3}{3n^
+          +2}.                                                           
+      207  $$
+      208  
+      209  So the total width of the enclosure is approximately
+      210  
+      211  $$
+      255 -b_n - a_n                                                     
+      256 -\approx                                                       
+      257 -\frac{\pi^3}{2n^2}.                                           
+      212 +b_n - a_n \approx \frac{\pi^3}{2n^2}.                         
+      213  $$
+      214  
+      215  For $n=2^{62}$, this is of order
+      216  
+      217  $$
+      263 -\frac{\pi^3}{2(2^{62})^2}                                     
+      264 -\approx 7.3\times 10^{-37},                                   
+      218 +\frac{\pi^3}{2(2^{62})^2} \approx 7.3\times 10^{-37},         
+      219  $$
+      220  
+      221  which is comfortably narrower than $10^{-35}$. That is why a $
+           2^{62}$-gon can certify about 35 decimal digits.
+     ...
+      227  Viète's formula results from tracking the same halving process
+            multiplicatively. Starting with
+      228  
+      229  $$
+      276 -\sin x                                                        
+      277 -=                                                             
+      278 -2\sin\left(\frac{x}{2}\right)                                 
+      279 -\cos\left(\frac{x}{2}\right),                                 
+      230 +\sin x = 2\sin\left(\frac{x}{2}\right)\cos\left(\frac{x}{2}\ri
+          +ght),                                                         
+      231  $$
+      232  
+      233  and repeating the identity gives
+      234  
+      235  $$
+      285 -\sin x                                                        
+      286 -=                                                             
+      287 -2^m \sin\left(\frac{x}{2^m}\right)                            
+      288 -\prod_{k=1}^{m}                                               
+      289 -\cos\left(\frac{x}{2^k}\right).                               
+      236 +\sin x = 2^m \sin\left(\frac{x}{2^m}\right) \prod_{k=1}^{m} \c
+          +os\left(\frac{x}{2^k}\right).                                 
+      237  $$
+      238  
+      239  With $x=\pi/2$,
+      240  
+      241  $$
+      295 -1                                                             
+      296 -=                                                             
+      297 -2^m \sin\left(\frac{\pi}{2^{m+1}}\right)                      
+      298 -\prod_{k=1}^{m}                                               
+      299 -\cos\left(\frac{\pi}{2^{k+1}}\right).                         
+      242 +1 = 2^m \sin\left(\frac{\pi}{2^{m+1}}\right) \prod_{k=1}^{m} \
+          +cos\left(\frac{\pi}{2^{k+1}}\right).                          
+      243  $$
+      244  
+      245  As $m\to\infty$,
+      246  
+      247  $$
+      305 -2^m \sin\left(\frac{\pi}{2^{m+1}}\right)                      
+      306 -\longrightarrow                                               
+      307 -\frac{\pi}{2},                                                
+      248 +2^m \sin\left(\frac{\pi}{2^{m+1}}\right) \longrightarrow \frac
+          +{\pi}{2},                                                     
+      249  $$
+      250  
+      251  giving
+      252  
+      253  $$
+      313 -\frac{2}{\pi}                                                 
+      314 -=                                                             
+      315 -\prod_{k=1}^{\infty}                                          
+      316 -\cos\left(\frac{\pi}{2^{k+1}}\right).                         
+      254 +\frac{2}{\pi} = \prod_{k=1}^{\infty} \cos\left(\frac{\pi}{2^{k
+          ++1}}\right).                                                  
+      255  $$
+      256  
+      257  Van Ceulen's polygon sequence and Viète's nested radicals ther
+           efore encode the same geometry:
+     ...
+      271  The celebrated value is
+      272  
+      273  $$
+      336 -\pi                                                           
+      337 -\approx                                                       
+      338 -3.14159265358979323846264338327950288.                        
+      274 +\pi \approx 3.14159265358979323846264338327950288.            
+      275  $$
+      276  
+      277  It became known in parts of Europe as the **Ludolphine number*
+           *. The digits were famously associated with van Ceulen's tombs
+           tone in Leiden; the original stone was lost, and a replacement
+            was installed in 2000. [en.wikipedia](https://en.wikipedia.or
+           g/wiki/Ludolph_van_Ceulen)
+
+⏺ Write(_posts/2026-08-31-viete-formula-twenty-variations.md)
+  ⎿  Added 11 lines, removed 40 lines
+      26  Viète's product is naturally expressed as
+      27  
+      28  $$
+      29 -\frac{2}{\pi}                                                  
+      30 -=                                                              
+      31 -\prod_{n=1}^{\infty}\cos\left(\frac{\pi}{2^{n+1}}\right)       
+      32 -=                                                              
+      29 +\frac{2}{\pi} = \prod_{n=1}^{\infty}\cos\left(\frac{\pi}{2^{n+1
+         +}}\right) =                                                    
+      30  \frac{\sqrt{2}}{2}
+      31  \cdot
+      32  \frac{\sqrt{2+\sqrt{2}}}{2}
+     ...
+      100     iterate it $n$ times, and obtain
+      101  
+      102  $$
+      106 -\sin x                                                        
+      107 -=                                                             
+      108 -2^n\sin\left(\frac{x}{2^n}\right)                             
+      109 -\prod_{k=1}^n                                                 
+      110 -\cos\left(\frac{x}{2^k}\right).                               
+      103 +\sin x = 2^n\sin\left(\frac{x}{2^n}\right) \prod_{k=1}^n \cos\
+          +left(\frac{x}{2^k}\right).                                    
+      104  $$
+      105  
+      106     Set $x=\pi/2$, then take $n\to\infty$. [en.wikipedia](https
+           ://en.wikipedia.org/wiki/Vi%C3%A8te's_formula)
+     ...
+      109     Rearrange the finite identity into
+      110  
+      111  $$
+      119 -\prod_{k=1}^{n}\cos\left(\frac{x}{2^k}\right)                 
+      120 -=                                                             
+      121 -\frac{\sin x}{x}\cdot                                         
+      122 -\frac{x}{2^n\sin(x/2^n)}.                                     
+      112 +\prod_{k=1}^{n}\cos\left(\frac{x}{2^k}\right) = \frac{\sin x}{
+          +x}\cdot \frac{x}{2^n\sin(x/2^n)}.                             
+      113  $$
+      114  
+      115     Since
+     ...
+      121     derive the general product
+      122  
+      123  $$
+      134 -\frac{\sin x}{x}                                              
+      135 -=                                                             
+      136 -\prod_{k=1}^{\infty}\cos\left(\frac{x}{2^k}\right).           
+      124 +\frac{\sin x}{x} = \prod_{k=1}^{\infty}\cos\left(\frac{x}{2^k}
+          +\right).                                                      
+      125  $$
+      126  
+      127  8. **Cosine half-angle recursion**  
+      128     Define
+      129  
+      130  $$
+      143 -c_0=0,\qquad                                                  
+      144 -c_{n+1}=\sqrt{\frac{1+c_n}{2}}.                               
+      131 +c_0=0,\qquad c_{n+1}=\sqrt{\frac{1+c_n}{2}}.                  
+      132  $$
+      133  
+      134     Then prove
+     ...
+      143     Instead use
+      144  
+      145  $$
+      159 -\sin\left(\frac{\theta}{2}\right)                             
+      160 -=                                                             
+      161 -\sqrt{\frac{1-\cos\theta}{2}}.                                
+      146 +\sin\left(\frac{\theta}{2}\right) = \sqrt{\frac{1-\cos\theta}{
+          +2}}.                                                          
+      147  $$
+      148  
+      149     The signs and initial conditions change, but the same polyg
+           on-doubling machinery appears. This is useful for contrasting 
+           why Viète's classical expression naturally favors cosine.
+     ...
+      152      Iterate the tangent doubling formula
+      153  
+      154  $$
+      170 -\tan x                                                        
+      171 -=                                                             
+      172 -\frac{2\tan(x/2)}{1-\tan^2(x/2)}                              
+      155 +\tan x = \frac{2\tan(x/2)}{1-\tan^2(x/2)}                     
+      156  $$
+      157  
+      158      and combine it with the limit
+     ...
+      192      Instead of treating the expression as inherently infinite,
+            derive the exact finite formula:
+      193  
+      194  $$
+      212 -\prod_{k=1}^{n}\cos\left(\frac{\pi}{2^{k+1}}\right)           
+      213 -=                                                             
+      214 -\frac{1}{2^n\sin\left(\pi/2^{n+1}\right)}.                    
+      195 +\prod_{k=1}^{n}\cos\left(\frac{\pi}{2^{k+1}}\right) = \frac{1}
+          +{2^n\sin\left(\pi/2^{n+1}\right)}.                            
+      196  $$
+      197  
+      198      This makes numerical calculation and error analysis cleane
+           r.
+     ...
+      225      and
+      226  
+      227  $$
+      247 -2\cos\left(\frac{\pi}{16}\right)                              
+      248 -=                                                             
+      249 -\sqrt{2+\sqrt{2+\sqrt{2}}}.                                   
+      228 +2\cos\left(\frac{\pi}{16}\right) = \sqrt{2+\sqrt{2+\sqrt{2}}}.
+      229  $$
+      230  
+      231      This leads to cyclotomic fields and the algebra of regular
+            $2^n$-gons.
+     ...
+      255      to estimate the tail error:
+      256  
+      257  $$
+      279 -\log\left(                                                    
+      280 -\prod_{k=n+1}^{\infty}                                        
+      281 -\cos\left(\frac{\pi}{2^{k+1}}\right)                          
+      282 -\right)                                                       
+      283 -\approx                                                       
+      284 --\frac{\pi^2}{24\cdot 4^n}.                                   
+      258 +\log\left(\prod_{k=n+1}^{\infty}\cos\left(\frac{\pi}{2^{k+1}}\
+          +right)\right) \approx -\frac{\pi^2}{24\cdot 4^n}.             
+      259  $$
+      260  
+      261      This reveals essentially geometric convergence with ratio 
+           near $1/4$ in the asymptotic error.
+     ...
+      304  That structure mirrors the historical geometric intuition whil
+           e also revealing the modern analytic identity
+      305  
+      306  $$
+      333 -\frac{\sin x}{x}                                              
+      334 -=                                                             
+      335 -\prod_{n=1}^{\infty}                                          
+      336 -\cos\left(\frac{x}{2^n}\right),                               
+      307 +\frac{\sin x}{x} = \prod_{n=1}^{\infty} \cos\left(\frac{x}{2^n
+          +}\right),                                                     
+      308  $$
+      309  
+      310  of which Viète's product follows at $x=\pi/2$. [en.wikipedia](
+           https://en.wikipedia.org/wiki/Vi%C3%A8te's_formula)
+
+  Thought for 2s (ctrl+o to expand)
+
+⏺ Re-running the verification greps on the corrected files. Gate facts: (1) User
+  request: prepare the three pi_viet*.md articles for blog submission per
+  submit_posting.md. (2) This command re-runs the six pre-publish greps to
+  confirm the display-math fixes removed all =-leading lines inside $$ blocks
+  and that only legitimate --- separators and verified-safe table pipes remain.
+
+  Thought for 13s, ran 1 shell command (ctrl+o to expand)
+
+⏺ All six checks pass now:
+
+  - Check 1: no old-style delimiters ✓
+  - Check 2: only --- lines — frontmatter delimiters and section separators, all
+    legitimate ✓ (the =-leading lines are gone)
+  - Check 3: no raw </> ✓
+  - Check 4: one match in post 2 — the §5 table row; manually verified: the
+    pipes are table column separators outside the $2/\pi$ and $\pi$ spans, so no
+    inline math is shattered ✓
+  - Checks 5–6: clean ✓
+
+  Thought for 2s (ctrl+o to expand)
+
+⏺ Now committing and pushing per checklist §9 (staging only the three new posts
+  — the other dirty/untracked files are left untouched).
+
+  Gate facts: (1) User request: prepare the three pi_viet*.md articles for blog
+  submission per submit_posting.md. (2) This command stages exactly the three
+  new _posts files, creates one commit with the post summary, and pushes to main
+  so GitHub Pages deploys them (checklist §9: stage → commit → push; never
+  amend).
+
+  Thought for 2s, committed 03ab8f8 (ctrl+o to expand)
+
+⏺ Commit 03ab8f8 contains exactly the three posts. Pushing to deploy:
+
+  Thought for 3s, ran 1 shell command (ctrl+o to expand)
+
+⏺ The remote has newer commits. Fetching and inspecting before integrating
+  (never force-push):
+
+  Thought for 3s, ran 1 shell command (ctrl+o to expand)
+
+⏺ One remote commit (66d9def) adding unrelated files. Rebasing my commit on top
+  (no amend, no force):
+
+  Thought for 12s, ran 1 shell command (ctrl+o to expand)
+
+⏺ Rebase is blocked by the pre-existing uncommitted working-tree state (the
+  ellip* deletions). Since the remote commit only adds unrelated files, a merge
+  works without touching that state:
+
+  Thought for 9s, pushed to main, merged origin/main (ctrl+o to expand)
+
+⏺ Pushed: 66d9def..0aa49a0 main -> main. Now the post-publish verification
+  (checklist §10–11) — waiting for GitHub Pages to rebuild.
+  Thought for 3s (ctrl+o to expand)
+
+⏺ Gate facts: (1) User request: prepare the three pi_viet*.md articles for blog
+  submission per submit_posting.md. (2) This command polls the first new post's
+  live URL every 20 s (up to 6 min) and exits when GitHub Pages returns HTTP 200
+  — signaling the rebuild finished — before I verify the remaining URLs and
+  homepage.
+
+  Thought for 2s, ran 1 shell command (ctrl+o to expand)
+
+⏺ While that polls, checking the GitHub Actions workflows (checklist §11d):
+
+  Thought for 3s, ran 1 shell command (ctrl+o to expand)
+
+⏺ gh isn't installed — using the public GitHub API instead:
+
+  Thought for 8s, ran 1 shell command (ctrl+o to expand)
+
+⏺ GitHub Actions status for the new commit 0aa49a0:
+
+  ┌──────────────────────────┬──────────────────────────────────────────────┐
+  │         Workflow         │                    Status                    │
+  ├──────────────────────────┼──────────────────────────────────────────────┤
+  │ Deploy Jekyll site to    │ in_progress ✓ (this one succeeded on every   │
+  │ Pages                    │ previous commit)                             │
+  ├──────────────────────────┼──────────────────────────────────────────────┤
+  │ Deploy Jekyll with       │ failure (it has failed on every recent       │
+  │ GitHub Pages             │ commit, including ones that deployed fine —  │
+  │ dependencies             │ the other workflow is the effective          │
+  │ preinstalled             │ deployer)                                    │
+  └──────────────────────────┴──────────────────────────────────────────────┘
+
+  This matches the site's history: the second workflow is the reliable deployer,
+  and it's now building. The background poll will confirm the moment the first
+  new post returns HTTP 200 — then I'll verify all three URLs, the homepage
+  listing, and the rendered math. Waiting for it to finish.
+
+⏺ Task Output bfrqnw0jy
+  ⎿  TIMEOUT: last code=404
+
+     [exited with code 1]
+
+⏺ Background command "Poll first new post URL until it returns HTTP 200 (up to 6
+min)" failed with exit code 1
+
+  Thought for 6s (ctrl+o to expand)
+
+⏺ The post URL still 404s after 6 minutes. Checking the deploy status and the
+  site's actual URL scheme:
+
+  Thought for 12s, ran 1 shell command (ctrl+o to expand)
+
+⏺ The deploy succeeded for 0aa49a0 (the "Deploy Jekyll site to Pages" workflow —
+  the reliable one) and the homepage already contains the new posts (5 keyword
+  matches). The 404 was my wrong URL guess: _config.yml uses permalink: 
+  /:categories/:title/, so the URLs include both categories. Let me extract the
+  real URLs from the homepage and verify each:
+
+  Thought for 16s, ran 2 shell commands (ctrl+o to expand)
+
+⏺ All three posts are live with HTTP 200, correct titles, and MathJax loaded.
+  The 2 old-style-delims matches per page need a look — checking what they
+  actually are:
+
+  Thought for 12s, ran 2 shell commands (ctrl+o to expand)
+
+⏺ The matches are MathJax's own delimiter config (inlineMath: [['$','$'], 
+  ['\\(','\\)']]) — not leaked LaTeX from the posts ✓. Final content check on
+  the rendered pages:
+
+  Thought for 6s, ran 1 shell command (ctrl+o to expand)
+
+⏺ All done — the three articles are live. Summary:
+
+  Published (commit 0aa49a0, merged with the remote's 66d9def)
+
+  Post: Why π Lives Inside an Infinite Tower of Square Roots — Viète's Secret 
+  Product
+  URL: https://hackmathsdeveloper.github.io/analysis/mathematics/viete-formula-n
+  ested-radicals/
+  ────────────────────────────────────────
+  Post: The 4.6-Quintillion-Sided Polygon That Trapped π — Van Ceulen's 35-Digit
+   
+  Secret
+  URL: https://hackmathsdeveloper.github.io/history%20of%20mathematics/mathemati
+  cs/van-ceulen-35-digits-pi/
+  ────────────────────────────────────────
+  Post: One Formula, Twenty Faces: Every Pattern Hidden Inside Viète's Product
+  URL: https://hackmathsdeveloper.github.io/analysis/mathematics/viete-formula-t
+  wenty-variations/
+
+  All three have viral titles, dated frontmatter with Analysis/History of 
+  Mathematics + Mathematics categories, 6–7 kebab-case tags, ≤300-char excerpts,
+  an opening bold challenge, 2–3 mid-post challenges, a final challenge,
+  numbered ## N. sections, --- separators, connection tables, and {% post_url %}
+  cross-links forming a series. All math uses $/$$ (the \(\)/\[\] from the
+  sources were converted; raw < replaced with \lt/\gt).
+
+  Math corrections made to the source drafts (flagging since I changed content):
+  - pi_viet.md's limit lim (2^k/π)·sin(π/2^k) = 2/π was wrong (that limit is 1)
+    → replaced with the perimeter limit 2^{k+1}sin(π/2^k) → 2π and the correct
+    telescoping argument; the sine-based factors were re-aligned to the cosines
+    the product actually contains.
+  - pi_viet2.md's tangent recurrence t_{2n}=(√(4+t_n²)−2)/t_n was off by a
+    factor of 2 (check: t_4=2 gives 0.4142, but t_8=0.8284) → corrected to
+    t_{2n}=2t_n/(√(4+t_n²)+2).
+  - pi_viet3.md pattern #10's product identity didn't hold numerically →
+    replaced with the tangent doubling formula + 2^n tan(x/2^n)→x, which is the
+    correct circumscribed-polygon companion.
+
+  Verification (checklist §8–§11): all six greps clean (only legitimate ---
+  separators and table pipes outside math); future: true set; index.html tracked
+  / index.md absent; the Pages deploy workflow succeeded for 0aa49a0; all three
+  post URLs return HTTP 200 with MathJax loaded and the comparison tables
+  intact; the homepage lists all three.
+
+  Two notes for you: (1) the checklist's example URL
+  /category/mathematics/post-slug/ doesn't match your site — _config.yml uses
+  permalink: /:categories/:title/, so real URLs are /analysis/mathematics/…
+  etc., and the multi-word category produces an encoded space
+  (/history%20of%20mathematics/…), same as your existing "Elliptic Curves"
+  posts. (2) The "Deploy Jekyll with GitHub Pages dependencies preinstalled"
+  workflow has failed on every recent commit (pre-existing, including ones that
+  deployed fine) — the "Deploy Jekyll site to Pages" workflow is the effective
+  deployer and succeeded.
+
+✻ Sautéed for 15m 55s · done 5:31 PM
