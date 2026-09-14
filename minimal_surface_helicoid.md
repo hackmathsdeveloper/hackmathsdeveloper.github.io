@@ -1,4 +1,6 @@
 
+https://www.perplexity.ai/search/c47dfc9c-9a3b-4347-9001-b64dfae2cf4f
+
 A soap film spanning a **helical boundary** is obtained by minimizing surface area with that wire held fixed. For the canonical “helical wire plus its axis” frame, the resulting minimal surface is a **helicoid**—a ruled, screw-symmetric surface with zero mean curvature. Soap films at equilibrium satisfy \(H=0\), the Euler–Lagrange condition for the area functional. [princeton](https://www.princeton.edu/~stonelab/Teaching/FredBraszFinalPaper.pdf)
 
 ## 1. Specify the boundary
