@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cayley Graph Explorer · Group Theory for Newcomers</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #f4f7fc;
+            margin: 0;
+            padding: 22px;
+            color: #1e2b3c;
+        }
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        h1 small {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #4a5b6e;
+            background: #e3e9f2;
+            padding: 6px 16px;
+            border-radius: 40px;
+            margin-left: 0;
+        }
+        .subhead {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.05rem;
+            border-left: 4px solid #3a7bd5;
+            padding-left: 16px;
+            background: #eef3fa;
+            border-radius: 0 12px 12px 0;
+            line-height: 1.4;
+            padding: 8px 16px;
+        }
+        .group-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0 16px;
+            align-items: center;
+        }
+        .group-selector label {
+            font-weight: 500;
+            margin-right: 4px;
+        }
+        select, button {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+        }
+        select:hover, button:hover {
+            background: #f0f4fe;
+            border-color: #3a7bd5;
+        }
+        button {
+            background: #3a7bd5;
+            color: white;
+            border: none;
+            font-weight: 500;
+            padding: 8px 22px;
+        }
+        button:hover {
+            background: #2a5faf;
+        }
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 12px;
+        }
+        .card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.05);
+            padding: 20px 20px 24px;
+            transition: 0.1s;
+            border: 1px solid #e9eef4;
+        }
+        .card h2 {
+            font-size: 1.4rem;
+            margin: 0 0 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .card h2 span {
+            font-size: 0.85rem;
+            background: #dde5f0;
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-weight: 400;
+        }
+        .card .sub {
+            color: #526477;
+            margin-top: -6px;
+            margin-bottom: 16px;
+            font-size: 0.9rem;
+        }
+        .viz-container {
+            position: relative;
+            width: 100%;
+            min-height: 300px;
+            background: #fbfdff;
+            border-radius: 18px;
+            border: 1px solid #dde5f0;
+            overflow: hidden;
+        }
+        .cayley-svg, .mult-svg, .conj-svg, .demo-svg {
+            display: block;
+            width: 100%;
+            background: #ffffff;
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 6px;
+        }
+        table {
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            width: 100%;
+        }
+        .mult-table-container {
+            overflow-x: auto;
+            max-height: 320px;
+            overflow-y: auto;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .mult-table-container table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .mult-table-container td, .mult-table-container th {
+            border: 1px solid #e2e8f0;
+            padding: 4px 6px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .mult-table-container th {
+            background: #eef3fa;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        .conj-classes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .conj-badge {
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: white;
+            background: #3a7bd5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+        .demo-box {
+            background: #f8fafd;
+            border-radius: 16px;
+            padding: 8px;
+            text-align: center;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .demo-box svg {
+            max-height: 110px;
+            width: 100%;
+        }
+        .footer-note {
+            margin-top: 28px;
+            font-size: 0.85rem;
+            color: #5b6f84;
+            border-top: 1px solid #d9e1ec;
+            padding-top: 18px;
+            text-align: center;
+        }
+        .small-note {
+            font-size: 0.8rem;
+            color: #5a6f84;
+            margin-top: 8px;
+        }
+        .badge-info {
+            background: #e9eef6;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-left: auto;
+        }
+        @media (max-width: 900px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>🧊 Cayley Graph Explorer <small>for group theory newcomers</small></h1>
+<div class="subhead">Visualize multiplication tables, Cayley graphs, conjugacy classes, and geometric transformations for finite groups.</div>
+
+<div class="group-selector">
+    <label for="groupSelect">Choose a group:</label>
+    <select id="groupSelect"></select>
+    <button id="resetLayout">↻ Reset layout</button>
+    <span class="badge-info" id="groupInfo"></span>
+</div>
+
+<div class="dashboard">
+    <!-- Left column: Cayley Graph + Conjugacy classes -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card">
+            <h2>🕸️ Cayley Graph <span>node‑link, generator colors</span></h2>
+            <div class="sub">Nodes = group elements · edges = multiplication by generators</div>
+            <div class="viz-container" style="min-height:360px;">
+                <svg id="cayleySvg" class="cayley-svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+            <div id="cayleyLegend" class="legend"></div>
+        </div>
+        <div class="card">
+            <h2>🔮 Conjugacy Classes</h2>
+            <div class="sub">Elements grouped by conjugacy (same color = same class)</div>
+            <div id="conjClassesContainer" class="conj-classes"></div>
+            <div id="conjSvgContainer" class="viz-container" style="min-height:110px; margin-top:16px;">
+                <svg id="conjSvg" class="conj-svg" viewBox="0 0 600 110" preserveAspectRatio="xMidYMid meet"></svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right column: Multiplication table + Physical demo -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+        <div class="card">
+            <h2>✖️ Multiplication Table</h2>
+            <div class="sub">Row · column = group product (abstract)</div>
+            <div class="mult-table-container" id="multTableContainer"></div>
+        </div>
+        <div class="card">
+            <h2>🔄 Physical ↔ Abstract</h2>
+            <div class="sub">See how abstract product corresponds to geometry</div>
+            <div class="demo-grid" id="demoGrid">
+                <div class="demo-box" id="demoLeft">rotation 0°</div>
+                <div class="demo-box" id="demoRight">rotation 0°</div>
+            </div>
+            <div class="small-note" id="demoProductNote">product = identity</div>
+        </div>
+    </div>
+</div>
+
+<div class="footer-note">
+    ⚡ Interactive Cayley graph explorer — hover over nodes to see element labels. Edges are colored by generator.
+    <br>Groups: Tetrahedral (A4), Octahedral (S4), Icosahedral (A5*), Dihedral D4–D12, Alternating A4, Rubik's Cube ⟨U,R⟩.
+</div>
+
+<script>
+    // ============================================================
+    // 1. GROUP DEFINITIONS
+    // ============================================================
+
+    // ---------- Dihedral group D_n ----------
+    function createDihedral(n) {
+        const elements = [];
+        for (let i = 0; i < n; i++) elements.push(i === 0 ? 'e' : `r${i}`);
+        for (let i = 0; i < n; i++) elements.push(i === 0 ? 's' : `sr${i}`);
+        const gens = ['r', 's'];
+        const colors = ['#3a7bd5', '#e67e22'];
+
+        function parse(el) {
+            if (el === 'e') return ['r', 0];
+            if (el === 's') return ['sr', 0];
+            if (el.startsWith('sr')) return ['sr', parseInt(el.slice(2)) || 0];
+            if (el.startsWith('r')) return ['r', parseInt(el.slice(1)) || 0];
+            return ['r', 0];
+        }
+        function toString(type, k) {
+            k = ((k % n) + n) % n;
+            if (type === 'r') return k === 0 ? 'e' : `r${k}`;
+            return k === 0 ? 's' : `sr${k}`;
+        }
+        const mult = (a, b) => {
+            const [ta, ka] = parse(a);
+            const [tb, kb] = parse(b);
+            if (ta === 'r' && tb === 'r') return toString('r', ka + kb);
+            if (ta === 'r' && tb === 'sr') return toString('sr', ka + kb);
+            if (ta === 'sr' && tb === 'r') return toString('sr', ka - kb);
+            return toString('r', ka - kb); // sr * sr
+        };
+        return new Group(`D${n}`, elements, gens, colors, mult);
+    }
+
+    // ---------- Permutation helpers ----------
+    function permToString(p) {
+        const visited = new Array(p.length).fill(false);
+        const cycles = [];
+        for (let i = 0; i < p.length; i++) {
+            if (!visited[i]) {
+                const cycle = [];
+                let j = i;
+                while (!visited[j]) {
+                    visited[j] = true;
+                    cycle.push(j);
+                    j = p[j];
+                }
+                if (cycle.length > 1) {
+                    const minIdx = cycle.indexOf(Math.min(...cycle));
+                    const rot = cycle.slice(minIdx).concat(cycle.slice(0, minIdx));
+                    cycles.push(rot.map(x => x + 1));
+                }
+            }
+        }
+        return cycles.length === 0 ? 'e' : cycles.map(c => `(${c.join('')})`).join('');
+    }
+
+    function parity(p) {
+        let inv = 0;
+        for (let i = 0; i < p.length; i++)
+            for (let j = i + 1; j < p.length; j++)
+                if (p[i] > p[j]) inv++;
+        return inv % 2;
+    }
+
+    function generatePermutations(n) {
+        const result = [];
+        const arr = Array.from({ length: n }, (_, i) => i);
+        const permute = (a, k) => {
+            if (k === n) { result.push([...a]); return; }
+            for (let i = k; i < n; i++) {
+                [a[k], a[i]] = [a[i], a[k]];
+                permute(a, k + 1);
+                [a[k], a[i]] = [a[i], a[k]];
+            }
+        };
+        permute(arr, 0);
+        return result;
+    }
+
+    // ---------- A4 ----------
+    function createA4() {
+        const allPerms = generatePermutations(4);
+        const evenPerms = allPerms.filter(p => parity(p) === 0);
+        const permToStr = {};
+        const elements = [];
+        evenPerms.forEach(p => {
+            const s = permToString(p);
+            elements.push(s);
+            permToStr[s] = p;
+        });
+        // Ensure identity first
+        const idIdx = elements.indexOf('e');
+        if (idIdx > 0) [elements[0], elements[idIdx]] = [elements[idIdx], elements[0]];
+
+        const genA = [1, 2, 0, 3]; // (123)
+        const genB = [1, 3, 2, 0]; // (124)
+        const genC = [1, 0, 3, 2]; // (12)(34)
+        const gens = [permToString(genA), permToString(genB), permToString(genC)];
+        const genColors = ['#3a7bd5', '#e67e22', '#27ae60'];
+
+        const mult = (a, b) => {
+            const pa = permToStr[a], pb = permToStr[b];
+            if (!pa || !pb) return 'e';
+            const comp = new Array(4);
+            for (let i = 0; i < 4; i++) comp[i] = pa[pb[i]];
+            return permToString(comp);
+        };
+        return new Group('A4 (Tetrahedral)', elements, gens, genColors, mult);
+    }
+
+    // ---------- S4 (Octahedral) ----------
+    function createS4() {
+        const allPerms = generatePermutations(4);
+        const permToStr = {};
+        const elements = [];
+        allPerms.forEach(p => {
+            const s = permToString(p);
+            elements.push(s);
+            permToStr[s] = p;
+        });
+        const idIdx = elements.indexOf('e');
+        if (idIdx > 0) [elements[0], elements[idIdx]] = [elements[idIdx], elements[0]];
+
+        const genA = [1, 2, 3, 0]; // (1234)
+        const genB = [1, 0, 2, 3]; // (12)
+        const gens = [permToString(genA), permToString(genB)];
+        const genColors = ['#3a7bd5', '#e67e22'];
+
+        const mult = (a, b) => {
+            const pa = permToStr[a], pb = permToStr[b];
+            if (!pa || !pb) return 'e';
+            const comp = new Array(4);
+            for (let i = 0; i < 4; i++) comp[i] = pa[pb[i]];
+            return permToString(comp);
+        };
+        return new Group('S4 (Octahedral)', elements, gens, genColors, mult);
+    }
+
+    // ---------- Rubik's Cube ⟨U,R⟩ ≈ S3 ----------
+    function createRubik() {
+        const elements = ['e', 'U', 'U2', 'R', 'UR', 'U2R'];
+        function parse(el) {
+            if (el === 'e') return ['r', 0];
+            if (el === 'U') return ['r', 1];
+            if (el === 'U2') return ['r', 2];
+            if (el === 'R') return ['sr', 0];
+            if (el === 'UR') return ['sr', 1];
+            if (el === 'U2R') return ['sr', 2];
+            return ['r', 0];
+        }
+        function toString(type, k) {
+            k = ((k % 3) + 3) % 3;
+            if (type === 'r') return k === 0 ? 'e' : k === 1 ? 'U' : 'U2';
+            return k === 0 ? 'R' : k === 1 ? 'UR' : 'U2R';
+        }
+        const mult = (a, b) => {
+            const [ta, ka] = parse(a), [tb, kb] = parse(b);
+            if (ta === 'r' && tb === 'r') return toString('r', ka + kb);
+            if (ta === 'r' && tb === 'sr') return toString('sr', ka + kb);
+            if (ta === 'sr' && tb === 'r') return toString('sr', ka - kb);
+            return toString('r', ka - kb);
+        };
+        return new Group("Rubik's ⟨U,R⟩ (S3)", elements, ['U', 'R'], ['#3a7bd5', '#e67e22'], mult);
+    }
+
+    // ---------- Group class ----------
+    class Group {
+        constructor(name, elements, generators, genColors, multFunc) {
+            this.name = name;
+            this.elements = elements;
+            this.generators = generators;
+            this.genColors = genColors;
+            this.mult = multFunc;
+            this.id = elements[0];
+        }
+        multiply(a, b) { return this.mult(a, b); }
+    }
+
+    // ---------- Build all groups ----------
+    const groupInstances = {
+        tetra: createA4(),
+        cube: createS4(),
+        dodeca: createA4(), // placeholder for A5
+        d4: createDihedral(4),
+        d6: createDihedral(6),
+        d8: createDihedral(8),
+        d12: createDihedral(12),
+        a4: createA4(),
+        rubik: createRubik()
+    };
+    groupInstances.tetra.name = 'Tetrahedral (A4)';
+    groupInstances.cube.name = 'Octahedral (S4)';
+    groupInstances.dodeca.name = 'Icosahedral (A5) – demo as A4';
+    groupInstances.a4.name = 'Alternating A4';
+
+    // ============================================================
+    // 2. UI SETUP
+    // ============================================================
+    const groupSelect = document.getElementById('groupSelect');
+    const cayleySvg = d3.select('#cayleySvg');
+    const multTableContainer = document.getElementById('multTableContainer');
+    const conjClassesContainer = document.getElementById('conjClassesContainer');
+    const conjSvg = d3.select('#conjSvg');
+    const cayleyLegend = document.getElementById('cayleyLegend');
+    const demoLeft = document.getElementById('demoLeft');
+    const demoRight = document.getElementById('demoRight');
+    const demoProductNote = document.getElementById('demoProductNote');
+    const groupInfo = document.getElementById('groupInfo');
+
+    let currentGroup = null;
+    let simulation = null;
+
+    Object.keys(groupInstances).forEach(key => {
+        const opt = document.createElement('option');
+        opt.value = key;
+        opt.textContent = groupInstances[key].name;
+        groupSelect.appendChild(opt);
+    });
+
+    groupSelect.addEventListener('change', e => loadGroup(e.target.value));
+    document.getElementById('resetLayout').addEventListener('click', () => {
+        if (currentGroup) renderCayley(currentGroup);
+    });
+
+    // ============================================================
+    // 3. RENDERING FUNCTIONS
+    // ============================================================
+
+    function loadGroup(key) {
+        const g = groupInstances[key];
+        currentGroup = g;
+        groupInfo.textContent = `${g.elements.length} elements · generators: ${g.generators.join(', ')}`;
+        renderCayley(g);
+        renderMultiplicationTable(g);
+        renderConjugacyClasses(g);
+        renderPhysicalDemo(g);
+    }
+
+    // ---------- Cayley Graph ----------
+    function renderCayley(group) {
+        cayleySvg.selectAll('*').remove();
+        if (simulation) simulation.stop();
+
+        const width = 600, height = 400;
+        cayleySvg.attr('viewBox', `0 0 ${width} ${height}`);
+
+        const nodes = group.elements.map((id, i) => ({ id, index: i }));
+        const links = [];
+        const seen = new Set();
+
+        group.generators.forEach((gen, gi) => {
+            const color = group.genColors[gi];
+            group.elements.forEach(a => {
+                const b = group.multiply(a, gen);
+                // Avoid duplicate undirected edges (but keep generator color if different)
+                const key = [a, b].sort().join('||') + '||' + color;
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    links.push({ source: a, target: b, color, generator: gen });
+                }
+            });
+        });
+
+        simulation = d3.forceSimulation(nodes)
+            .force('link', d3.forceLink(links).id(d => d.id).distance(65).strength(0.6))
+            .force('charge', d3.forceManyBody().strength(-220))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(22));
+
+        const link = cayleySvg.append('g')
+            .selectAll('line')
+            .data(links)
+            .join('line')
+            .attr('stroke', d => d.color)
+            .attr('stroke-width', 2.5)
+            .attr('stroke-opacity', 0.75)
+            .attr('stroke-linecap', 'round');
+
+        const node = cayleySvg.append('g')
+            .selectAll('circle')
+            .data(nodes)
+            .join('circle')
+            .attr('r', 13)
+            .attr('fill', '#ffffff')
+            .attr('stroke', '#2c3e50')
+            .attr('stroke-width', 2)
+            .style('cursor', 'grab')
+            .call(d3.drag()
+                .on('start', dragstarted)
+                .on('drag', dragged)
+                .on('end', dragended));
+
+        const label = cayleySvg.append('g')
+            .selectAll('text')
+            .data(nodes)
+            .join('text')
+            .text(d => d.id)
+            .attr('font-size', d => d.id.length > 5 ? '7px' : '10px')
+            .attr('text-anchor', 'middle')
+            .attr('dy', 4)
+            .attr('fill', '#1e2b3c')
+            .attr('pointer-events', 'none')
+            .attr('font-weight', '600');
+
+        simulation.on('tick', () => {
+            link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+            node.attr('cx', d => d.x).attr('cy', d => d.y);
+            label.attr('x', d => d.x).attr('y', d => d.y);
+        });
+
+        // Hover highlighting
+        node.on('mouseover', function (event, d) {
+            d3.select(this).attr('stroke', '#e74c3c').attr('stroke-width', 3);
+            const connected = new Set([d.id]);
+            links.forEach(l => {
+                if (l.source.id === d.id) connected.add(l.target.id);
+                if (l.target.id === d.id) connected.add(l.source.id);
+            });
+            link.attr('stroke-opacity', l =>
+                (l.source.id === d.id || l.target.id === d.id) ? 1 : 0.1
+            ).attr('stroke-width', l =>
+                (l.source.id === d.id || l.target.id === d.id) ? 4 : 1.5
+            );
+            node.attr('opacity', n => connected.has(n.id) ? 1 : 0.2);
+            label.attr('opacity', n => connected.has(n.id) ? 1 : 0.2);
+        }).on('mouseout', function () {
+            d3.select(this).attr('stroke', '#2c3e50').attr('stroke-width', 2);
+            link.attr('stroke-opacity', 0.75).attr('stroke-width', 2.5);
+            node.attr('opacity', 1);
+            label.attr('opacity', 1);
+        });
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x; d.fy = d.y;
+        }
+        function dragged(event, d) { d.fx = event.x; d.fy = event.y; }
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null; d.fy = null;
+        }
+
+        // Legend
+        cayleyLegend.innerHTML = '';
+        group.generators.forEach((gen, i) => {
+            const div = document.createElement('div');
+            div.className = 'legend-item';
+            div.innerHTML = `<span class="legend-color" style="background:${group.genColors[i]}"></span> multiply by ${gen}`;
+            cayleyLegend.appendChild(div);
+        });
+    }
+
+    // ---------- Multiplication Table ----------
+    function renderMultiplicationTable(group) {
+        const elements = group.elements;
+        const n = elements.length;
+        const maxSize = 22;
+        const disp = n > maxSize ? elements.slice(0, maxSize) : elements;
+        const size = disp.length;
+
+        let html = '<table><thead><tr><th>·</th>';
+        disp.forEach(e => html += `<th>${e}</th>`);
+        html += '</tr></thead><tbody>';
+
+        for (let i = 0; i < size; i++) {
+            const a = disp[i];
+            html += `<tr><th>${a}</th>`;
+            for (let j = 0; j < size; j++) {
+                const b = disp[j];
+                const prod = group.multiply(a, b);
+                const valid = group.elements.includes(prod);
+                html += `<td style="${valid ? '' : 'color:#c0392b;'}">${valid ? prod : '?'}</td>`;
+            }
+            html += '</tr>';
+        }
+        html += '</tbody></table>';
+        if (n > maxSize) {
+            html += `<div style="padding:8px; text-align:center; font-size:0.8rem; color:#5a6f84;">Showing first ${maxSize} of ${n} elements</div>`;
+        }
+        multTableContainer.innerHTML = html;
+    }
+
+    // ---------- Conjugacy Classes ----------
+    function computeConjugacyClasses(group) {
+        const inverse = {};
+        group.elements.forEach(a => {
+            for (const b of group.elements) {
+                if (group.multiply(a, b) === group.elements[0]) {
+                    inverse[a] = b;
+                    break;
+                }
+            }
+        });
+
+        const classes = [];
+        const assigned = new Set();
+
+        for (const a of group.elements) {
+            if (assigned.has(a)) continue;
+            const cls = new Set();
+            for (const g of group.elements) {
+                const gag = group.multiply(group.multiply(g, a), inverse[g]);
+                cls.add(gag);
+            }
+            const arr = Array.from(cls);
+            arr.forEach(e => assigned.add(e));
+            classes.push(arr);
+        }
+        return classes;
+    }
+
+    function renderConjugacyClasses(group) {
+        const classes = computeConjugacyClasses(group);
+        const palette = [
+            '#3a7bd5', '#e67e22', '#27ae60', '#8e44ad', '#e74c3c',
+            '#16a085', '#d35400', '#2c3e50', '#f39c12', '#9b59b6',
+            '#1abc9c', '#34495e', '#c0392b', '#7f8c8d'
+        ];
+
+        // Badges
+        conjClassesContainer.innerHTML = '';
+        classes.forEach((cls, i) => {
+            const color = palette[i % palette.length];
+            const div = document.createElement('div');
+            div.className = 'conj-badge';
+            div.style.background = color;
+            div.textContent = `Class ${i + 1} (${cls.length}): ${cls.join(', ')}`;
+            conjClassesContainer.appendChild(div);
+        });
+
+        // SVG circle
+        conjSvg.selectAll('*').remove();
+        const width = 600, height = 110;
+        conjSvg.attr('viewBox', `0 0 ${width} ${height}`);
+
+        const elements = group.elements;
+        const n = elements.length;
+        const cx = width / 2, cy = height / 2;
+        const radius = Math.min(width, height) * 0.38;
+
+        const classIndex = {};
+        classes.forEach((cls, i) => cls.forEach(e => classIndex[e] = i));
+
+        const g = conjSvg.append('g');
+        elements.forEach((el, i) => {
+            const angle = (i / n) * 2 * Math.PI - Math.PI / 2;
+            const x = cx + radius * Math.cos(angle);
+            const y = cy + radius * Math.sin(angle);
+            const color = palette[classIndex[el] % palette.length];
+
+            g.append('circle')
+                .attr('cx', x).attr('cy', y).attr('r', 9)
+                .attr('fill', color)
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 1.5);
+
+            g.append('text')
+                .attr('x', x).attr('y', y + 3)
+                .attr('text-anchor', 'middle')
+                .attr('font-size', el.length > 4 ? '6px' : '8px')
+                .attr('fill', '#fff')
+                .attr('font-weight', '700')
+                .text(el.length > 4 ? el.slice(0, 4) : el);
+        });
+    }
+
+    // ---------- Physical Demo ----------
+    function renderPhysicalDemo(group) {
+        const el1 = group.elements[1] || 'e';
+        const el2 = group.elements[Math.min(2, group.elements.length - 1)] || 'e';
+        const product = group.multiply(el1, el2);
+
+        demoLeft.innerHTML = '<svg id="demoSvgLeft" width="100%" height="120"></svg>';
+        demoRight.innerHTML = '<svg id="demoSvgRight" width="100%" height="120"></svg>';
+
+        drawRotation('demoSvgLeft', el1, group, `${el1} (A)`);
+        drawRotation('demoSvgRight', el2, group, `${el2} (B)`);
+
+        demoProductNote.innerHTML = `
+            <strong>${el1}</strong> · <strong>${el2}</strong> = <strong style="color:#3a7bd5; font-size:1.1em;">${product}</strong>
+            <br><span style="font-size:0.85rem; color:#5a6f84;">
+            Abstract product corresponds to performing rotation A then rotation B (composition).
+            </span>
+        `;
+    }
+
+    function drawRotation(svgId, element, group, label) {
+        const svg = d3.select(`#${svgId}`);
+        svg.selectAll('*').remove();
+        svg.attr('viewBox', '0 0 130 120');
+
+        const isDihedral = group.name.startsWith('D');
+        const sides = isDihedral ? (group.elements.length / 2) : 4;
+
+        // Determine rotation angle and reflection
+        let angle = 0;
+        let reflected = false;
+
+        if (element === 'e') { angle = 0; }
+        else if (element.startsWith('sr')) {
+            const k = parseInt(element.slice(2)) || 0;
+            reflected = true;
+            angle = 0; // base reflection across vertical axis
+            // For sr^k, reflection combined with rotation
+            const n = sides;
+            angle = (k / n) * 360;
+        } else if (element.startsWith('r')) {
+            const k = parseInt(element.slice(1)) || 0;
+            const n = sides;
+            angle = (k / n) * 360;
+        } else if (element === 's') {
+            reflected = true;
+            angle = 0;
+        } else if (element.startsWith('(')) {
+            // permutation: derive cycle length
+            const cycles = element.match(/\(([^)]+)\)/g) || [];
+            let maxLen = 1;
+            cycles.forEach(c => {
+                const len = c.replace(/[()]/g, '').length;
+                if (len > maxLen) maxLen = len;
+            });
+            angle = (maxLen / 4) * 360;
+        } else if (element.includes('U') || element.includes('R')) {
+            const uCount = (element.match(/U/g) || []).length;
+            const rCount = (element.match(/R/g) || []).length;
+            angle = (uCount + rCount) * 60;
+        }
+
+        const g = svg.append('g').attr('transform', 'translate(65,55)');
+
+        // Polygon points
+        const r = 28;
+        const points = [];
+        for (let i = 0; i < sides; i++) {
+            const a = (i / sides) * 2 * Math.PI - Math.PI / 2;
+            points.push([r * Math.cos(a), r * Math.sin(a)]);
+        }
+
+        const rot = g.append('g').attr('transform', `rotate(${angle})`);
+
+        // If reflected, mirror horizontally
+        if (reflected) {
+            rot.attr('transform', `rotate(${angle}) scale(-1,1)`);
+        }
+
+        rot.append('polygon')
+            .attr('points', points.map(p => p.join(',')).join(' '))
+            .attr('fill', '#e8f0fe')
+            .attr('stroke', '#3a7bd5')
+            .attr('stroke-width', 2);
+
+        points.forEach((p, i) => {
+            rot.append('circle')
+                .attr('cx', p[0]).attr('cy', p[1]).attr('r', 4)
+                .attr('fill', i === 0 ? '#e74c3c' : '#3a7bd5');
+        });
+
+        // Marker for vertex 0
+        rot.append('line')
+            .attr('x1', 0).attr('y1', 0)
+            .attr('x2', points[0][0]).attr('y2', points[0][1])
+            .attr('stroke', '#e74c3c')
+            .attr('stroke-width', 2)
+            .attr('stroke-dasharray', '4,2');
+
+        // Label
+        svg.append('text')
+            .attr('x', 65).attr('y', 110)
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '9px')
+            .attr('fill', '#2c3e50')
+            .attr('font-weight', '600')
+            .text(label);
+    }
+
+    // ============================================================
+    // 4. INITIALIZE
+    // ============================================================
+    groupSelect.value = 'd6';
+    loadGroup('d6');
+
+    console.log('Cayley Graph Explorer loaded. Groups:', Object.keys(groupInstances));
+</script>
+</body>
+</html>

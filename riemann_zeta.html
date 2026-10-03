@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Riemann Zeta Function: Visualizing Zeros | Dynamic Curves</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none; /* smoother pan/zoom experience */
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Fira Code', 'JetBrains Mono', 'Inter', monospace;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(18, 25, 45, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 2rem;
+            padding: 1rem 1.5rem 1.5rem 1.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+            border: 1px solid rgba(72, 120, 200, 0.3);
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border-radius: 28px;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.5), 0 0 0 1px rgba(210, 180, 140, 0.2);
+            cursor: crosshair;
+            background: #03060c;
+        }
+
+        .title {
+            font-size: 1.65rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #E6E9FF, #B0C4FF);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .sub {
+            font-size: 0.85rem;
+            color: #8da3d0;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px dashed #2a3a60;
+            display: inline-block;
+            padding-bottom: 6px;
+        }
+
+        .controls {
+            margin-top: 1.2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            align-items: center;
+        }
+
+        button {
+            background: #111a2c;
+            border: 1px solid #2e4a7a;
+            color: #c9e0ff;
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 6px 16px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+        }
+
+        button:hover {
+            background: #1f2e4a;
+            border-color: #6b9cdb;
+            color: white;
+            transform: scale(0.97);
+            box-shadow: 0 1px 3px black;
+        }
+
+        .info-panel {
+            margin-top: 1rem;
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 60px;
+            padding: 6px 18px;
+            display: inline-flex;
+            gap: 28px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(8px);
+            border: 1px solid #2a4068;
+        }
+
+        .info-panel span {
+            color: #b9d0ff;
+        }
+
+        .zero-badge {
+            color: #f2c94c;
+            font-weight: 600;
+            background: #1e2a3a80;
+            padding: 0px 8px;
+            border-radius: 32px;
+        }
+
+        .footer-note {
+            font-size: 0.7rem;
+            margin-top: 12px;
+            color: #5f7fb0;
+        }
+
+        @media (max-width: 780px) {
+            .card { padding: 0.8rem; }
+            .title { font-size: 1.2rem; }
+            .info-panel { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="container">
+        <div class="title">
+            <span>✨ RIEMANN ZETA FUNCTION ✨</span>
+        </div>
+        <div class="sub">parametric curves &nbsp;|&nbsp; ζ(½ + i t)  &nbsp;|&nbsp; non‑trivial zeros</div>
+
+        <canvas id="riemannCanvas" width="1000" height="600" style="width:100%; height:auto; max-width:1000px; aspect-ratio:1000/600"></canvas>
+
+        <div class="controls">
+            <button id="animateBtn">▶ DYNAMIC FLOW</button>
+            <button id="resetViewBtn">⟳ RESET VIEW</button>
+            <button id="toggleGridBtn">⊞ TOGGLE GRID</button>
+        </div>
+        <div class="info-panel">
+            <div>📈 Real ζ → <span style="color:#ff9f7c;">▬ orange</span></div>
+            <div>📉 Imag ζ → <span style="color:#7cd4ff;">▬ cyan</span></div>
+            <div>⚫ <span class="zero-badge">ZEROS (ζ=0)</span> at critical line Re(s)=½</div>
+            <div>🟡 t = <span id="tValueDisplay">0.00</span></div>
+        </div>
+        <div class="footer-note">
+            * Visualizing ζ(½ + i·t) on complex plane | Zeros occur where both real & imaginary curves cross zero simultaneously (highlighted circles).
+        </div>
+    </div>
+</div>
+
+<script>
+    (function(){
+        // ---------- canvas setup ----------
+        const canvas = document.getElementById('riemannCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // dimensions
+        let width = 1000, height = 600;
+        const resizeObserver = () => {
+            const rect = canvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            canvas.width = w;
+            canvas.height = h;
+            width = w;
+            height = h;
+            draw();
+        };
+        window.addEventListener('resize', () => resizeObserver());
+        resizeObserver();
+
+        // ---------- plot parameters ----------
+        let tMin = 0.0;
+        let tMax = 35.0;        // shows first ~10-12 zeros (up to 35 covers first 10 zeros: 14.13,21.02,25.01,30.42,32.93,37.58... but we show zeros up to ~40)
+        // dynamic range: we will include zeros up to 40
+        let knownZeros = [
+            14.134725141734693, 21.022039638771554, 25.010857580145688, 30.424876125859513,
+            32.935061587739189, 37.586178158825671, 40.918719012147495, 43.327073280914999,
+            48.005150881167159, 49.7738324776723, 52.97032147771446, 56.446247697063394,
+            59.347044002602353, 60.831778524609809, 65.1125440480816, 67.0798105294944
+        ]; // first 16 non-trivial zeros (imag parts, all at Re=0.5)
+
+        // view transformation (pan/zoom)
+        let viewX = 0.0;      // center X offset (real axis)
+        let viewY = 0.0;      // center Y offset (imag axis)
+        let zoom = 1.2;       // zoom factor (larger = zoom in)
+
+        // grid / curve style
+        let showGrid = true;
+        let animationId = null;
+        let animating = false;
+        let animT = 0.0;       // for dynamic tracing cursor
+
+        // --- Zeta approximation: Dirichlet series + smoothing for moderate t (efficient & visually plausible for demonstration)
+        // For generating smooth curves resembling ζ(0.5+it), we implement a partial sum with alternating correction
+        // using eta function / accelerated convergence. This yields correct zero-crossings approximately.
+        // Actually for visualization, we need high enough terms to capture zeros. We use Riemann-Siegel style truncation:
+        // We'll compute using eta function: ζ(s) = η(s) / (1 - 2^(1-s)), with η(s)= Σ_{n=1}^{N} (-1)^(n-1) n^{-s}.
+        // This converges for Re(s)>0. For s=0.5+it, gives beautiful curves. N ~ 100 gives excellent accuracy up to t~50.
+        function etaPartial(sReal, sImag, N = 140) {
+            let sumReal = 0.0;
+            let sumImag = 0.0;
+            for(let n = 1; n <= N; n++) {
+                const sign = (n % 2 === 0) ? -1.0 : 1.0;
+                // n^{-s} = n^{-σ} * e^{-i t ln n} = n^{-σ} (cos(t ln n) - i sin(t ln n))
+                const mag = Math.pow(n, -sReal);   // n^{-σ}
+                const angle = sImag * Math.log(n);
+                const cosPhi = Math.cos(angle);
+                const sinPhi = Math.sin(angle);
+                // sign * mag * (cosPhi - i sinPhi)
+                const termReal = sign * mag * cosPhi;
+                const termImag = -sign * mag * sinPhi;
+                sumReal += termReal;
+                sumImag += termImag;
+            }
+            return {real: sumReal, imag: sumImag};
+        }
+
+        // Compute ζ(s) using η(s) / (1 - 2^{1-s})
+        function zeta(sReal, sImag) {
+            const eta = etaPartial(sReal, sImag, 150);
+            // compute factor = 1 - 2^(1-s)  with s = σ + it
+            const exponentReal = 1.0 - sReal;
+            const exponentImag = -sImag;
+            // 2^{1-s} = exp((1-s)*ln2)
+            const ln2 = Math.LN2;
+            const magnitude = Math.exp(exponentReal * ln2);
+            const phase = exponentImag * ln2;
+            const twoPowReal = magnitude * Math.cos(phase);
+            const twoPowImag = magnitude * Math.sin(phase);
+            const denominatorReal = 1.0 - twoPowReal;
+            const denominatorImag = -twoPowImag;
+            const denominatorSq = denominatorReal * denominatorReal + denominatorImag * denominatorImag;
+            if(denominatorSq < 1e-12) return {real: 0, imag: 0};
+            const invDenReal = denominatorReal / denominatorSq;
+            const invDenImag = -denominatorImag / denominatorSq;
+            // ζ = η * inv(1-2^{1-s})
+            const zReal = eta.real * invDenReal - eta.imag * invDenImag;
+            const zImag = eta.real * invDenImag + eta.imag * invDenReal;
+            return {real: zReal, imag: zImag};
+        }
+
+        // get re and im of ζ(0.5 + i t)
+        function zetaAtCritical(t) {
+            return zeta(0.5, t);
+        }
+
+        // ---- coordinate mapping: (realZeta, imagZeta) -> canvas (x, y)
+        // we map real part (horizontal) and imaginary part (vertical) of the complex output ζ itself.
+        // Usually we want parametric plot (Re(ζ), Im(ζ)) as t varies. However, zeros are points where both Re=0 & Im=0.
+        // But also often visualization of "zeta spiral" . To show zeros clearly, we directly plot Re(ζ) vs t and Im(ζ) vs t
+        // Actually to visualize all zeros dynamically, we draw two curves: Real part (orange) and Imag part (cyan) as functions of t.
+        // Zeros occur where both curves cross zero at same t (vertical dotted line). We also mark known zeros with glowing points.
+        // Additionally we can draw trajectory in complex plane? but easier for zeros: two curves crossing zero simultaneously.
+        // I'll produce beautiful dual axes: left Y for real/imag values (range ~ -4..4) with t as X axis.
+        // Therefore transform: canvas X -> t value, canvas Y -> function value (real or imag). This is perfect.
+
+        // set fixed plotting domain: tMin, tMax
+        // Y-axis range (real/imag value range) automatic scaling based on data or adaptive.
+        let yMin = -3.8;
+        let yMax = 3.8;
+
+        // because function amplitude grows slowly with t ~ sqrt(log t), for t up to 40 it's about +-3.5 so safe
+        function worldToCanvasX(t) {
+            return ((t - tMin) / (tMax - tMin)) * width;
+        }
+
+        function worldToCanvasY(value) {
+            // map from [yMin, yMax] to canvas Y (0 top, height bottom)
+            return height - ((value - yMin) / (yMax - yMin)) * height;
+        }
+
+        function canvasToWorldX(cx) {
+            return tMin + (cx / width) * (tMax - tMin);
+        }
+
+        // drawing functions
+        function drawGridAndAxes() {
+            if(!showGrid) return;
+            ctx.save();
+            ctx.strokeStyle = "#2a3a55";
+            ctx.lineWidth = 0.6;
+            ctx.beginPath();
+            // vertical grid lines (t axis)
+            const stepT = (tMax - tMin) / 12;
+            for(let t = tMin - stepT; t <= tMax + stepT; t += stepT) {
+                if(t < tMin || t > tMax) continue;
+                const x = worldToCanvasX(t);
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+            }
+            // horizontal grid (value)
+            const stepY = (yMax - yMin) / 8;
+            for(let val = yMin; val <= yMax + 0.1; val += stepY) {
+                const y = worldToCanvasY(val);
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+            }
+            ctx.stroke();
+
+            // axes: t axis (y=0) and zero line
+            ctx.beginPath();
+            ctx.lineWidth = 1.6;
+            ctx.strokeStyle = "#b8cdff";
+            const yZero = worldToCanvasY(0);
+            ctx.moveTo(0, yZero);
+            ctx.lineTo(width, yZero);
+            ctx.stroke();
+            // vertical axis at t=0? not necessary but can show
+            ctx.beginPath();
+            ctx.strokeStyle = "#7f96b5";
+            ctx.setLineDash([5, 6]);
+            const xZero = worldToCanvasX(0);
+            if(xZero >=0 && xZero <= width) {
+                ctx.moveTo(xZero, 0);
+                ctx.lineTo(xZero, height);
+                ctx.stroke();
+            }
+            ctx.setLineDash([]);
+
+            // labels for t axis
+            ctx.font = "11px 'Segoe UI', monospace";
+            ctx.fillStyle = "#95adcc";
+            for(let t = 0; t <= tMax+0.1; t += 5) {
+                const x = worldToCanvasX(t);
+                if(x > 5 && x < width-10) {
+                    ctx.fillText(`t=${t}`, x-8, worldToCanvasY(-0.2)+12);
+                }
+            }
+            ctx.fillStyle = "#b9d0ff";
+            ctx.fillText("t (imag axis)", width-60, worldToCanvasY(-0.2)+20);
+            ctx.fillText("Re(ζ) / Im(ζ)", 12, worldToCanvasY(3.2)-6);
+            ctx.restore();
+        }
+
+        // draw the real & imaginary curves
+        let realCurvePoints = [];
+        let imagCurvePoints = [];
+
+        function computeCurves() {
+            const segments = 700;  // smooth
+            realCurvePoints = [];
+            imagCurvePoints = [];
+            for(let i = 0; i <= segments; i++) {
+                const t = tMin + (i / segments) * (tMax - tMin);
+                const {real, imag} = zetaAtCritical(t);
+                const x = worldToCanvasX(t);
+                const yReal = worldToCanvasY(real);
+                const yImag = worldToCanvasY(imag);
+                realCurvePoints.push({x, y: yReal, t, val: real});
+                imagCurvePoints.push({x, y: yImag, t, val: imag});
+            }
+        }
+
+        function drawCurves() {
+            if(realCurvePoints.length < 2) return;
+            ctx.save();
+            // Real part curve (orange)
+            ctx.beginPath();
+            ctx.lineWidth = 2.8;
+            ctx.strokeStyle = "#ff9f7c";
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = "#ff9f7c80";
+            ctx.moveTo(realCurvePoints[0].x, realCurvePoints[0].y);
+            for(let i=1; i<realCurvePoints.length; i++) {
+                ctx.lineTo(realCurvePoints[i].x, realCurvePoints[i].y);
+            }
+            ctx.stroke();
+
+            // Imag part curve (cyan)
+            ctx.beginPath();
+            ctx.lineWidth = 2.8;
+            ctx.strokeStyle = "#7cd4ff";
+            ctx.shadowBlur = 3;
+            ctx.shadowColor = "#7cd4ff80";
+            ctx.moveTo(imagCurvePoints[0].x, imagCurvePoints[0].y);
+            for(let i=1; i<imagCurvePoints.length; i++) {
+                ctx.lineTo(imagCurvePoints[i].x, imagCurvePoints[i].y);
+            }
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
+
+        // highlight zeros: for each known zero t value, draw circle marker at crossing (both curves zero)
+        function drawZeroMarkers() {
+            ctx.save();
+            for(let zeroT of knownZeros) {
+                if(zeroT < tMin || zeroT > tMax) continue;
+                const {real, imag} = zetaAtCritical(zeroT);
+                // crossing: real and imag near zero
+                const x = worldToCanvasX(zeroT);
+                const yRealZero = worldToCanvasY(0);
+                const yImagZero = worldToCanvasY(0);
+                // draw a glowing dot on zero horizontal line and vertical indicator
+                ctx.beginPath();
+                ctx.arc(x, yRealZero, 6, 0, 2*Math.PI);
+                ctx.fillStyle = "#f5c542";
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = "#ffd966";
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(x, yRealZero, 2.5, 0, 2*Math.PI);
+                ctx.fillStyle = "white";
+                ctx.fill();
+                // vertical guide dashed line at zero location
+                ctx.beginPath();
+                ctx.setLineDash([4, 8]);
+                ctx.strokeStyle = "#f5c542aa";
+                ctx.lineWidth = 1.2;
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, height);
+                ctx.stroke();
+                // label
+                ctx.font = "bold 10px monospace";
+                ctx.fillStyle = "#FFE4A3";
+                ctx.shadowBlur = 5;
+                ctx.fillText(`γ≈${zeroT.toFixed(3)}`, x+5, yRealZero-8);
+            }
+            ctx.setLineDash([]);
+            ctx.shadowBlur = 0;
+            ctx.restore();
+        }
+
+        // draw dynamic tracer (vertical line and dot)
+        let currentTraceT = animating ? animT : 14.5;
+        function drawDynamicTracer() {
+            if(currentTraceT < tMin || currentTraceT > tMax) return;
+            const x = worldToCanvasX(currentTraceT);
+            const {real, imag} = zetaAtCritical(currentTraceT);
+            const yReal = worldToCanvasY(real);
+            const yImag = worldToCanvasY(imag);
+            ctx.save();
+            ctx.beginPath();
+            ctx.lineWidth = 1.8;
+            ctx.strokeStyle = "#ffecb3";
+            ctx.setLineDash([8, 6]);
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            // dots
+            ctx.beginPath();
+            ctx.arc(x, yReal, 6, 0, 2*Math.PI);
+            ctx.fillStyle = "#ffaa66cc";
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x, yImag, 6, 0, 2*Math.PI);
+            ctx.fillStyle = "#66ccffcc";
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x, yReal, 2, 0, 2*Math.PI);
+            ctx.fillStyle = "#fff0cc";
+            ctx.fill();
+            ctx.beginPath();
+            ctx.arc(x, yImag, 2, 0, 2*Math.PI);
+            ctx.fillStyle = "#ffffff";
+            ctx.fill();
+            ctx.fillStyle = "#f0f3ff";
+            ctx.font = "bold 12px monospace";
+            ctx.fillText(`t = ${currentTraceT.toFixed(4)}`, x+6, yReal-10);
+            document.getElementById('tValueDisplay').innerText = currentTraceT.toFixed(4);
+            ctx.restore();
+        }
+
+        // full draw pipeline
+        let needsRecalc = true;
+        function draw() {
+            if(needsRecalc) {
+                computeCurves();
+                needsRecalc = false;
+            }
+            ctx.clearRect(0, 0, width, height);
+            drawGridAndAxes();
+            drawCurves();
+            drawZeroMarkers();
+            drawDynamicTracer();
+        }
+
+        // pan/zoom interactions
+        let isPanning = false;
+        let lastPanX = 0;
+        function handleWheel(e) {
+            e.preventDefault();
+            const delta = -e.deltaY * 0.005;
+            const newZoom = Math.min(Math.max(zoom + delta, 0.6), 4.5);
+            if(newZoom !== zoom) {
+                // adjust view to keep cursor region? minimal transform; but we don't shift t axis.
+                // Since we use fixed tMin/tMax, zoom changes domain scaling? In current axis we directly control tMin,tMax?
+                // For simplicity zoom will rescale y range? Better to adjust Y range scaling?
+                // For more natural, we make zoom affect Y range amplitude (since zeros need detection).
+                const oldRange = yMax - yMin;
+                const newRange = oldRange / (newZoom/zoom);
+                const centerY = (yMin + yMax)/2;
+                yMin = centerY - newRange/2;
+                yMax = centerY + newRange/2;
+                zoom = newZoom;
+                needsRecalc = false; // curves unaffected because t domain same but Y values same compute, no need recalc.
+                draw();
+            }
+        }
+
+        function handleMouseDown(e) {
+            isPanning = true;
+            lastPanX = e.offsetX;
+            canvas.style.cursor = 'grabbing';
+        }
+
+        function handleMouseMove(e) {
+            if(!isPanning) return;
+            const dx = e.offsetX - lastPanX;
+            if(dx !== 0) {
+                const deltaT = (dx / width) * (tMax - tMin);
+                let newMin = tMin - deltaT;
+                let newMax = tMax - deltaT;
+                if(newMin < 0) { newMin = 0; newMax = tMax - tMin; }
+                if(newMax > 70) { newMax = 70; newMin = newMax - (tMax - tMin); }
+                if(newMin >= 0 && newMax <= 70 && newMax > newMin) {
+                    tMin = newMin;
+                    tMax = newMax;
+                    needsRecalc = true;
+                    draw();
+                }
+                lastPanX = e.offsetX;
+            }
+        }
+
+        function handleMouseUp() {
+            isPanning = false;
+            canvas.style.cursor = 'crosshair';
+        }
+
+        // reset view
+        function resetView() {
+            tMin = 0;
+            tMax = 35.0;
+            yMin = -3.8;
+            yMax = 3.8;
+            zoom = 1.2;
+            needsRecalc = true;
+            if(animating) {
+                animT = Math.min(tMax, Math.max(tMin, animT));
+            } else {
+                currentTraceT = 14.13;
+            }
+            draw();
+        }
+
+        // dynamic animation
+        function startAnimation() {
+            if(animationId) cancelAnimationFrame(animationId);
+            animating = true;
+            animT = tMin;
+            function animateFrame() {
+                if(!animating) return;
+                animT += (tMax - tMin) / 280;
+                if(animT > tMax) {
+                    animT = tMin;
+                }
+                currentTraceT = animT;
+                needsRecalc = false;
+                draw();
+                animationId = requestAnimationFrame(animateFrame);
+            }
+            animationId = requestAnimationFrame(animateFrame);
+        }
+
+        function stopAnimation() {
+            if(animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+            animating = false;
+            draw();
+        }
+
+        function toggleAnimation() {
+            if(animating) {
+                stopAnimation();
+                document.getElementById('animateBtn').innerHTML = '▶ DYNAMIC FLOW';
+            } else {
+                startAnimation();
+                document.getElementById('animateBtn').innerHTML = '⏸ PAUSE';
+            }
+        }
+
+        // add event handlers and init
+        canvas.addEventListener('wheel', handleWheel, {passive: false});
+        canvas.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('mouseup', handleMouseUp);
+        document.getElementById('animateBtn').addEventListener('click', toggleAnimation);
+        document.getElementById('resetViewBtn').addEventListener('click', () => {
+            if(animating) toggleAnimation();
+            resetView();
+        });
+        document.getElementById('toggleGridBtn').addEventListener('click', () => {
+            showGrid = !showGrid;
+            draw();
+        });
+
+        resetView();
+        // precompute first draw
+        computeCurves();
+        currentTraceT = 14.1347;
+        draw();
+    })();
+</script>
+</body>
+</html>
