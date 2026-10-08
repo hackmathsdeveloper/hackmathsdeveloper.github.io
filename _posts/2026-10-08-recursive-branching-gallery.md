@@ -20,7 +20,7 @@ excerpt: "Six branching constructions — curved trees, canopies, fern-like stem
 
 The screenshot is best described as a **fractal tree**, specifically a curved recursive branching tree. It does not uniquely determine a named construction or generating equation. This gallery explains the six illustrative constructions from the earlier webpage, rather than claiming to recover the original video's algorithm.
 
-Markdown is static: the sliders become parameters, and the live previews are replaced with schematic diagrams, equations, and recursion rules. Diagrams show branching topology only, not exact angles or curvature.
+The drawings below are not static: the canvas code from the gallery is embedded in this page, so every figure is drawn live by the recursion rule written out beside it. The sliders use the gallery's defaults (depth 8, angle $28^\circ$, ratio 0.68) and redraw all six figures at once.
 
 **Why it matters.** One recursive rule — two children per branch, each shrunk and rotated — generates every picture in this gallery. Writing that rule down is what turns a pretty picture into mathematics, and the honest part is the interesting part: a picture alone never determines its rule.
 
@@ -44,6 +44,13 @@ The shared parameters are:
 | $\alpha$ | Branching angle | $28^\circ$ |
 | $r$ | Child-to-parent length-parameter ratio | 0.68 |
 | $\beta$ | Curved-branch turning parameter | 0.22 radians |
+
+<div class="controls-row">
+  <label>Depth <input id="depth" type="range" min="3" max="10" value="8"> <output id="dv">8</output></label>
+  <label>Angle <input id="angle" type="range" min="12" max="55" value="28"> <output id="av">28°</output></label>
+  <label>Length ratio <input id="ratio" type="range" min="50" max="78" value="68"> <output id="rv">0.68</output></label>
+  <button id="reset" type="button">Reset</button>
+</div>
 
 Convert angles to radians before using trigonometric functions. Stop when $n=0$; an optional minimum-length threshold is useful in a renderer.
 
@@ -69,15 +76,7 @@ Along one descendant path, the sum of these length parameters is bounded by $L_0
 
 Closest visual match to the supplied image. This is a descriptive label, not a uniquely named curve.
 
-```text
-             smaller curved subtrees
-                    ↖   ↗
-                     \ /
-              ↖       )       ↗
-               \     /       /
-                curved parent
-                      |
-```
+<canvas class="tree-canvas" data-type="curved" aria-label="Curved recursive tree, drawn live by the recursion in this section"></canvas>
 
 ### Branch geometry: quadratic Bézier curve
 
@@ -122,14 +121,7 @@ For tangent-relative branching, replace $\theta+\beta$ with $\theta_{\rm end}$. 
 
 The basic two-child recursive model. “Binary” specifies the number of children, not a particular angle or ratio.
 
-```text
-        /\       /\
-       /  \     /  \
-          \     /
-           \   /
-            \ /
-             |
-```
+<canvas class="tree-canvas" data-type="binary" aria-label="Binary fractal tree, drawn live by the recursion in this section"></canvas>
 
 ### Branch geometry and recursion
 
@@ -178,15 +170,7 @@ TREE(P, theta, L, n):
 
 A standard symmetric instance of a binary fractal tree: both children use the same ratio and opposite branching angles. Its geometry is therefore the same as entry 2 with equal left/right parameters. The earlier webpage intentionally displayed the same construction under these related labels; they are not two independent curve families.
 
-```text
-       left subtree | right subtree
-              \     |     /
-               \    |    /
-                \   |   /
-                 \  |  /
-                  \ | /
-                    |
-```
+<canvas class="tree-canvas" data-type="canopy" aria-label="Symmetric fractal canopy, drawn live by the recursion in this section"></canvas>
 
 ### Self-similarity as a set equation
 
@@ -241,14 +225,7 @@ This equals its Hausdorff dimension only under suitable separation conditions, s
 
 Unequal child angles or scaling factors break the mirror symmetry while retaining a repeated rule.
 
-```text
-          /\
-         /  \       /\
-        /    \     /  \
-              \   /
-               \ /
-                |
-```
+<canvas class="tree-canvas" data-type="asymmetric" aria-label="Asymmetric fractal tree, drawn live by the recursion in this section"></canvas>
 
 ### General recurrence
 
@@ -291,15 +268,7 @@ Usually this equation is solved numerically. As with the symmetric canopy, it is
 
 A descriptive construction with a continuing stem and a smaller side subtree. It is not the Barnsley fern algorithm, which is a different affine-IFS construction.
 
-```text
-            )
-       ----)
-           )
-      ----)
-          )
-     ----)
-         |
-```
+<canvas class="tree-canvas" data-type="fern" aria-label="Fern-like recursive tree, drawn live by the recursion in this section"></canvas>
 
 ### Branch and attachment geometry
 
@@ -345,13 +314,7 @@ Then define the side direction relative to $\theta_A$, for example $\theta_A+1.9
 
 Several recursive trees share one center. This is a descriptive arrangement rather than a separate standard named fractal curve.
 
-```text
-            tree
-             |
-     tree -- center -- tree
-            /     \
-         tree     tree
-```
+<canvas class="tree-canvas" data-type="radial" aria-label="Radial branching tree, drawn live by the recursion in this section"></canvas>
 
 ### Multiple initial directions
 
@@ -424,3 +387,45 @@ Recursive branching is a language — L-systems, IFSs, turtle graphics — in wh
 - [Smooth Fractal Trees: Analytic Generators and Discrete Equivalence — preprint](https://arxiv.org/pdf/2601.17490v1.pdf)
 
 The specific Bézier constants, asymmetric ratios, fern attachment rule, and radial arrangement above document the earlier generated webpage. They are illustrative design choices, not formulas attributed to these sources.
+
+<style>
+.controls-row{display:flex;gap:14px 22px;flex-wrap:wrap;align-items:center;background:#eef3f9;border:1px solid #d8e2ee;border-radius:10px;padding:12px 16px;margin:14px 0 8px}
+.controls-row label{font-size:14px;white-space:nowrap}
+.controls-row output{min-width:34px;display:inline-block;text-align:right;font-size:13px}
+.tree-canvas{width:100%;max-width:620px;height:300px;background:#f6faf7;border:1px solid #d8e2ee;border-radius:10px;display:block;margin:10px auto}
+</style>
+
+<script>
+function draw(c){
+  const w=c.clientWidth,h=300,dpr=window.devicePixelRatio||1;
+  c.width=w*dpr;c.height=h*dpr;
+  const ctx=c.getContext('2d');ctx.scale(dpr,dpr);
+  const type=c.dataset.type,depth=+document.getElementById('depth').value,ang=+document.getElementById('angle').value*Math.PI/180,r=+document.getElementById('ratio').value/100;
+  function branch(x,y,a,len,n,level){
+    if(n===0)return;
+    const bend=(type==='curved'||type==='fern')?0.22:0;
+    const endA=a+bend;
+    const ex=x+len*Math.cos(a+bend/2),ey=y+len*Math.sin(a+bend/2);
+    ctx.strokeStyle=`hsl(${205-level*13},60%,${38+level*2}%)`;
+    ctx.lineWidth=Math.max(0.55,3.7*Math.pow(0.73,level));
+    ctx.beginPath();ctx.moveTo(x,y);
+    if(bend)ctx.quadraticCurveTo(x+len*.52*Math.cos(a),y+len*.52*Math.sin(a),ex,ey);else ctx.lineTo(ex,ey);
+    ctx.stroke();
+    if(type==='fern'){branch(ex,ey,endA-0.06,len*r,n-1,level+1);branch(x+(ex-x)*.62,y+(ey-y)*.62,endA+ang*1.9,len*r*.57,n-1,level+1)}
+    else{branch(ex,ey,endA-ang,len*r,n-1,level+1);branch(ex,ey,endA+ang*(type==='asymmetric'?1.4:1),len*r*(type==='asymmetric'?.82:1),n-1,level+1)}
+  }
+  const len=Math.min(w*.23,68)*(1-r)/.32;
+  if(type==='radial'){for(let i=0;i<5;i++)branch(w/2,h/2,-Math.PI/2+i*2*Math.PI/5,len*.47,depth,0)}
+  else branch(w/2,h-12,-Math.PI/2,len,depth,0)
+}
+function render(){
+  document.getElementById('dv').value=document.getElementById('depth').value;
+  document.getElementById('av').value=document.getElementById('angle').value+'°';
+  document.getElementById('rv').value=(+document.getElementById('ratio').value/100).toFixed(2);
+  document.querySelectorAll('.tree-canvas').forEach(draw)
+}
+['depth','angle','ratio'].forEach(id=>document.getElementById(id).addEventListener('input',render));
+document.getElementById('reset').onclick=()=>{document.getElementById('depth').value=8;document.getElementById('angle').value=28;document.getElementById('ratio').value=68;render()};
+window.addEventListener('resize',render);
+render();
+</script>
