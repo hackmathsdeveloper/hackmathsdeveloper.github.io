@@ -1,4 +1,5 @@
 
+{% raw %}
 Gauss’s continued fraction expresses a ratio of contiguous Gaussian hypergeometric functions as a continued fraction. A standard form is
 
 \[
@@ -67,3 +68,5 @@ k_{2m+2}
 This is the same underlying result, just using a different contiguous ratio and absorbing minus signs into the partial numerators. [en.wikipedia](https://en.wikipedia.org/wiki/Hypergeometric_function)
 
 It is called “Gauss’s” continued fraction because Gauss derived it in the context of hypergeometric functions; it is a general template that specializes to continued fractions for more familiar functions such as logarithmic, inverse-trigonometric, and Bessel-related expressions. [en.wikipedia](https://en.wikipedia.org/wiki/Gauss's_continued_fraction)
+
+{% endraw %}

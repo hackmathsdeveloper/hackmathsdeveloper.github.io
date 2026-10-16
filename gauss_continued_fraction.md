@@ -1,4 +1,5 @@
 
+{% raw %}
 Gauss’s continued fraction (GCF) is not a single object but a whole family of continued fractions arising from the hypergeometric function \( {_2F_1} \), and it admits several useful variants: contiguous-parameter versions, rescaled forms, specializations to Bessel/confluent hypergeometric functions, and various “accelerated” or transformed continued fractions built from it. [golem.ph.utexas](https://golem.ph.utexas.edu/category/2020/09/five_levels_of_continued_fract.html)
 
 Below I’ll first fix a concrete reference form, then outline the main types of variations people actually use.
@@ -130,3 +131,5 @@ Finally, even without changing the algebraic form, different parameter ranges gi
 These are not new algebraic variants, but they are important in understanding what “versions” of the Gauss fraction are valid where.
 
 ***
+
+{% endraw %}
