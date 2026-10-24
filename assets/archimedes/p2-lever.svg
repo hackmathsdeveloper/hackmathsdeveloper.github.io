@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="430" viewBox="0 0 900 430" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">The triangle balance lemma</title>
+<desc id="dsc">A triangle on a lever arm with centroid at one third of the arm, balanced by a counterweight of one third its area at the full arm length.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="430" rx="14" fill="#252a34"/>
+<line x1="104.7" y1="264.7" x2="795.3" y2="264.7" class="thin"/>
+<path d="M 415.47,264.67 L 484.53,264.67 L 450.00,318.93 Z" class="fill-orange"/>
+<path d="M 415.47,264.67 L 484.53,264.67 L 450.00,318.93 Z" class="thin"/>
+<path d="M 450.00,263.68 L 450.00,156.13 L 746.00,263.68 Z" class="fill-teal"/>
+<path d="M 450.00,263.68 L 450.00,156.13 L 746.00,263.68 Z" class="thin"/>
+<circle cx="548.7" cy="227.8" r="4.2" class="pt-orange"/>
+<text x="558.7" y="231.8" class="sml" text-anchor="start" fill="#f78c6c">centroid</text>
+<rect x="125.63" y="207.93" width="56.73" height="56.73" fill="#f78c6c" fill-opacity="0.7" stroke="#f78c6c" stroke-width="1.5"/>
+<text x="154.0" y="241.3" class="sml" text-anchor="middle" fill="#ffffff">Z = T/3</text>
+<text x="598.0" y="237.5" class="lbl" text-anchor="middle" fill="#ffffff" font-size="20">T</text>
+<line x1="450.0" y1="291.8" x2="746.0" y2="291.8" class="thin2"/>
+<line x1="450.0" y1="291.8" x2="450.0" y2="291.8" class="thin2 dash"/>
+<line x1="746.0" y1="291.8" x2="746.0" y2="291.8" class="thin2 dash"/>
+<text x="598.0" y="283.8" class="sml" text-anchor="middle">L</text>
+<line x1="450.0" y1="316.5" x2="548.7" y2="316.5" class="thin2"/>
+<line x1="450.0" y1="316.5" x2="450.0" y2="316.5" class="thin2 dash"/>
+<line x1="548.7" y1="316.5" x2="548.7" y2="316.5" class="thin2 dash"/>
+<text x="499.3" y="308.5" class="sml" text-anchor="middle">L/3</text>
+<line x1="548.7" y1="264.7" x2="548.7" y2="263.7" class="thin2 dash"/>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">The balance lemma behind the mechanical proof</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">A triangle whose centroid is L/3 from the fulcrum is balanced at distance L by one third of its area:  Z·L = T·(L/3).</text>
+</svg>

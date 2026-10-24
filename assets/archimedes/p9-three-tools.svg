@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">The three tools of Archimedean proof</title>
+<desc id="dsc">A triangle connecting geometry, mechanics, and exhaustion, each pointing to a central exact result.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="500" rx="14" fill="#252a34"/>
+<line x1="450.0" y1="110.0" x2="210.0" y2="400.0" class="thin2"/>
+<line x1="450.0" y1="110.0" x2="690.0" y2="400.0" class="thin2"/>
+<line x1="210.0" y1="400.0" x2="690.0" y2="400.0" class="thin2"/>
+<polygon points="450,250 500,275 500,325 450,350 400,325 400,275" fill="#1f2430" stroke="#ffcb6b" stroke-width="1.8"/>
+<text x="450.0" y="292.0" class="eq" text-anchor="middle" font-size="18">exact</text>
+<text x="450.0" y="316.0" class="eq" text-anchor="middle" font-size="18">result</text>
+<rect x="365.0" y="77.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="450.0" y="106.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Geometry</text>
+<text x="450.0" y="128.0" class="sml" text-anchor="middle">conic sections + ratios</text>
+<rect x="125.0" y="367.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#f78c6c" stroke-width="1.6"/>
+<text x="210.0" y="396.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Mechanics</text>
+<text x="210.0" y="418.0" class="sml" text-anchor="middle">lever + centre of gravity</text>
+<rect x="605.0" y="367.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#82aaff" stroke-width="1.6"/>
+<text x="690.0" y="396.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Exhaustion</text>
+<text x="690.0" y="418.0" class="sml" text-anchor="middle">finite bounds + contradiction</text>
+<line x1="450.0" y1="144.0" x2="450.0" y2="244.0" class="thin2" marker-end="url(#arrow)"/>
+<line x1="255.0" y1="380.0" x2="410.0" y2="325.0" class="thin2" marker-end="url(#arrow)"/>
+<line x1="645.0" y1="380.0" x2="490.0" y2="325.0" class="thin2" marker-end="url(#arrow)"/>
+<text x="465.0" y="195.0" class="sml" text-anchor="start" fill="#00adb5">conic ratios</text>
+<text x="300.0" y="340.0" class="sml" text-anchor="middle" fill="#f78c6c">moments</text>
+<text x="610.0" y="340.0" class="sml" text-anchor="middle" fill="#82aaff">squeeze</text>
+<text x="450.0" y="44.0" class="ttl" text-anchor="middle">Three tools, one answer</text>
+<text x="450.0" y="72.0" class="sub" text-anchor="middle">Every result in the series is built by combining these three kinds of reasoning.</text>
+</svg>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Polygon centroids approaching the segment centroid</title>
+<desc id="dsc">A parabolic segment with three generations of inscribed polygons and their centroids G0, G1, G2 on the diameter, approaching the segment centroid G at two fifths of the height.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="560" rx="14" fill="#252a34"/>
+<path d="M 179.51,447.95 L 181.32,444.34 L 183.13,440.76 L 184.94,437.20 L 186.75,433.67 L 188.55,430.16 L 190.36,426.67 L 192.17,423.21 L 193.98,419.78 L 195.79,416.36 L 197.60,412.97 L 199.41,409.61 L 201.22,406.27 L 203.03,402.95 L 204.84,399.66 L 206.65,396.39 L 208.46,393.15 L 210.27,389.93 L 212.08,386.74 L 213.89,383.57 L 215.69,380.42 L 217.50,377.30 L 219.31,374.20 L 221.12,371.12 L 222.93,368.07 L 224.74,365.05 L 226.55,362.05 L 228.36,359.07 L 230.17,356.12 L 231.98,353.19 L 233.79,350.28 L 235.60,347.40 L 237.41,344.55 L 239.22,341.72 L 241.02,338.91 L 242.83,336.12 L 244.64,333.37 L 246.45,330.63 L 248.26,327.92 L 250.07,325.23 L 251.88,322.57 L 253.69,319.93 L 255.50,317.32 L 257.31,314.73 L 259.12,312.16 L 260.93,309.62 L 262.74,307.10 L 264.55,304.61 L 266.36,302.14 L 268.16,299.70 L 269.97,297.28 L 271.78,294.88 L 273.59,292.51 L 275.40,290.16 L 277.21,287.84 L 279.02,285.54 L 280.83,283.26 L 282.64,281.01 L 284.45,278.78 L 286.26,276.58 L 288.07,274.40 L 289.88,272.25 L 291.69,270.12 L 293.49,268.01 L 295.30,265.93 L 297.11,263.87 L 298.92,261.84 L 300.73,259.83 L 302.54,257.85 L 304.35,255.89 L 306.16,253.95 L 307.97,252.04 L 309.78,250.15 L 311.59,248.29 L 313.40,246.45 L 315.21,244.63 L 317.02,242.84 L 318.83,241.07 L 320.63,239.33 L 322.44,237.61 L 324.25,235.92 L 326.06,234.25 L 327.87,232.60 L 329.68,230.98 L 331.49,229.38 L 333.30,227.81 L 335.11,226.26 L 336.92,224.73 L 338.73,223.23 L 340.54,221.76 L 342.35,220.30 L 344.16,218.88 L 345.96,217.47 L 347.77,216.09 L 349.58,214.74 L 351.39,213.41 L 353.20,212.10 L 355.01,210.82 L 356.82,209.56 L 358.63,208.32 L 360.44,207.11 L 362.25,205.93 L 364.06,204.77 L 365.87,203.63 L 367.68,202.51 L 369.49,201.42 L 371.30,200.36 L 373.10,199.32 L 374.91,198.30 L 376.72,197.31 L 378.53,196.34 L 380.34,195.40 L 382.15,194.48 L 383.96,193.58 L 385.77,192.71 L 387.58,191.86 L 389.39,191.04 L 391.20,190.24 L 393.01,189.47 L 394.82,188.72 L 396.63,187.99 L 398.43,187.29 L 400.24,186.61 L 402.05,185.96 L 403.86,185.33 L 405.67,184.72 L 407.48,184.14 L 409.29,183.59 L 411.10,183.05 L 412.91,182.55 L 414.72,182.06 L 416.53,181.60 L 418.34,181.17 L 420.15,180.75 L 421.96,180.37 L 423.77,180.00 L 425.57,179.66 L 427.38,179.35 L 429.19,179.06 L 431.00,178.79 L 432.81,178.55 L 434.62,178.33 L 436.43,178.14 L 438.24,177.97 L 440.05,177.83 L 441.86,177.70 L 443.67,177.61 L 445.48,177.53 L 447.29,177.49 L 449.10,177.46 L 450.90,177.46 L 452.71,177.49 L 454.52,177.53 L 456.33,177.61 L 458.14,177.70 L 459.95,177.83 L 461.76,177.97 L 463.57,178.14 L 465.38,178.33 L 467.19,178.55 L 469.00,178.79 L 470.81,179.06 L 472.62,179.35 L 474.43,179.66 L 476.23,180.00 L 478.04,180.37 L 479.85,180.75 L 481.66,181.17 L 483.47,181.60 L 485.28,182.06 L 487.09,182.55 L 488.90,183.05 L 490.71,183.59 L 492.52,184.14 L 494.33,184.72 L 496.14,185.33 L 497.95,185.96 L 499.76,186.61 L 501.57,187.29 L 503.37,187.99 L 505.18,188.72 L 506.99,189.47 L 508.80,190.24 L 510.61,191.04 L 512.42,191.86 L 514.23,192.71 L 516.04,193.58 L 517.85,194.48 L 519.66,195.40 L 521.47,196.34 L 523.28,197.31 L 525.09,198.30 L 526.90,199.32 L 528.70,200.36 L 530.51,201.42 L 532.32,202.51 L 534.13,203.63 L 535.94,204.77 L 537.75,205.93 L 539.56,207.11 L 541.37,208.32 L 543.18,209.56 L 544.99,210.82 L 546.80,212.10 L 548.61,213.41 L 550.42,214.74 L 552.23,216.09 L 554.04,217.47 L 555.84,218.88 L 557.65,220.30 L 559.46,221.76 L 561.27,223.23 L 563.08,224.73 L 564.89,226.26 L 566.70,227.81 L 568.51,229.38 L 570.32,230.98 L 572.13,232.60 L 573.94,234.25 L 575.75,235.92 L 577.56,237.61 L 579.37,239.33 L 581.17,241.07 L 582.98,242.84 L 584.79,244.63 L 586.60,246.45 L 588.41,248.29 L 590.22,250.15 L 592.03,252.04 L 593.84,253.95 L 595.65,255.89 L 597.46,257.85 L 599.27,259.83 L 601.08,261.84 L 602.89,263.87 L 604.70,265.93 L 606.51,268.01 L 608.31,270.12 L 610.12,272.25 L 611.93,274.40 L 613.74,276.58 L 615.55,278.78 L 617.36,281.01 L 619.17,283.26 L 620.98,285.54 L 622.79,287.84 L 624.60,290.16 L 626.41,292.51 L 628.22,294.88 L 630.03,297.28 L 631.84,299.70 L 633.64,302.14 L 635.45,304.61 L 637.26,307.10 L 639.07,309.62 L 640.88,312.16 L 642.69,314.73 L 644.50,317.32 L 646.31,319.93 L 648.12,322.57 L 649.93,325.23 L 651.74,327.92 L 653.55,330.63 L 655.36,333.37 L 657.17,336.12 L 658.98,338.91 L 660.78,341.72 L 662.59,344.55 L 664.40,347.40 L 666.21,350.28 L 668.02,353.19 L 669.83,356.12 L 671.64,359.07 L 673.45,362.05 L 675.26,365.05 L 677.07,368.07 L 678.88,371.12 L 680.69,374.20 L 682.50,377.30 L 684.31,380.42 L 686.11,383.57 L 687.92,386.74 L 689.73,389.93 L 691.54,393.15 L 693.35,396.39 L 695.16,399.66 L 696.97,402.95 L 698.78,406.27 L 700.59,409.61 L 702.40,412.97 L 704.21,416.36 L 706.02,419.78 L 707.83,423.21 L 709.64,426.67 L 711.45,430.16 L 713.25,433.67 L 715.06,437.20 L 716.87,440.76 L 718.68,444.34 L 720.49,447.95 L 720.49,447.95 L 179.51,447.95 Z" class="fill-teal"/>
+<path d="M 179.51,447.95 L 450.00,177.46 L 720.49,447.95" class="curve2"/>
+<path d="M 179.51,447.95 L 314.75,245.08 L 450.00,177.46 L 585.25,245.08 L 720.49,447.95" class="curve3"/>
+<path d="M 179.51,447.95 L 247.13,329.61 L 314.75,245.08 L 382.38,194.36 L 450.00,177.46 L 517.62,194.36 L 585.25,245.08 L 652.87,329.61 L 720.49,447.95" class="curve"/>
+<line x1="179.5" y1="448.0" x2="720.5" y2="448.0" class="thin"/>
+<line x1="450.0" y1="448.0" x2="450.0" y2="177.5" class="thin2 dash"/>
+<circle cx="450.0" cy="339.8" r="5" fill="#ffcb6b" stroke="#252a34" stroke-width="1.2"/>
+<text x="462.0" y="331.8" class="lbl" text-anchor="start" fill="#ffcb6b">G (segment)</text>
+<circle cx="450.0" cy="357.8" r="4.0" class="pt"/>
+<text x="438.0" y="369.8" class="sml" text-anchor="end" fill="#f78c6c">G0</text>
+<circle cx="450.0" cy="344.3" r="4.0" class="pt"/>
+<text x="462.0" y="356.3" class="sml" text-anchor="start" fill="#82aaff">G1</text>
+<circle cx="450.0" cy="340.9" r="4.0" class="pt"/>
+<text x="438.0" y="332.9" class="sml" text-anchor="end" fill="#00adb5">G2</text>
+<line x1="450.0" y1="352.4" x2="450.0" y2="347.9" class="thin2" marker-end="url(#arrow)"/>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">Centres of gravity climb toward the curve's centre</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">Every inscribed polygon's centroid lies on the diameter, below G; the polygons approach G as the construction refines.</text>
+</svg>
