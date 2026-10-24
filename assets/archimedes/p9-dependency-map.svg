@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Dependency map of the Archimedean treatises</title>
+<desc id="dsc">A graph connecting Equilibrium of Planes I, Quadrature of the Parabola, Equilibrium of Planes II, On Spirals, Measurement of a Circle, On the Sphere and Cylinder, and On Conoids and Spheroids, with labelled dependency arrows.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="1000" height="640" rx="14" fill="#252a34"/>
+<rect x="65.0" y="87.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="150.0" y="116.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Equilibrium I</text>
+<text x="150.0" y="138.0" class="sml" text-anchor="middle">lever + centroids</text>
+<rect x="365.0" y="87.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="450.0" y="116.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Quadrature</text>
+<text x="450.0" y="138.0" class="sml" text-anchor="middle">parabolic area 4T/3</text>
+<rect x="705.0" y="87.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="790.0" y="116.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Equilibrium II</text>
+<text x="790.0" y="138.0" class="sml" text-anchor="middle">parabolic centroids</text>
+<rect x="65.0" y="297.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="150.0" y="326.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">On Spirals</text>
+<text x="150.0" y="348.0" class="sml" text-anchor="middle">tangents + spiral areas</text>
+<rect x="365.0" y="297.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#c3e88d" stroke-width="1.6" stroke-dasharray="6 5"/>
+<text x="450.0" y="326.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Measurement</text>
+<text x="450.0" y="348.0" class="sml" text-anchor="middle">of a Circle</text>
+<rect x="705.0" y="297.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="790.0" y="326.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Sphere &amp; Cylinder</text>
+<text x="790.0" y="348.0" class="sml" text-anchor="middle">surfaces + volumes</text>
+<rect x="535.0" y="467.0" width="170" height="66" rx="10" fill="#1f2430" stroke="#00adb5" stroke-width="1.6"/>
+<text x="620.0" y="496.0" class="lbl" text-anchor="middle" fill="#ffffff" font-size="16">Conoids &amp; Spheroids</text>
+<text x="620.0" y="518.0" class="sml" text-anchor="middle">curved-solid volumes</text>
+<line x1="240" y1="120" x2="360" y2="120" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="300.0" y="108.0" class="sml" text-anchor="middle" fill="#b9c4d8">lever + centroid</text>
+<line x1="540" y1="120" x2="700" y2="120" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="620.0" y="108.0" class="sml" text-anchor="middle" fill="#b9c4d8">segment area</text>
+<line x1="505" y1="155" x2="735" y2="295" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="650.0" y="225.0" class="sml" text-anchor="middle" fill="#b9c4d8">exhaustion template</text>
+<line x1="200" y1="295" x2="405" y2="155" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="280.0" y="215.0" class="sml" text-anchor="middle" fill="#b9c4d8">finite sums</text>
+<line x1="240" y1="330" x2="360" y2="330" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="300.0" y="318.0" class="sml" text-anchor="middle" fill="#b9c4d8">circumference</text>
+<line x1="540" y1="330" x2="700" y2="330" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="620.0" y="318.0" class="sml" text-anchor="middle" fill="#b9c4d8">circle area</text>
+<line x1="750" y1="360" x2="660" y2="465" stroke="#b9c4d8" stroke-width="1.4" marker-end="url(#arrow)"/>
+<text x="745.0" y="425.0" class="sml" text-anchor="middle" fill="#b9c4d8">volume methods</text>
+<rect x="60.0" y="560.0" width="420.0" height="60.0" rx="10" class="box"/>
+<line x1="78.0" y1="584.0" x2="118.0" y2="584.0" class="thin2"/>
+<text x="130.0" y="589.0" class="sml" text-anchor="start">a treatise with its own post</text>
+<line x1="290.0" y1="584.0" x2="330.0" y2="584.0" class="thin2 dash"/>
+<text x="342.0" y="589.0" class="sml" text-anchor="start">related work</text>
+<text x="500.0" y="44.0" class="ttl" text-anchor="middle">How the works feed one another</text>
+<text x="500.0" y="72.0" class="sub" text-anchor="middle">Conceptual dependencies reconstructed from the arguments, not a chronology.</text>
+</svg>

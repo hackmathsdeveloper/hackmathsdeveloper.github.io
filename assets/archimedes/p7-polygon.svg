@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Inscribed polygon with odd-number diameter intervals</title>
+<desc id="dsc">A parabolic segment with an inscribed polygon whose vertices lie on the parabola, horizontal chords, and diameter intervals in the ratios 7 to 5 to 3 to 1.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="560" rx="14" fill="#252a34"/>
+<path d="M 179.51,447.95 L 720.49,447.95 L 720.49,447.95 L 652.87,329.61 L 585.25,245.08 L 517.62,194.36 L 450.00,177.46 L 382.38,194.36 L 314.75,245.08 L 247.13,329.61 L 179.51,447.95 Z" class="fill-teal"/>
+<path d="M 179.51,447.95 L 247.13,329.61 L 314.75,245.08 L 382.38,194.36 L 450.00,177.46 L 517.62,194.36 L 585.25,245.08 L 652.87,329.61 L 720.49,447.95" class="curve"/>
+<line x1="179.5" y1="448.0" x2="720.5" y2="448.0" class="thin"/>
+<line x1="450.0" y1="448.0" x2="450.0" y2="177.5" class="thin2 dash"/>
+<line x1="247.1" y1="329.6" x2="652.9" y2="329.6" class="thin2"/>
+<circle cx="450.0" cy="329.6" r="3.2" class="pt"/>
+<line x1="314.8" y1="245.1" x2="585.2" y2="245.1" class="thin2"/>
+<circle cx="450.0" cy="245.1" r="3.2" class="pt"/>
+<line x1="382.4" y1="194.4" x2="517.6" y2="194.4" class="thin2"/>
+<circle cx="450.0" cy="194.4" r="3.2" class="pt"/>
+<text x="462.0" y="393.8" class="eq" text-anchor="start" fill="#ffcb6b">7</text>
+<text x="462.0" y="292.3" class="eq" text-anchor="start" fill="#ffcb6b">5</text>
+<text x="462.0" y="224.7" class="eq" text-anchor="start" fill="#ffcb6b">3</text>
+<text x="462.0" y="190.9" class="eq" text-anchor="start" fill="#ffcb6b">1</text>
+<text x="640.0" y="130.0" class="sml" text-anchor="middle">diameter intervals</text>
+<text x="640.0" y="154.0" class="eq" text-anchor="middle" font-size="18">7 : 5 : 3 : 1</text>
+<text x="640.0" y="180.0" class="sml" text-anchor="middle" fill="#b9c4d8">from base to vertex</text>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">The inscribed polygon ladder</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">Chords parallel to the base are bisected by the diameter; the successive diameter intervals are in odd-number ratios.</text>
+</svg>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Geometric series bar for the quadrature</title>
+<desc id="dsc">A true-scale bar of total length four thirds of T, with the tail from 1.25 to 4/3 magnified sixteen times to show T/16, T/64, T/256 and the exact remainder T/768.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="1000" height="470" rx="14" fill="#252a34"/>
+<rect x="80.00" y="130" width="645.00" height="70" fill="#00adb5" fill-opacity="0.78"/>
+<rect x="80.00" y="130" width="645.00" height="70" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="725.00" y="130" width="161.25" height="70" fill="#f78c6c" fill-opacity="0.78"/>
+<rect x="725.00" y="130" width="161.25" height="70" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="886.25" y="130" width="40.31" height="70" fill="#82aaff" fill-opacity="0.78"/>
+<rect x="886.25" y="130" width="40.31" height="70" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="926.56" y="130" width="10.08" height="70" fill="#c792ea" fill-opacity="0.78"/>
+<rect x="926.56" y="130" width="10.08" height="70" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="936.64" y="130" width="3.36" height="70" fill="url(#hatch)" stroke="#f07178" stroke-width="1.2"/>
+<text x="402.5" y="112.0" class="eq" text-anchor="middle" font-size="19">T</text>
+<text x="805.6" y="112.0" class="eq" text-anchor="middle" font-size="17">T/4</text>
+<text x="906.4" y="112.0" class="eq" text-anchor="middle" font-size="15">T/16</text>
+<text x="931.6" y="112.0" class="eq" text-anchor="middle" font-size="14">T/64</text>
+<text x="510.0" y="228.0" class="sml" text-anchor="middle" fill="#ffcb6b">total length  4T/3</text>
+<rect x="80.00" y="300" width="645.00" height="62" fill="#f78c6c" fill-opacity="0.78"/>
+<rect x="80.00" y="300" width="645.00" height="62" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="725.00" y="300" width="161.25" height="62" fill="#82aaff" fill-opacity="0.78"/>
+<rect x="725.00" y="300" width="161.25" height="62" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="886.25" y="300" width="40.31" height="62" fill="#c792ea" fill-opacity="0.78"/>
+<rect x="886.25" y="300" width="40.31" height="62" fill="none" stroke="#252a34" stroke-width="2"/>
+<rect x="926.56" y="300" width="13.44" height="62" fill="url(#hatch)" stroke="#f07178" stroke-width="1.2"/>
+<line x1="80.0" y1="362.0" x2="80.0" y2="370.0" class="thin2"/>
+<text x="80.0" y="386.0" class="sml" text-anchor="middle">1.25</text>
+<line x1="725.0" y1="362.0" x2="725.0" y2="370.0" class="thin2"/>
+<text x="725.0" y="386.0" class="sml" text-anchor="middle">1.3125</text>
+<line x1="886.3" y1="362.0" x2="886.3" y2="370.0" class="thin2"/>
+<text x="886.3" y="386.0" class="sml" text-anchor="middle">1.328125</text>
+<line x1="940.0" y1="362.0" x2="940.0" y2="370.0" class="thin2"/>
+<text x="940.0" y="386.0" class="sml" text-anchor="middle">4/3</text>
+<text x="80.0" y="284.0" class="sml" text-anchor="start" fill="#b9c4d8">tail magnified 16×</text>
+<text x="402.5" y="256.0" class="eq" text-anchor="middle" font-size="16">T/16</text>
+<text x="805.6" y="284.0" class="eq" text-anchor="middle" font-size="15">T/64</text>
+<line x1="906.4" y1="296.0" x2="946.4" y2="266.0" class="thin2"/>
+<text x="950.4" y="262.0" class="eq" text-anchor="start" font-size="14">T/256</text>
+<line x1="914.4" y1="402.0" x2="940.0" y2="402.0" class="thin2"/>
+<text x="940.0" y="422.0" class="sml" text-anchor="end" fill="#f07178">remainder T/768</text>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">The finite sum plus one third of the last term equals 4T/3</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">For every n,  T + T/4 + … + T/4ⁿ + (1/3)(T/4ⁿ) = 4T/3.  The main bar shows n = 4; the inset magnifies its tail 16×.</text>
+<text x="500.0" y="448.0" class="eq" text-anchor="middle" font-size="21">S∞ = 4T/3</text>
+</svg>

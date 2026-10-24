@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Law of the lever with two weights</title>
+<desc id="dsc">A beam with a fulcrum, a weight of two at distance three on the left and a weight of three at distance two on the right, illustrating W1 d1 equals W2 d2.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="520" rx="14" fill="#252a34"/>
+<line x1="95.3" y1="275.4" x2="804.7" y2="275.4" class="thin"/>
+<path d="M 414.53,275.40 L 485.47,275.40 L 450.00,328.60 Z" class="fill-orange"/>
+<path d="M 414.53,275.40 L 485.47,275.40 L 450.00,328.60 Z" class="thin"/>
+<rect x="262.17" y="203.75" width="71.65" height="71.65" fill="#00adb5" fill-opacity="0.72" stroke="#00adb5" stroke-width="1.5"/>
+<text x="298.0" y="244.6" class="sml" text-anchor="middle" fill="#ffffff">W₁ = 2</text>
+<rect x="507.45" y="187.64" width="87.76" height="87.76" fill="#f78c6c" fill-opacity="0.72" stroke="#f78c6c" stroke-width="1.5"/>
+<text x="551.3" y="236.5" class="sml" text-anchor="middle" fill="#ffffff">W₂ = 3</text>
+<circle cx="298.0" cy="275.4" r="3.2" class="pt-teal"/>
+<circle cx="551.3" cy="275.4" r="3.2" class="pt-orange"/>
+<line x1="298.0" y1="293.1" x2="298.0" y2="275.4" class="thin2 dash"/>
+<line x1="551.3" y1="293.1" x2="551.3" y2="275.4" class="thin2 dash"/>
+<line x1="298.0" y1="298.2" x2="450.0" y2="298.2" class="thin2"/>
+<line x1="298.0" y1="298.2" x2="298.0" y2="298.2" class="thin2 dash"/>
+<line x1="450.0" y1="298.2" x2="450.0" y2="298.2" class="thin2 dash"/>
+<text x="374.0" y="290.2" class="sml" text-anchor="middle">d₁ = 3</text>
+<line x1="450.0" y1="333.7" x2="551.3" y2="333.7" class="thin2"/>
+<line x1="450.0" y1="333.7" x2="450.0" y2="333.7" class="thin2 dash"/>
+<line x1="551.3" y1="333.7" x2="551.3" y2="333.7" class="thin2 dash"/>
+<text x="500.7" y="325.7" class="sml" text-anchor="middle">d₂ = 2</text>
+<text x="450.0" y="490.0" class="eq" text-anchor="middle" font-size="21">W₁ d₁  =  W₂ d₂     2 · 3  =  3 · 2</text>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">The law of the lever</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">Equal moments balance: the heavier weight sits at the shorter distance.</text>
+</svg>

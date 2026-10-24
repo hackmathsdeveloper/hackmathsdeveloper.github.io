@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Centroid after removing a part</title>
+<desc id="dsc">An L-shaped remainder of a rectangle with the removed square shaded, showing the centroid R on the line through the whole centroid G and the removed part's centroid P.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="560" rx="14" fill="#252a34"/>
+<path d="M 98.82,454.12 L 387.06,454.12 L 387.06,310.00 L 531.18,310.00 L 531.18,165.88 L 98.82,165.88 Z" class="fill-teal"/>
+<path d="M 98.82,454.12 L 387.06,454.12 L 387.06,310.00 L 531.18,310.00 L 531.18,165.88 L 98.82,165.88 Z" class="thin"/>
+<path d="M 387.06,454.12 L 531.18,454.12 L 531.18,310.00 L 387.06,310.00 Z" class="fill-red"/>
+<path d="M 387.06,454.12 L 531.18,454.12 L 531.18,310.00 L 387.06,310.00 Z" class="thin"/>
+<path d="M 98.82,454.12 L 531.18,454.12 L 531.18,165.88 L 98.82,165.88 Z" class="thin2 dash"/>
+<line x1="459.1" y1="382.1" x2="286.2" y2="295.6" class="thin2 dash"/>
+<circle cx="315.0" cy="310.0" r="4.2" class="pt"/>
+<circle cx="459.1" cy="382.1" r="4.2" class="pt-orange"/>
+<circle cx="286.2" cy="295.6" r="4.6" class="pt-teal"/>
+<text x="325.0" y="302.0" class="lbl" text-anchor="start">G</text>
+<text x="469.1" y="374.1" class="lbl" text-anchor="start" fill="#f78c6c">P</text>
+<text x="296.2" y="307.6" class="lbl" text-anchor="start" fill="#00adb5">R</text>
+<text x="315.0" y="230.7" class="sml" text-anchor="middle">whole: W = 24</text>
+<text x="459.1" y="414.5" class="sml" text-anchor="middle" fill="#f07178">removed: w = 4</text>
+<rect x="600.0" y="100.0" width="270.0" height="100.0" rx="12" class="box"/>
+<text x="735.0" y="134.0" class="eq" text-anchor="middle" font-size="18">GR / GP</text>
+<text x="735.0" y="162.0" class="eq" text-anchor="middle" font-size="16">= w / (W − w)</text>
+<text x="735.0" y="188.0" class="sml" text-anchor="middle">= 4/20 = 1/5</text>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">Proposition I.8 — removing a part</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">If a part is removed, the remainder's centre lies on the line of the two centres, beyond the whole's centre.</text>
+</svg>

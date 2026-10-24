@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="580" viewBox="0 0 900 580" role="img" aria-labelledby="ttl dsc">
+<title id="ttl">Triangle centroid at the intersection of the medians</title>
+<desc id="dsc">A triangle with all three medians drawn, their intersection G, and the labels showing CG to GM equals 2 to 1.</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#b9c4d8"/></marker>
+  <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#00adb5"/></marker>
+  <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 Z" fill="#f07178"/></marker>
+  <marker id="dim" viewBox="0 0 8 8" refX="4" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M1,4 L7,4" stroke="#b9c4d8" stroke-width="1.4"/></marker>
+  <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+    <line x1="0" y1="0" x2="0" y2="9" stroke="#f07178" stroke-width="2.2" opacity="0.55"/>
+  </pattern>
+  <style>
+    text { font-family: 'Source Sans Pro','Helvetica Neue',Arial,sans-serif; fill: #eaeaea; }
+    .ttl { font-size: 20px; font-weight: 600; fill: #ffffff; }
+    .sub { font-size: 14px; fill: #b9c4d8; }
+    .lbl { font-size: 17px; fill: #eaeaea; }
+    .sml { font-size: 14px; fill: #b9c4d8; }
+    .eq  { font-size: 17px; fill: #ffcb6b; }
+    .axis { stroke: #7c89a6; stroke-width: 1.5; fill: none; }
+    .grid { stroke: #3a455c; stroke-width: 1; fill: none; }
+    .curve { stroke: #00adb5; stroke-width: 2.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve2 { stroke: #f78c6c; stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .curve3 { stroke: #82aaff; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .thin { stroke: #eaeaea; stroke-width: 1.5; fill: none; stroke-linejoin: round; }
+    .thin2 { stroke: #b9c4d8; stroke-width: 1.2; fill: none; }
+    .dash { stroke-dasharray: 7 6; }
+    .dotdash { stroke-dasharray: 2 6; }
+    .fill-teal { fill: #00adb5; fill-opacity: 0.16; }
+    .fill-orange { fill: #f78c6c; fill-opacity: 0.15; }
+    .fill-blue { fill: #82aaff; fill-opacity: 0.12; }
+    .fill-purple { fill: #c792ea; fill-opacity: 0.14; }
+    .fill-green { fill: #c3e88d; fill-opacity: 0.12; }
+    .fill-red { fill: #f07178; fill-opacity: 0.12; }
+    .pt { fill: #eaeaea; }
+    .pt-teal { fill: #00adb5; }
+    .pt-orange { fill: #f78c6c; }
+    .box { fill: #1f2430; stroke: #3a455c; stroke-width: 1.2; }
+  </style>
+</defs>
+<rect x="0" y="0" width="900" height="580" rx="14" fill="#252a34"/>
+<path d="M 250.00,466.67 L 650.00,466.67 L 383.33,133.33 Z" class="fill-teal"/>
+<path d="M 250.00,466.67 L 650.00,466.67 L 383.33,133.33 Z" class="thin"/>
+<line x1="383.3" y1="133.3" x2="450.0" y2="466.7" class="curve2"/>
+<line x1="250.0" y1="466.7" x2="516.7" y2="300.0" class="thin2 dash"/>
+<line x1="650.0" y1="466.7" x2="316.7" y2="300.0" class="thin2 dash"/>
+<circle cx="427.8" cy="355.6" r="4.6" class="pt-orange"/>
+<text x="240.0" y="482.7" class="lbl" text-anchor="end">A</text>
+<text x="660.0" y="482.7" class="lbl" text-anchor="start">B</text>
+<text x="383.3" y="121.3" class="lbl" text-anchor="middle">C</text>
+<text x="458.0" y="484.7" class="lbl" text-anchor="start">M</text>
+<text x="437.8" y="347.6" class="lbl" text-anchor="start">G</text>
+<text x="415.6" y="244.4" class="eq" text-anchor="start" fill="#f78c6c">2</text>
+<text x="448.9" y="411.1" class="eq" text-anchor="start" fill="#00adb5">1</text>
+<text x="450.0" y="545.0" class="eq" text-anchor="middle" font-size="20">CG : GM = 2 : 1</text>
+<text x="32.0" y="44.0" class="ttl" text-anchor="start">The centre of gravity of a triangle</text>
+<text x="32.0" y="72.0" class="sub" text-anchor="start">The three medians meet at G, and G divides each median in the ratio 2:1 from the vertex.</text>
+</svg>
