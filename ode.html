@@ -1,0 +1,1467 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KC57H5P9');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ten Structurally Non-Routine ODE Problems</title>
+    <!-- MathJax Configuration for rendering LaTeX equations -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']]
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fcfcfc;
+        }
+        h1 {
+            color: #1a252f;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 8px;
+            margin-top: 40px;
+        }
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+        .boxed {
+            background-color: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-weight: 500;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #cbd5e1;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KC57H5P9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<h1>Ten Structurally Non-Routine ODE Problems with Complete Solutions</h1>
+
+<p>Implementation of <code>adv_undergrad_prompt.md</code>: ten original ordinary differential-equation problems, each well-posed, solvable by rigorous analytic or clearly justified means, mutually distinct in structure, at advanced-undergraduate level (no Lie-group machinery, no differential algebra).</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Problem</th>
+            <th>Order</th>
+            <th>Main structural idea</th>
+            <th>Primary method</th>
+            <th>Independent second method?</th>
+            <th>Solution form</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>Rotation-masked differential form; solutions are logarithmic spirals</td>
+            <td>Non-obvious integrating factor $\mu = 1/(x^2+y^2)$</td>
+            <td>Yes — polar-coordinate reduction $2\,dr + r\,d\theta = 0$</td>
+            <td>Implicit; polar-explicit spiral</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>1</td>
+            <td>Coupled $xy$-structure with a singular envelope</td>
+            <td>Substitution $u = xy$ (product substitution)</td>
+            <td>Yes — Taylor/series derivation</td>
+            <td>Implicit algebraic $xy = x^2(2-xy)^3$</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td>Autonomous with one unstable equilibrium; arctan-integral</td>
+            <td>Direct separation + partial fractions + phase line</td>
+            <td>Yes — independent phase-line (first-integral-free) analysis</td>
+            <td>Explicit $x(y)$; implicit in $y$</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>1</td>
+            <td>Invariant under scaling $(x,y)\mapsto(\lambda x,\lambda^2 y)$</td>
+            <td>Similarity reduction $u = y/x^2$</td>
+            <td>Yes — hidden integrating factor $\mu = x^3 y^{-3}$</td>
+            <td>Explicit elementary</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>2</td>
+            <td>Nonlinear second-order linearized by $\tan y$</td>
+            <td>Reduction of order $p(y) = y'$ (missing $x$)</td>
+            <td>Yes — change of dependent variable $z = \tan y$ gives $z''=0$</td>
+            <td>Explicit elementary</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>2</td>
+            <td>Conserved quantity $(y')^2/y^2 + \ln y$; Gaussian solutions</td>
+            <td>First integral via Bernoulli-in-$p$</td>
+            <td>Yes — direct integration of $(y'/y)' = -1/2$</td>
+            <td>Explicit elementary (Gaussians)</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>1</td>
+            <td>Parameterized conic family with degenerate cases</td>
+            <td>Exact differential + parameter analysis</td>
+            <td>Yes — homogeneity $v = y/x$ with exact-derivative integral</td>
+            <td>Implicit conic $kx^2 + 2xy + ky^2 = k$</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>1</td>
+            <td>Reversing the roles of $x$ and $y$</td>
+            <td>Role reversal; linear first-order in $x(y)$</td>
+            <td>Yes — series reversion about $x = 1$</td>
+            <td>Implicit $x = y(1+(\ln y)^2/2)$</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>3</td>
+            <td>Third-order with factorization $(\ln y')'' = 0$</td>
+            <td>One-step invariant integration</td>
+            <td>Yes — double reduction $p = y'$, $q(p) = p'$</td>
+            <td>Explicit elementary</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>1</td>
+            <td>Inverse of an exponential-integral curve</td>
+            <td>Role reversal + named special function (Ei)</td>
+            <td>Yes — power series with recurrence; Lagrange-reversion cross-check</td>
+            <td>Implicit $x = e^{-y}(\operatorname{Ei}(y)-\operatorname{Ei}(1))$ plus series</td>
+        </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h1>Problem 1 — A Rotation-Masked Exact Equation: Logarithmic Spirals from a Hidden Integrating Factor</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order equation in differential form:</p>
+$$
+(2x - y)\,dx + (x + 2y)\,dy = 0, \qquad y(1) = 0.
+$$
+<p>Equivalently, in solved form,</p>
+$$
+\frac{dy}{dx} = -\frac{2x - y}{x + 2y}, \qquad y(1) = 0.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>The differential form is defined on all of $\mathbb{R}^2$, but both coefficients vanish simultaneously only at the origin, so $(0,0)$ is the unique degenerate point and is excluded.</li>
+    <li>The solved form requires $x + 2y \neq 0$ (vertical tangents).</li>
+    <li>For the polar/integrating-factor computation, $x^2 + y^2 \neq 0$, i.e. the origin excluded.</li>
+    <li>The condition-selected solution is the logarithmic spiral $r = e^{-\theta/2}$ through $(1,0)$; as a function $y(x)$ it is valid on the maximal interval
+    $$
+    x \in \Bigl(-(2/\sqrt5)\,e^{-(\pi-\alpha)/2},\ (2/\sqrt5)\,e^{\alpha/2}\Bigr), \qquad \alpha = \arctan(1/2),
+    $$
+    i.e. approximately $x \in (-0.2344,\ 1.1278)$, where the spiral crosses the line $x+2y=0$ and the tangent becomes vertical.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: a homogeneous first-order equation $(M\,dx+N\,dy=0$ with $M,N$ linear, degree 1), reducible by $v = y/x$; geometrically the family of logarithmic spirals.</li>
+    <li>Why this is structurally non-routine: the equation is presented in <em>rotation-masked</em> form — the coefficient vector $(2x-y,\ x+2y)$ is the position vector $(x,y)$ rotated by the fixed angle $\phi = \arctan(1/2)$. The pedagogical point is the discovery and proof of the non-obvious geometric invariant: every solution meets each ray from the origin at the constant angle $\arctan 2$, which forces logarithmic spirals. The integrating factor $\mu = 1/(x^2+y^2)$ is likewise non-obvious (it depends on $x^2+y^2$, not on a ratio of $x,y$).</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: the specific rotation angle is not the point; the point is the <em>structure</em> (constant-angle curve family), which no affine change of variables can remove without destroying it — an affine change turns the spirals into a different family entirely, and rescaling only reparametrizes the radius. The equation is presented as a differential form whose exactness fails, so the key step is <em>discovering</em> the integrating factor, not recognizing a familiar solved form.</li>
+</ul>
+<p>Anti-template audit: $v = y/x$ does reduce it (to $2\,dx/x + (1+2v)\,dv/(1+v^2)=0$, a routine separation) — however, the problem is retained because the pedagogical point is precisely the discovery and proof of the non-obvious invariant (the constant spiral angle / the rotation structure), which the prompt explicitly permits. Neither $u = ax+by$, $u = y^n$, $u = 1/y$, scaling alone, nor an exponential/logarithmic substitution reduces it any more directly than this; the polar-coordinate route $2\,dr + r\,d\theta = 0$ (Method 2) is the <em>geometric</em> reduction and is not on the routine list.</p>
+
+<h3>Solution method 1</h3>
+<p>Non-obvious integrating factor via the $\mu = \mu(x^2+y^2)$ criterion.</p>
+<ol>
+    <li>Write $M = 2x - y$, $N = x + 2y$. The naive exactness test fails:
+    $$
+    M_y = -1, \qquad N_x = 1, \qquad M_y \neq N_x.
+    $$</li>
+    <li>Test whether an integrating factor $\mu = \varphi(s)$ with $s = x^2 + y^2$ exists. From $(\mu M)_y = (\mu N)_x$:
+    $$
+    2y\,\varphi'(s)M + \varphi M_y = 2x\,\varphi'(s)N + \varphi N_x
+    \quad\Longrightarrow\quad
+    M_y - N_x = 2\,\frac{\varphi'(s)}{\varphi(s)}\,(xN - yM).
+    $$
+    Here $M_y - N_x = -2$ and
+    $$
+    xN - yM = x(x+2y) - y(2x-y) = x^2 + y^2 = s.
+    $$
+    Hence
+    $$
+    -2 = 2\,\frac{\varphi'(s)}{\varphi(s)}\,s
+    \quad\Longrightarrow\quad
+    \frac{\varphi'(s)}{\varphi(s)} = -\frac{1}{s}
+    \quad\Longrightarrow\quad
+    \varphi(s) = \frac{1}{s}.
+    $$
+    So $\mu = \dfrac{1}{x^2+y^2}$.</li>
+    <li>Multiply the differential form by $\mu$:
+    $$
+    \frac{2x-y}{x^2+y^2}\,dx + \frac{x+2y}{x^2+y^2}\,dy = 0,
+    $$
+    which is now exact (recheck: both mixed derivatives equal $(y^2-x^2-4xy)/(x^2+y^2)^2$).</li>
+    <li>Find a potential $F$ with $F_x = (2x-y)/(x^2+y^2)$, $F_y = (x+2y)/(x^2+y^2)$. Integrating $F_y$ with respect to $y$:
+    $$
+    F = \int \frac{x+2y}{x^2+y^2}\,dy = x\int \frac{dy}{x^2+y^2} + \int \frac{2y\,dy}{x^2+y^2}
+    = \arctan\frac{y}{x} + \ln(x^2+y^2) + \psi(x).
+    $$
+    Then
+    $$
+    F_x = -\frac{y}{x^2+y^2} + \frac{2x}{x^2+y^2} + \psi'(x) = \frac{2x-y}{x^2+y^2},
+    $$
+    so $\psi' = 0$. General solution:
+    $$
+    \ln(x^2+y^2) + \arctan\frac{y}{x} = C .
+    $$</li>
+    <li>Apply $y(1) = 0$: $\ln 1 + \arctan 0 = 0$, so $C = 0$. Condition-selected solution:
+    $$
+    \ln(x^2+y^2) + \arctan\frac{y}{x} = 0,
+    $$
+    or, writing $x^2+y^2 = r^2$ and $\theta = \arctan(y/x)$:
+    $$
+    x^2 + y^2 = e^{-\arctan(y/x)}.
+    $$
+    (Undoing the last substitution: this is the level set of the potential through $(1,0)$.)</li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Polar-coordinate reduction (geometric).</p>
+<ol>
+    <li>Substitute $x = r\cos\theta$, $y = r\sin\theta$, so $dx = \cos\theta\,dr - r\sin\theta\,d\theta$ and $dy = \sin\theta\,dr + r\cos\theta\,d\theta$.</li>
+    <li>Substitute into the form:
+    $$
+    (2x-y)\,dx + (x+2y)\,dy = (2r\cos\theta - r\sin\theta)(\cos\theta\,dr - r\sin\theta\,d\theta)
+     + (r\cos\theta + 2r\sin\theta)(\sin\theta\,dr + r\cos\theta\,d\theta).
+    $$</li>
+    <li>Collect coefficients:
+    $$
+    \text{coefficient of } dr:\quad (2c-s)c + (c+2s)s = 2c^2 - sc + sc + 2s^2 = 2,
+    $$
+    $$
+    \text{coefficient of } d\theta:\quad -(2c-s)rs + (c+2s)rc = r(-2sc + s^2 + c^2 + 2sc) = r.
+    $$
+    So the equation becomes
+    $$
+    2\,dr + r\,d\theta = 0.
+    $$</li>
+    <li>Separate and integrate:
+    $$
+    \frac{dr}{r} = -\frac{d\theta}{2}
+    \quad\Longrightarrow\quad
+    r = C\,e^{-\theta/2}.
+    $$
+    This is the general solution in polar form: logarithmic spirals.</li>
+    <li>Apply $y(1) = 0$, i.e. $(r,\theta) = (1,0)$: $C = 1$, giving
+    $$
+    r = e^{-\theta/2},
+    $$
+    equivalently $2\ln r + \theta = 0$, i.e.
+    $$
+    \ln(x^2+y^2) + \arctan\frac{y}{x} = 0 ,
+    $$
+    in agreement with Method 1.</li>
+</ol>
+<p>Geometric interpretation: because $(2x-y,\ x+2y)$ is $(x,y)$ rotated by $\phi = \arctan(1/2)$, the tangent direction is the position vector rotated by $\phi + \pi/2$, so the angle between radius and tangent is $\pi/2 - \phi = \arctan 2$ everywhere — the defining property of a logarithmic spiral. (The homogeneity substitution $v = y/x$ yields the same family via $\int 2\,dx/x + \int (1+2v)\,dv/(1+v^2) = C$; it is noted here only as a cross-check, since it is the routine reduction.)</p>
+
+<h3>Verification</h3>
+<p>Differentiate $\ln(x^2+y^2) + \arctan(y/x) = 0$ implicitly:</p>
+$$
+\frac{2x + 2y y'}{x^2+y^2} + \frac{y'x - y}{x^2}\,\frac{1}{1+(y/x)^2} = 0.
+$$
+<p>Multiply by $x^2 + y^2$:</p>
+$$
+2x + 2yy' + y'x - y = 0
+\quad\Longrightarrow\quad
+y'(2y + x) = y - 2x
+\quad\Longrightarrow\quad
+y' = \frac{y-2x}{x+2y} = -\frac{2x-y}{x+2y},
+$$
+<p>which is exactly the original solved equation. The initial condition: at $(x,y) = (1,0)$, $\ln(1) + \arctan 0 = 0$ holds. Direct check that $\mu = 1/(x^2+y^2)$ renders the form exact was carried out in Method 1 step 3. The solution is valid on the stated domain because the spiral is a smooth curve avoiding the origin, and $x+2y\neq 0$ on the maximal interval given above.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria/singular points: no equilibrium solutions exist; the only point where $M = N = 0$ is the origin, a degenerate singular point of the form. Every solution spirals into the origin as $\theta \to \infty$ (accumulating after winding infinitely often) — and does so in <em>finite arc length</em>: $s = \int_{\theta}^{\infty}\sqrt{r^2 + (dr/d\theta)^2}\,d\theta = (\sqrt5/2)\int_\theta^\infty e^{-\theta'/2}d\theta' = \sqrt5\,e^{-\theta/2}$.</li>
+    <li>Existence/uniqueness: near $(1,0)$ the solved form has $C^1$ right-hand side with $x+2y = 1 \neq 0$, so the IVP is locally unique; the solution extends until a vertical tangent.</li>
+    <li>Monotonicity/turning point: $y'(x) = 0$ where $2x - y = 0$, i.e. at $\theta = \arctan 2$, giving $(x,y) = (e^{-\arctan 2/2}\cos(\arctan 2),\ e^{-\arctan 2/2}\sin(\arctan 2)) \approx (0.2571,\ 0.5142)$. So $y(x)$ rises to a single maximum there and falls on either side.</li>
+    <li>Maximal interval: as a function $y(x)$, the branch through $(1,0)$ is valid on $x \in (-0.2344,\ 1.1278)$, with vertical tangents $(x+2y=0)$ at the two endpoints.</li>
+    <li>Asymptotics: $r \to 0$ as $\theta \to \infty$ (monotone winding toward the origin); $r \to \infty$ as $\theta \to -\infty$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+\ln(x^2+y^2) + \arctan\frac{y}{x} = 0,
+\quad\text{i.e.}\quad
+x^2 + y^2 = e^{-\arctan(y/x)},
+\quad\text{or in polar form}\quad r = e^{-\theta/2},
+\quad \text{valid on } x \in (-0.2344,\ 1.1278)
+$$
+</div>
+
+<hr>
+
+<h1>Problem 2 — A Coupled $xy$-Structure with a Singular Envelope: the Substitution $u = xy$</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order equation:</p>
+$$
+y' = \frac{y}{x}\,\frac{1 - 2xy}{1 + xy}, \qquad x \gt 0, \qquad y(1) = 1.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>$x \gt 0$ (the equation contains $y/x$); $1 + xy \neq 0$ is required for the solved form.</li>
+    <li>The condition-selected solution satisfies $xy \in (0,2)$ for all $x \in (0,\infty)$, so $1+xy \neq 0$ automatically; the maximal interval is $(0,\infty)$.</li>
+    <li>The line $xy = 2$, i.e. $y = 2/x$, is a singular solution (envelope) approached asymptotically; the line $y = 0$ is the degenerate member of the general family.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: homogeneous-<em>looking</em> first-order equations and Bernoulli equations; the true structure is a first-order equation invariant under the <em>product</em> structure $xy$.</li>
+    <li>Why this is structurally non-routine: the equation is not separable, not homogeneous, not Bernoulli, and not linear in $x$ or $y$ (checked below); the multiplicative coupling $(1-2xy)/(1+xy)$ of $x,y,y'$ is what enables the non-obvious substitution $u = xy$, and the resulting separable equation $u' = (u/x)(2-u)/(1+u)$ has the non-obvious first integral $u/(2-u)^3 x^{-2} = K$, plus a genuine singular solution $y = 2/x$.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: the constants $1,2$ in $(1-2xy)/(1+xy)$ are not the novelty; removing the product coupling (e.g. setting $xy = c$ constant) collapses the equation to $y' = \text{const}\cdot y/x$, a different (routine) equation. No affine or scaling change removes the $xy$-coupling — it is the structure.</li>
+</ul>
+<p>Anti-template audit: $v = y/x$ fails (it leaves an $x$-dependent factor: $xv' = -3x^2v^2/(1+x^2v)$); $u = 1/y$ fails; $u = ax+by$ fails (no $ax+by$ combination occurs); logarithmic/exponential substitutions fail; separation fails because $(1-2xy)/(1+xy)$ couples $x$ and $y$ nontrivially. The substitution $u = xy$ is not on the prompt's routine list ($u = y^n$, $u=1/y$, $u=y/x$, $u=ax+by$, log/exp).</p>
+
+<h3>Solution method 1</h3>
+<p>Substitution $u = xy$.</p>
+<ol>
+    <li>Set $u = xy$, so $y = u/x$ and $u' = y + xy'$.</li>
+    <li>Then $y' = (u/x)(1-2u)/(1+u)$, and
+    $$
+    u' = \frac{u}{x} + x\cdot \frac{u}{x}\,\frac{1-2u}{1+u}
+    = \frac{u}{x}\left(1 + \frac{1-2u}{1+u}\right)
+    = \frac{u}{x}\cdot \frac{2-u}{1+u}.
+    $$</li>
+    <li>This separates:
+    $$
+    \frac{(1+u)\,du}{u(2-u)} = \frac{dx}{x}.
+    $$</li>
+    <li>Partial fractions: $(1+u)/(u(2-u)) = (1/2)/u + (3/2)/(2-u)$, so
+    $$
+    \frac12 \ln u - \frac32 \ln(2-u) = \ln x + C_0
+    \quad\Longrightarrow\quad
+    \frac{u}{(2-u)^3} = Kx^2, \qquad K \gt 0.
+    $$</li>
+    <li>Undo the substitution: the general solution is
+    $$
+    \frac{xy}{(2-xy)^3} = K x^2.
+    $$</li>
+    <li>Apply $y(1) = 1$, i.e. $u(1) = 1$: $1/(2-1)^3 = K$, so $K = 1$. Condition-selected solution:
+    <div class="boxed">
+    $$
+    \frac{xy}{(2-xy)^3} = x^2, \qquad\text{i.e.}\qquad xy = x^2\,(2-xy)^3.
+    $$
+    </div>
+    (The singular solution $y = 2/x$, corresponding formally to $K \to \infty$, is not in the general family; $y \equiv 0$ corresponds to $K = 0$.)</li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Independent Taylor (power-series) derivation about $x = 1$, cross-checked against the implicit solution.</p>
+<ol>
+    <li>Write $y = \sum_{n\ge 0} a_n (x-1)^n$ with $a_0 = 1$. Evaluate the ODE at $x=1$:
+    $$
+    y'(1) = \frac{1}{1}\cdot\frac{1-2}{1+1} = -\frac12,
+    $$
+    so $a_1 = -1/2$.</li>
+    <li>Differentiate the ODE. With $f = y/x$ and $g = (1-2xy)/(1+xy)$, $y' = fg$. At $x=1$: $f = 1$, $f' = (y'x - y)/x^2 = -3/2$, $g = -1/2$, and
+    $$
+    g' = \frac{(-2y-2xy')(1+xy) - (1-2xy)(y+xy')}{(1+xy)^2}\Big|_{x=1}
+    = \frac{(-1)(2) - (-1)(1/2)}{4} = -\frac38 .
+    $$
+    Then $y''(1) = f'g + fg' = (-3/2)(-1/2) + (1)(-3/8) = 3/8$, so $a_2 = 3/16$.</li>
+    <li>One more derivative. With $f'' = (y'' - 2y' + 2y)/x^3$, $f''(1) = 27/8$; and with $N = (-2y-2xy')(1+xy) - (1-2xy)(y+xy')$, $D = 1+xy$, one computes $N(1) = -3/2$, $N'(1) = 15/8$, $D(1) = 2$, $D'(1) = 1/2$, so
+    $$
+    g''(1) = \frac{N'D - 2ND'}{D^3}\Big|_{x=1} = \frac{15}{32} + \frac{3}{16} = \frac{21}{32}.
+    $$
+    Thus $y'''(1) = f''g + 2f'g' + fg'' = (27/8)(-1/2) + 2(-3/2)(-3/8) + 21/32 = 3/32$, so $a_3 = 1/64$. Hence
+    $$
+    y(x) = 1 - \frac{x-1}{2} + \frac{3}{16}(x-1)^2 + \frac{1}{64}(x-1)^3 + O\bigl((x-1)^4\bigr).
+    $$</li>
+    <li>Independent check against the implicit solution: with $t = x-1$ and $u = xy$,
+    $$
+    u = (1+t)\bigl(1 - t/2 + (3/16)t^2 + (1/64)t^3 + \cdots\bigr)
+    = 1 + \frac{t}{2} - \frac{5}{16}t^2 + \frac{13}{64}t^3 + \cdots
+    $$
+    Substituting into $u = x^2(2-u)^3$ and matching coefficients of $t, t^2, t^3$ reproduces exactly $a_1 = -1/2$, $a_2 = 3/16$, $a_3 = 1/64$. The two derivations agree term by term.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>Differentiate the implicit solution $xy/(2-xy)^3 = x^2$:</p>
+$$
+\frac{d}{du}\!\left(\frac{u}{(2-u)^3}\right) = \frac{2(1+u)}{(2-u)^4},
+$$
+<p>so with $u = xy$,</p>
+$$
+\frac{2(1+u)}{(2-u)^4}\,u' = 2x
+\quad\Longrightarrow\quad
+u' = \frac{x(2-u)^4}{1+u}
+ = \frac{x(2-u)(2-u)^3}{1+u}
+ = \frac{x(2-u)\cdot u/(x^2)}{1+u}
+ = \frac{u}{x}\,\frac{2-u}{1+u},
+$$
+<p>where $(2-u)^3 = u/x^2$ was used (the relation being differentiated). But $u' = (u/x)(2-u)/(1+u)$ is exactly the reduced ODE of Method 1, equivalent to the original $y' = (y/x)(1-2xy)/(1+xy)$. Initial condition: at $(1,1)$, $xy/(2-xy)^3 = 1 = x^2$. Singular solution check: $y = 2/x$ gives $y' = -2/x^2$ and RHS $= (2/x^2)(1-4)/(1+2) = -2/x^2$. Valid on $x \gt 0$, where $0 \lt xy \lt 2$ throughout.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria/singular solutions: $y \equiv 0$ is the $K=0$ member of the family; $y = 2/x$ is a singular solution not obtainable from the family — it is the envelope where $u = 2$, i.e. where the separated ODE degenerates.</li>
+    <li>Existence/uniqueness: the RHS is $C^1$ on $x \gt 0$, $1+xy \neq 0$, so solutions are unique there; the solution through $(1,1)$ stays in the strip $0 \lt xy \lt 2$, so no singular surface is hit.</li>
+    <li>Monotonicity/turning point: $y'(x)$ has the sign of $1-2u$; $u = 1/2$ occurs at $x_0 = 2/(3\sqrt3) \approx 0.3849$, where $y$ attains its unique maximum $y_{\max} = 3\sqrt3/4 \approx 1.2990$.</li>
+    <li>Asymptotics: as $x \to 0^+$, $u/(2-u)^3 \sim u/8 = x^2$ gives $y \sim 8x \to 0$; as $x \to \infty$, $2-u \to 0$ and $y \to 2/x$ from below (the solution is asymptotic to the singular solution).</li>
+    <li>Maximal interval: $(0,\infty)$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+\frac{xy}{(2-xy)^3} = x^2,
+\qquad\text{equivalently}\qquad xy = x^2(2-xy)^3,
+\qquad x \in (0,\infty)
+$$
+</div>
+
+<hr>
+
+<h1>Problem 3 — An Autonomous Equation with a One-Sided Asymptotic Equilibrium</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order autonomous equation:</p>
+$$
+y' = \frac{(y-1)(y^2+1)}{y^2 + y + 1}, \qquad y(0) = 0.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>All of $\mathbb{R}^2$: the denominator $y^2 + y + 1 = (y + 1/2)^2 + 3/4 \gt 0$ for all real $y$, so the right-hand side is $C^\infty$ and bounded-away-from-zero in the denominator everywhere.</li>
+    <li>The solution through $(0,0)$ lies in $y \lt 1$ for all $x$ and is defined for all $x \in \mathbb{R}$.</li>
+    <li>Branch choices: for the solution through $(0,0)$ we use the branch $\ln(1-y)$ with $y \lt 1$.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: separable autonomous equations $y' = f(y)$ with a rational $f$.</li>
+    <li>Why this is structurally non-routine: although the separation is immediate, the <em>analysis</em> is not routine: the integral requires a three-term partial-fraction decomposition mixing a logarithm of a quadratic, an arctangent, and a logarithm of a linear factor, and the equilibrium $y = 1$ is one-sided: solutions approach it only from below as $x \to -\infty$, while from above they escape to $+\infty$. The phase-line analysis is the primary deliverable, and the explicit $x(y)$ is implicit in $y$ (no elementary inverse).</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: replacing $(y-1)(y^2+1)/(y^2+y+1)$ by a translate of a standard $f$ changes the partial-fraction structure qualitatively (the denominator is chosen so it does not factor over $\mathbb{R}$, which is what forces the arctangent term); the mixed log/arctan answer is the structural feature, not the coefficients.</li>
+</ul>
+<p>Anti-template audit: none of $u = y^n$, $u = 1/y$, $u = y/x$, $u = ax+by$ applies (there is no $x$ in the equation and no routine substitution simplifies a single-variable rational function); the equation is separable only in the trivial autonomous sense, and this is deliberately one of the (at most two) separable equations in the set.</p>
+
+<h3>Solution method 1</h3>
+<p>Separation with partial fractions.</p>
+<ol>
+    <li>Separate:
+    $$
+    \frac{y^2 + y + 1}{(y-1)(y^2+1)}\,dy = dx .
+    $$</li>
+    <li>Partial fractions:
+    $$
+    \frac{y^2+y+1}{(y-1)(y^2+1)} = \frac{-\frac12 y + \frac12}{y^2+1} + \frac{\frac32}{y-1},
+    $$
+    verified by clearing denominators: $(-\tfrac12 y + \tfrac12)(y-1) + \tfrac32(y^2+1) = y^2 + y + 1$.</li>
+    <li>Integrate:
+    $$
+    x = -\frac14 \ln(y^2+1) + \frac12 \arctan y + \frac32 \ln|y-1| + C .
+    $$</li>
+    <li>Apply $y(0) = 0$: $0 = 0 + 0 + 0 + C$, so $C = 0$. Since $y(0) = 0 \lt 1$, the solution stays in $y \lt 1$, and the condition-selected solution is
+    $$
+    x = -\frac14\ln(1+y^2) + \frac12\arctan y + \frac32\ln(1-y), \qquad y \in (-\infty, 1).
+    $$</li>
+    <li>This is the final form: explicit in $x$ as a function of $y$, implicit in $y$. The general solution is the same display with arbitrary $C$ (with $|y-1|$ and $y$ on the appropriate side of 1).</li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Independent phase-line analysis (no integration), which re-derives all qualitative conclusions from $f$ alone.</p>
+<ol>
+    <li>Equilibria: $f(y) = 0 \iff y = 1$ (since $y^2+1$ and $y^2+y+1$ have no real zeros).</li>
+    <li>Stability by linearization:
+    $$
+    f'(y) = \frac{\bigl[(y^2+1) + 2y(y-1)\bigr](y^2+y+1) - (y-1)(y^2+1)(2y+1)}{(y^2+y+1)^2},
+    \qquad
+    f'(1) = \frac{2\cdot 3}{9} = \frac23 \gt 0,
+    $$
+    so $y = 1$ is an unstable equilibrium (repelling).</li>
+    <li>Sign analysis: $\operatorname{sgn} f(y) = \operatorname{sgn}(y-1)$. Hence: for $y \lt 1$, solutions decrease ($y' \lt 0$); for $y \gt 1$, solutions increase ($y' \gt 0$).</li>
+    <li>Asymptotics without integrating. Near $y = 1$: $f(y) \sim \frac23 (y-1)$, so solutions below 1 satisfy $y - 1 \sim C e^{2x/3} \to 0^-$ as $x \to -\infty$ — approached only from below, at exponential rate. As $y \to \pm\infty$: $f(y) \sim y$, so $\int dy/f$ diverges like $\ln|y|$, i.e. no finite-$x$ blow-up: the maximal interval is $\mathbb{R}$. For the branch with $y(0) = 0 \lt 1$: $y \to 1^-$ as $x \to -\infty$, $y \to -\infty$ (like $-e^{x}$) as $x \to +\infty$. For $y(0) \gt 1$: $y \to 1^+$ as $x \to -\infty$ and $y \to +\infty$ (like $e^{x}$) as $x \to +\infty$.</li>
+    <li>Existence/uniqueness: $f \in C^1(\mathbb{R})$ and $f'$ is bounded on compact sets, so the IVP has a unique solution for every real initial datum; all solutions exist on all of $\mathbb{R}$.</li>
+    <li>These conclusions match the explicit solution of Method 1 exactly (see Verification).</li>
+</ol>
+
+<h3>Verification</h3>
+<p>Differentiate the implicit solution with respect to $y$:</p>
+$$
+\frac{dx}{dy} = -\frac{y/2}{1+y^2} + \frac{1/2}{1+y^2} - \frac{3/2}{1-y}
+= \frac{1-y}{2(1+y^2)} - \frac{3}{2(1-y)}
+= \frac{(1-y)^2 - 3(1+y^2)}{2(1+y^2)(1-y)}
+$$
+$$
+= \frac{1 - 2y + y^2 - 3 - 3y^2}{2(1+y^2)(1-y)}
+= \frac{-2(y^2+y+1)}{2(1+y^2)(1-y)}
+= \frac{y^2+y+1}{(y-1)(y^2+1)} .
+$$
+<p>Hence</p>
+$$
+\frac{dy}{dx} = \frac{(y-1)(y^2+1)}{y^2+y+1},
+$$
+<p>the original equation. Initial condition: at $y = 0$, $x = 0$ (all terms vanish). The solution is valid on all of $\mathbb{R}$ with $y \in (-\infty, 1)$, as the phase-line analysis predicts, and the displayed branch satisfies $\lim_{x\to-\infty} y = 1^-$, $\lim_{x\to+\infty} y = -\infty$.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria: $y \equiv 1$ only; unstable ($f'(1) = 2/3 \gt 0$); no other constant solutions; no singular solutions (the ODE is nowhere singular).</li>
+    <li>Existence/uniqueness: global (see above); no blow-up in finite $x$.</li>
+    <li>Monotonicity: solutions are monotone on each side of the equilibrium; no turning points ($f$ never changes sign except across $y=1$).</li>
+    <li>Asymptotics: $y(0)=0$ branch: $y \nearrow 1$ as $x \to -\infty$ (rate $e^{2x/3}$), $y \searrow -\infty$ as $x \to +\infty$ (rate $-e^x$).</li>
+    <li>Maximal interval: $\mathbb{R}$ for every solution.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+x \;=\; -\frac14\ln(1+y^2) \;+\; \frac12\arctan y \;+\; \frac32\ln(1-y), \qquad y \in (-\infty, 1), \qquad x \in \mathbb{R}
+$$
+</div>
+
+<hr>
+
+<h1>Problem 4 — A Similarity-Invariant Equation under $(x,y) \mapsto (\lambda x, \lambda^2 y)$</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order equation:</p>
+$$
+y' = \frac{y}{x}\,\frac{4y + 3x^2}{y + x^2}, \qquad y(1) = 1,
+$$
+<p>equivalently the differential form</p>
+$$
+y(4y + 3x^2)\,dx - x(y + x^2)\,dy = 0.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>The solved form requires $x \neq 0$ and $y + x^2 \neq 0$.</li>
+    <li>The condition-selected solution has $y \gt 0$ and $y + x^2 \gt 0$ for all $x \gt 0$; its maximal interval is $x \in (0, \infty)$.</li>
+    <li>The integrating-factor route (Method 2) additionally requires $y \neq 0$, satisfied on the selected solution.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: homogeneous equations (invariant under $x,y \mapsto \lambda x, \lambda y$) and Bernoulli equations.</li>
+    <li>Why this is structurally non-routine: the equation is <em>not</em> homogeneous in the standard sense; it is invariant under the two-weight scaling $(x,y) \mapsto (\lambda x, \lambda^2 y)$, a similarity group whose invariant is $u = y/x^2$ — a genuinely non-obvious reduction because the standard homogeneous substitution $v = y/x$ provably fails. Moreover the same equation admits an integrating factor $\mu = x^3 y^{-3}$ of <em>mixed</em> power type, discoverable by the $x^m y^n$ ansatz, which yields a second, independent solution route.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: the structural novelty is the mismatch between the $x$-weight and $y$-weight (the $3x^2$ versus $4y$ coefficients), which is exactly what breaks ordinary homogeneity; changing the constants $4,3$ to other values only rescales the $u$-equation $xu' = u(2u+1)/(u+1)$ and does not alter the structure.</li>
+</ul>
+<p>Anti-template audit: $v = y/x$ fails ($xv' = v(4v+3x^2)/(v+x^2) - v$ retains $x$); $u = 1/y$ fails; $u = y^n$ fails (the $(4y+3x^2)/(y+x^2)$ factor is not a function of $y$ alone); $u = ax+by$ fails; the equation is not separable and not Bernoulli (the $1/(y+x^2)$ factor puts $y$ in the denominator, so $y'$ cannot be written $p(x)y + q(x)y^n$); it is not linear in either variable. The successful substitution $u = y/x^2$ is not on the routine list.</p>
+
+<h3>Solution method 1</h3>
+<p>Similarity (scaling-symmetry) reduction.</p>
+<ol>
+    <li>Symmetry check: under $(x,y) \mapsto (\lambda x, \lambda^2 y)$ the differential form scales by $\lambda^5$: $y(4y+3x^2) \mapsto \lambda^4 y(4y+3x^2)$ with $dx \mapsto \lambda\,dx$, and $x(y+x^2) \mapsto \lambda^3 x(y+x^2)$ with $dy \mapsto \lambda^2\,dy$. Invariance means the substitution $y = x^2 u$ must eliminate $x$.</li>
+    <li>Set $y = x^2 u$, so $y' = 2xu + x^2 u'$. Substitute into the solved form:
+    $$
+    2xu + x^2 u' = \frac{x^2u}{x}\,\frac{4x^2u + 3x^2}{x^2u + x^2}
+    = xu\,\frac{4u+3}{u+1}.
+    $$</li>
+    <li>Rearrange:
+    $$
+    x u' = u\frac{4u+3}{u+1} - 2u
+    = \frac{u(4u+3) - 2u(u+1)}{u+1}
+    = \frac{u(2u+1)}{u+1}.
+    $$</li>
+    <li>Separate:
+    $$
+    \frac{(u+1)\,du}{u(2u+1)} = \frac{dx}{x}.
+    $$</li>
+    <li>Partial fractions: $(u+1)/(u(2u+1)) = 1/u - 1/(2u+1)$, so
+    $$
+    \ln u - \frac12 \ln(2u+1) = \ln x + C_0
+    \quad\Longrightarrow\quad
+    \frac{u}{\sqrt{2u+1}} = Kx, \qquad K \gt 0.
+    $$</li>
+    <li>Solve the quadratic $u^2 = K^2x^2(2u+1)$:
+    $$
+    u = K^2x^2 + Kx\sqrt{K^2x^2 + 1}
+    $$
+    (the plus branch, consistent with $u \gt 0$ for $Kx \gt 0$). Undo the substitution:
+    $$
+    y = x^2u = K^2x^4 + Kx^3\sqrt{K^2x^2 + 1} .
+    $$</li>
+    <li>Apply $y(1) = 1$: $1 = K^2 + K\sqrt{K^2+1}$. Squaring: $K^2(K^2+1) = (1-K^2)^2 \Rightarrow 3K^2 = 1$, so $K = 1/\sqrt3$ (positive branch). Condition-selected solution:
+    $$
+    y = \frac{1}{3}x^4 + \frac{1}{\sqrt3}x^3\sqrt{\frac{x^2}{3} + 1}
+    = \frac{x^3}{3}\Bigl(x + \sqrt{x^2 + 3}\Bigr).
+    $$</li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Hidden integrating factor of power type $x^m y^n$.</p>
+<ol>
+    <li>From the form $M\,dx + N\,dy = 0$ with $M = y(4y+3x^2)$, $N = -x(y+x^2)$: $M_y = 8y + 3x^2$, $N_x = -y - 3x^2$, so $M_y - N_x = 9y + 6x^2 \neq 0$ — not exact.</li>
+    <li>Try $\mu = x^m y^n$. The condition $(\mu M)_y = (\mu N)_x$, i.e. $(n/y)M + M_y = (m/x)N + N_x$, becomes
+    $$
+    n(4y + 3x^2) + 8y + 3x^2 = m(-y - x^2) - y - 3x^2 .
+    $$</li>
+    <li>Compare coefficients of $y$ and $x^2$:
+    $$
+    4n + 8 = -m - 1, \qquad 3n + 3 = -m - 3
+    \quad\Longrightarrow\quad
+    m + 4n = -9, \quad m + 3n = -6,
+    $$
+    so $n = -3$, $m = 3$: the integrating factor is
+    $$
+    \mu = \frac{x^3}{y^3}.
+    $$</li>
+    <li>Multiply the form:
+    $$
+    \left(\frac{4x^3}{y} + \frac{3x^5}{y^2}\right)dx - \left(\frac{x^4}{y^2} + \frac{x^6}{y^3}\right)dy = 0,
+    $$
+    which is exact (both mixed derivatives equal $-4x^3/y^2 - 6x^5/y^3$).</li>
+    <li>Potential: $F(x,y) = \dfrac{x^4}{y} + \dfrac{x^6}{2y^2}$ (check: $F_x = 4x^3/y + 3x^5/y^2$; $F_y = -x^4/y^2 - x^6/y^3$). General solution:
+    $$
+    \frac{x^4}{y} + \frac{x^6}{2y^2} = C.
+    $$</li>
+    <li>Solve for $y$: $2Cy^2 - 2x^4y - x^6 = 0$, giving
+    $$
+    y = \frac{x^4 + x^3\sqrt{x^2 + 2C}}{2C}
+    $$
+    — with $2C = 1/K^2$ this is the family of Method 1: $y = K^2x^4 + Kx^3\sqrt{K^2x^2+1}$.</li>
+    <li>Apply $y(1)=1$: $x^4/y + x^6/(2y^2)\big|_{(1,1)} = 1 + 1/2 = 3/2 = C$. Then $2C = 3$, $K = 1/\sqrt3$ as before, and $y = (x^3/3)(x + \sqrt{x^2+3})$.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>From the form $y(4y+3x^2)dx - x(y+x^2)dy = 0$:</p>
+$$
+x(y+x^2)\,\frac{dy}{dx} = y(4y+3x^2)
+\quad\Longrightarrow\quad
+y' = \frac{y}{x}\,\frac{4y+3x^2}{y+x^2},
+$$
+<p>which is the original equation; and multiplying by $x^3/y^3$ turns it into $d(x^4/y + x^6/(2y^2)) = 0$ (checked in Method 2, step 4). Independent direct check of the final answer: with $S = \sqrt{x^2+3}$ and $y = (x^3/3)(x+S)$, the identity $x(2x + S + x^2/S) = u(2u+1)/(u+1)\cdot 3/(x)$ with $u = (x/3)(x+S)$ reduces — using $S^2 = x^2+3$ — to $S^2 = x^2 + 3$, so $xu' = u(2u+1)/(u+1)$ holds exactly, and the reverse substitution gives the original ODE. Initial condition: $y(1) = (1/3)(1+2) = 1$. Valid on $x \in (0,\infty)$ where $y \gt 0$, $y + x^2 \gt 0$.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria: none (the equation is non-autonomous); $y \equiv 0$ is not a solution of the solved form (division by $y+x^2 = x^2$ would give $0 = 0$ — in fact $y\equiv 0$ <em>does</em> satisfy $y(4y+3x^2)dx - x(y+x^2)dy = 0$ trivially, but the selected solution is the positive branch). Singular surfaces: $y + x^2 = 0$ and $x = 0$ bound the domain.</li>
+    <li>Existence/uniqueness: the RHS is $C^1$ near $(1,1)$ with $y+x^2 = 2 \neq 0$, so the IVP is locally unique.</li>
+    <li>Monotonicity: $y' = (y/x)(4y+3x^2)/(y+x^2) \gt 0$ on the solution, so $y$ is strictly increasing; no turning points.</li>
+    <li>Asymptotics: as $x \to 0^+$, $y = (x^3/3)(x + \sqrt{x^2+3}) \sim (\sqrt3/3)x^3 \to 0$; as $x \to \infty$, $y \sim \frac23 x^4$ (superlinear growth). The $K \lt 0$ members of the family give negative solutions with the same asymptotics.</li>
+    <li>Maximal interval: $(0,\infty)$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+y(x) = \frac{x^3}{3}\Bigl(x + \sqrt{x^2+3}\Bigr),
+\qquad x \in (0,\infty).
+\quad\text{General solution:}\quad y = K^2x^4 + Kx^3\sqrt{K^2x^2+1}
+$$
+</div>
+
+<hr>
+
+<h1>Problem 5 — A Nonlinear Second-Order Equation Linearized by $\tan y$</h1>
+
+<h3>Equation and conditions</h3>
+<p>Second-order equation:</p>
+$$
+y'' = -2\,(y')^2 \tan y, \qquad y(0) = 0, \quad y'(0) = 1.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>The right-hand side is defined for $y \neq (2m+1)\pi/2$ ($m \in \mathbb{Z}$) and is real-analytic there; the IVP data lie in the strip $|y| \lt \pi/2$.</li>
+    <li>The condition-selected solution $y = \arctan x$ has $|y| \lt \pi/2$ and is defined for all $x \in \mathbb{R}$.</li>
+    <li>The constant solutions $y \equiv c$, $c \neq (2m+1)\pi/2$, are the equilibrium solutions.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: second-order autonomous (missing-$x$) equations $y'' = g(y)(y')^2$ reducible by $p = p(y)$, and the Riccati-type structure $u'' = (u')^2/u$.</li>
+    <li>Why this is structurally non-routine: the trigonometric factor $\tan y$ is chosen so that the nonlinearity is <em>exactly</em> the curvature term of the transformation $z = \tan y$: $z'' = \sec^2 y\,(y'' + 2(y')^2\tan y)$. The equation is the obstruction to $z$ being linear; the insight is that the nonlinear second-order equation is linearized by a dependent-variable change into $z'' = 0$. The reduction-of-order route is also non-routine: $p\,dp/dy = -2p^2\tan y$ integrates to $p = K\cos^2 y$ rather than to a familiar first integral.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: replacing the coefficient $-2$ by another constant merely rescales $\tan y \to \alpha \tan y$ and changes the linearized equation to $z'' = (2-\alpha)(y')^2\sec^2 y \tan y$-type structure only for special values; the coefficient $-2$ is forced by the exact linearization $z''=0$, and the equation itself is not a standard named exercise (it is not $y''=f(y)$, not a Riccati equation, and not linear in any of $y,y',y''$).</li>
+</ul>
+<p>Anti-template audit: the routine substitutions ($u = y^n$, $u=1/y$, $u=y/x$, $u=ax+by$, log/exp) do not reduce it; the standard autonomous trick $p(y) = y'$ does reduce it (this is Method 1, and it is the intended advanced-undergraduate technique for missing-$x$ equations), but the resulting equation $dp/dy = -2p\tan y$ is not a classroom template, and the independent second method (change of dependent variable) is a genuinely different derivation, not a restatement.</p>
+
+<h3>Solution method 1</h3>
+<p>Reduction of order via $p(y) = y'$ (missing $x$).</p>
+<ol>
+    <li>With $p = y'$ and $y'' = p\,dp/dy$:
+    $$
+    p\,\frac{dp}{dy} = -2p^2\tan y .
+    $$</li>
+    <li>For $p \neq 0$ (the solution with $y'(0)=1$ has $p \neq 0$):
+    $$
+    \frac{dp}{p} = -2\tan y\,dy
+    \quad\Longrightarrow\quad
+    \ln|p| = 2\ln|\cos y| + C_0
+    \quad\Longrightarrow\quad
+    p = K\cos^2 y .
+    $$</li>
+    <li>Undo the substitution: $y' = K\cos^2 y$, i.e.
+    $$
+    \frac{dy}{\cos^2 y} = K\,dx
+    \quad\Longrightarrow\quad
+    \tan y = Kx + C .
+    $$</li>
+    <li>Undo the second substitution: the general solution is
+    $$
+    y = \arctan(Kx + C) + m\pi, \qquad m \in \mathbb{Z},
+    $$
+    together with the constant solutions $y \equiv c$ (the case $p \equiv 0$).</li>
+    <li>Apply the conditions: $y(0) = 0$ selects $m = 0$, $C = 0$; $y'(0) = 1$ gives $K\cos^2 0 = K = 1$. Condition-selected solution:
+    <div class="boxed">
+    $$
+    y = \arctan x, \qquad x \in \mathbb{R}.
+    $$
+    </div></li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Change of dependent variable $z = \tan y$.</p>
+<ol>
+    <li>Differentiate:
+    $$
+    z' = y'\sec^2 y, \qquad
+    z'' = y''\sec^2 y + y'\cdot 2\sec y\,(\sec y\tan y)\cdot y'
+    = \sec^2 y \bigl(y'' + 2(y')^2\tan y\bigr).
+    $$</li>
+    <li>The original equation states exactly that the bracket vanishes, so
+    $$
+    z'' = 0
+    \quad\Longrightarrow\quad
+    z = ax + b.
+    $$</li>
+    <li>Undo the substitution: $\tan y = ax + b$, so $y = \arctan(ax+b) + m\pi$ — the same general solution as Method 1, obtained by a completely different route (a dependent-variable change rather than a reduction of order).</li>
+    <li>Conditions: $\tan y(0) = b = 0$; $z'(0) = y'(0)\sec^2 y(0) = 1\cdot 1 = a = 1$. Hence $z = x$, i.e. $y = \arctan x$.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>For $y = \arctan x$: $y' = 1/(1+x^2)$, $y'' = -2x/(1+x^2)^2$, and</p>
+$$
+-2(y')^2\tan y = -2\,\frac{1}{(1+x^2)^2}\cdot x = -\frac{2x}{(1+x^2)^2} = y''.
+$$
+<p>Initial conditions: $y(0) = \arctan 0 = 0$, $y'(0) = 1/(1+0) = 1$. General-solution check: for $y = \arctan(C_1x + C_2)$, $y' = C_1/(1+t^2)$, $y'' = -2C_1^2t/(1+t^2)^2 = -2(y')^2\tan y$, with $t = C_1x+C_2$. Validity: $\arctan x \in (-\pi/2, \pi/2)$ for all $x$, where $\tan$ is analytic, so the solution is valid on all of $\mathbb{R}$.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria: every constant $y \equiv c$ with $\tan c$ defined is a solution — a continuum of equilibria; the lines $y = (2m+1)\pi/2$ are outside the domain of the equation (not solutions).</li>
+    <li>Existence/uniqueness: the RHS is $C^\infty$ near $(y, y') = (0, 1)$, so the IVP is locally unique; the solution extends to all of $\mathbb{R}$.</li>
+    <li>Monotonicity/concavity: $y'(x) = 1/(1+x^2) \gt 0$ (increasing); $y'' = -2x/(1+x^2)^2$, so $y$ is convex for $x \lt 0$, concave for $x \gt 0$, with an inflection point at $(0,0)$ — the only inflection point.</li>
+    <li>Asymptotics: $y \to \pm \pi/2$ as $x \to \pm\infty$ (the asymptote lines are approached but never attained); no blow-up, no oscillation.</li>
+    <li>Maximal interval: $\mathbb{R}$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+y(x) = \arctan x, \qquad x \in \mathbb{R}.
+\qquad \text{General solution:}\quad y = m\pi + \arctan(C_1 x + C_2),\quad m\in\mathbb{Z},\ \text{plus}\ y \equiv c
+$$
+</div>
+
+<hr>
+
+<h1>Problem 6 — Gaussian Solutions from a Conserved Quantity</h1>
+
+<h3>Equation and conditions</h3>
+<p>Second-order equation:</p>
+$$
+y'' = \frac{(y')^2}{y} - \frac{y}{2}, \qquad y(0) = 1, \quad y'(0) = 0.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>$y \neq 0$ is required (division by $y$); we work on the half-planes $y \gt 0$ and $y \lt 0$ separately, with the natural extension $\ln|y|$ in the first integral.</li>
+    <li>The condition-selected solution is $y = e^{-x^2/4} \gt 0$, defined for all $x \in \mathbb{R}$.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: autonomous second-order equations with a conserved energy, and equations of Riccati-Bernoulli type in $p$.</li>
+    <li>Why this is structurally non-routine: the conserved quantity
+    $$
+    I(y, y') = \frac{(y')^2}{y^2} + \ln y
+    $$
+    is a genuinely non-obvious first integral (it is not the standard "kinetic plus potential" energy, and the potential part is logarithmic). Every nontrivial solution is a Gaussian $A\,e^{-(x-B)^2/4}$: a family of solutions with a translation-and-scale symmetry of unusual type. The phase portrait consists of infinite-period loops through the degenerate point $(0,0)$, where the vector field is undefined.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: the structure is the homogeneity of the two terms $(y')^2/y$ and $y/2$ under $y \mapsto cy$ — which is what makes $(y'/y)'$ appear; changing the coefficient $1/2$ to another constant rescales the width of the Gaussian but does not change the mechanism, whereas removing either term collapses the equation to $y'' = (y')^2/y$ (pure exponentials, a different standard equation) or to the harmonic oscillator. The novelty is the <em>combination</em>, which forces the logarithmic first integral.</li>
+</ul>
+<p>Anti-template audit: none of the routine first-order substitutions applies (the equation is second order); the standard autonomous reduction $p(y)$ turns it into a Bernoulli equation $dp/dy - p/y = -(y/2)p^{-1}$ — solvable, but the reduction and its Bernoulli step are exactly the "embedded in a genuinely new structure" case: the new structure is the conserved quantity and the Gaussian family, not the Bernoulli template itself. The equation is not the harmonic oscillator, not $y'' = f(y)$ with an elementary potential, and not any standard named equation.</p>
+
+<h3>Solution method 1</h3>
+<p>Reduction of order and discovery of the conserved quantity.</p>
+<ol>
+    <li>Set $p(y) = y'$, so $y'' = p\,dp/dy$:
+    $$
+    p\,\frac{dp}{dy} = \frac{p^2}{y} - \frac{y}{2}
+    \quad\Longrightarrow\quad
+    \frac{dp}{dy} - \frac{1}{y}\,p = -\frac{y}{2}\,p^{-1},
+    $$
+    a Bernoulli equation in $p$ (exponent $-1$).</li>
+    <li>Multiply by $p$ and set $q = p^2$:
+    $$
+    \frac12\,\frac{dq}{dy} - \frac{q}{y} = -\frac{y}{2}
+    \quad\Longrightarrow\quad
+    \frac{dq}{dy} - \frac{2}{y}\,q = -y ,
+    $$
+    a linear equation for $q$.</li>
+    <li>Integrating factor $\mu = e^{-\int 2\,dy/y} = y^{-2}$:
+    $$
+    \frac{d}{dy}\!\left(\frac{q}{y^2}\right) = -\frac{1}{y}
+    \quad\Longrightarrow\quad
+    \frac{p^2}{y^2} = -\ln y + C .
+    $$
+    This is the conserved quantity:
+    $$
+    \frac{(y')^2}{y^2} + \ln y = C .
+    $$</li>
+    <li>Undo the substitution: $y' = \pm y\sqrt{C - \ln y}$, so
+    $$
+    \frac{dy}{y\sqrt{C - \ln y}} = \pm\,dx .
+    $$</li>
+    <li>Integrate with $u = C - \ln y$, $du = -dy/y$:
+    $$
+    -2\sqrt{C - \ln y} = \pm x + B
+    \quad\Longrightarrow\quad
+    \sqrt{C - \ln y} = C_1 \mp \frac{x}{2}
+    \quad\Longrightarrow\quad
+    \ln y = C - \Bigl(C_1 \mp \frac{x}{2}\Bigr)^2 .
+    $$
+    The general solution is
+    $$
+    y = A\,e^{-(x - B)^2/4}, \qquad A \neq 0,\ B \in \mathbb{R},
+    $$
+    together with $y \equiv 0$ (the degenerate solution).</li>
+    <li>Apply the conditions: $y'(0)/y(0) = 0$ gives $B = 0$; $y(0) = A = 1$. Condition-selected solution:
+    <div class="boxed">
+    $$
+    y = e^{-x^2/4}.
+    $$
+    </div></li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Direct integration of the logarithmic-derivative structure.</p>
+<ol>
+    <li>Divide the equation by $y$ (nonzero):
+    $$
+    \frac{y''}{y} - \frac{(y')^2}{y^2} = -\frac12 .
+    $$</li>
+    <li>The left side is exactly the derivative of $y'/y$:
+    $$
+    \left(\frac{y'}{y}\right)' = \frac{y''}{y} - \frac{(y')^2}{y^2} .
+    $$</li>
+    <li>Hence
+    $$
+    \left(\frac{y'}{y}\right)' = -\frac12
+    \quad\Longrightarrow\quad
+    \frac{y'}{y} = C_1 - \frac{x}{2}
+    \quad\Longrightarrow\quad
+    \ln|y| = C_1 x - \frac{x^2}{4} + C_2 .
+    $$</li>
+    <li>Exponentiate:
+    $$
+    y = A\,e^{C_1x - x^2/4} = A\,e^{-(x - 2C_1)^2/4}\,e^{C_1^2},
+    $$
+    the same two-parameter Gaussian family $y = A\,e^{-(x-B)^2/4}$ (absorb $e^{C_1^2}$ into $A$).</li>
+    <li>Conditions: $y'(0)/y(0) = C_1 = 0$, $y(0) = e^{C_2} = 1$: $y = e^{-x^2/4}$.</li>
+</ol>
+<p>This is genuinely independent of Method 1: it uses no reduction of order and no Bernoulli step, only the recognition that $y''/y - (y')^2/y^2$ is a logarithmic derivative.</p>
+
+<h3>Verification</h3>
+<p>For $y = e^{-x^2/4}$: $y' = -(x/2)e^{-x^2/4}$, $y'' = (x^2/4 - 1/2)e^{-x^2/4}$, and</p>
+$$
+\frac{(y')^2}{y} - \frac{y}{2} = \frac{(x^2/4)e^{-x^2/2}}{e^{-x^2/4}} - \frac{1}{2}e^{-x^2/4}
+= \Bigl(\frac{x^2}{4} - \frac12\Bigr)e^{-x^2/4} = y'' .
+$$
+<p>Initial conditions: $y(0) = 1$, $y'(0) = 0$. First-integral check: $(y')^2/y^2 + \ln y = x^2/4 - x^2/4 = 0 = C$ along the selected solution. Validity: $y \gt 0$ for all $x$, so the equation is nonsingular on the solution; the general family with $A \lt 0$ solves the equation on $y \lt 0$ via the $\ln|y|$ form of the first integral.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria: $y \equiv 0$ is a degenerate solution; $(y, y') = (0,0)$ is the only "rest point" of the equivalent system $y' = v$, $v' = v^2/y - y/2$, but the vector field is undefined at $y = 0$, so it is a degenerate point rather than a hyperbolic equilibrium.</li>
+    <li>Existence/uniqueness: for $y \neq 0$ the RHS is $C^\infty$; solutions with $y \neq 0$ never reach $y = 0$ in finite $x$ (they are Gaussians), and no $C^2$ solution can cross $y = 0$ with $y' \neq 0$ (then $y'' = (y')^2/y - y/2$ would blow up), so within $C^2$ solutions the zero solution is the only one passing through $y = 0$.</li>
+    <li>Shape: every nontrivial solution is a bell curve: maximum $|A|$ at $x = B$, inflection points at $x = B \pm \sqrt2$, symmetric about $x = B$.</li>
+    <li>Phase portrait: orbits are the loops $v^2 = y^2(C - \ln y)$, $0 \lt y \lt e^C$, closed through the degenerate point $(0,0)$; each loop is traversed exactly once as $x$ runs from $-\infty$ to $+\infty$ (infinite-period loops) — the solutions are not periodic despite the closed-looking orbits.</li>
+    <li>Asymptotics: $y \to 0^+$ and $y' \to 0$ as $x \to \pm\infty$, faster than any exponential: the solution approaches the equilibrium $y = 0$ from above in both directions of $x$.</li>
+    <li>Maximal interval: $\mathbb{R}$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+y(x) = e^{-x^2/4}, \qquad x \in \mathbb{R}.
+\qquad \text{General solution:}\quad y = A\,e^{-(x-B)^2/4},\ A \neq 0,\ \text{plus}\ y \equiv 0
+$$
+</div>
+
+<hr>
+
+<h1>Problem 7 — A Parameterized Conic Family: Exactness with Degenerate Cases</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order equation with real parameter $k$:</p>
+$$
+y' = -\frac{y + kx}{x + ky}, \qquad y(1) = 0,
+$$
+<p>equivalently</p>
+$$
+(kx + y)\,dx + (x + ky)\,dy = 0.
+$$
+<p>Analyze the cases $k = 0$, $0 \lt |k| \lt 1$, $k = \pm 1$, $|k| \gt 1$.</p>
+
+<h3>Domain</h3>
+<ul>
+    <li>The solved form requires $x + ky \neq 0$.</li>
+    <li>$k = 1$: the equation reduces to $y' = -1$ away from the line $x + y = 0$; solution $y = 1 - x$ valid on $\mathbb{R}$.</li>
+    <li>$k = -1$: $y' = 1$ away from $x - y = 0$; solution $y = x - 1$ valid on $\mathbb{R}$.</li>
+    <li>$|k| \lt 1$: the solution is one branch of a hyperbola, valid on all of $\mathbb{R}$ (the branch avoids $x + ky = 0$).</li>
+    <li>$|k| \gt 1$: the solution is an arc of an ellipse between the two points where $x + ky = 0$ (vertical tangents), namely $x \in \bigl(-k/\sqrt{k^2-1},\ k/\sqrt{k^2-1}\bigr)$.</li>
+    <li>$k = 0$: $y \equiv 0$ (from the data); the general family is $xy = \text{const}$ on $x \neq 0$.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: exact equations $(M_y = N_x)$ with linear coefficients; homogeneous equations.</li>
+    <li>Why this is structurally non-routine: the parameter $k$ changes the <em>topological type</em> of the solution family — ellipses for $|k| \gt 1$, hyperbolas for $|k| \lt 1$, parallel lines at $k = \pm 1$, and the degenerate hyperbola pair at $k = 0$. The structural content is the conic classification and the two exceptional values where the equation degenerates into a trivial linear equation ($y' = \mp 1$), which must be detected and analyzed separately. The general solution $k(x^2+y^2) + 2xy = k$ is implicit and rigorous.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: no affine change can remove the parameter — $k$ is the ratio of the eigenvalues of the quadratic form, an affine invariant of the conic family. The three regimes are not rescalings of one another: they are different conic types.</li>
+</ul>
+<p>Anti-template audit: $v = y/x$ reduces it (routine homogeneity) — but this is the <em>secondary</em> method; the primary method is exactness in differential form, and the pedagogical point is the parameter-dependent conic structure and the degenerate cases. The equation is not separable, not Bernoulli, not Riccati, and not linear for general $k$.</p>
+
+<h3>Solution method 1</h3>
+<p>Exact differential and conic classification.</p>
+<ol>
+    <li>With $M = kx + y$, $N = x + ky$: $M_y = 1 = N_x$, so the form is exact on all of $\mathbb{R}^2$.</li>
+    <li>Potential: $F_x = kx + y \Rightarrow F = kx^2/2 + xy + \varphi(y)$; then $F_y = x + \varphi'(y) = x + ky$, so $\varphi = ky^2/2$:
+    $$
+    F(x,y) = \frac{k}{2}(x^2 + y^2) + xy = C .
+    $$</li>
+    <li>Apply $y(1) = 0$: $C = k/2$. Condition-selected solution:
+    $$
+    kx^2 + 2xy + ky^2 = k .
+    $$</li>
+    <li>Case analysis (the quadratic form has eigenvalues $k \pm 1$):
+        <ul>
+            <li>$|k| \lt 1$, $k \neq 0$: the form is indefinite — a hyperbola through $(1,0)$ with asymptotes of slopes $\bigl(\pm\sqrt{(1+k)/(1-k)} - 1\bigr)/\bigl(1 \pm\sqrt{(1+k)/(1-k)}\bigr)$; the branch through $(1,0)$ is a graph over all of $\mathbb{R}$.</li>
+            <li>$k = 0$: $2xy = 0$; through $(1,0)$ this selects $y \equiv 0$.</li>
+            <li>$k = 1$: $(x+y)^2 = 1$, and through $(1,0)$: $y = 1 - x$.</li>
+            <li>$k = -1$: $-(x-y)^2 = -1$, and through $(1,0)$: $y = x - 1$.</li>
+            <li>$|k| \gt 1$: the form is positive definite (for $k\gt1$) or negative definite but level-set-consistent (for $k\lt-1$) — an ellipse $x^2 + y^2 + \tfrac{2}{k}xy = 1$ through $(1,0)$; the solution arc is the piece of the ellipse between its two intersections with $x + ky = 0$, i.e. between $y = \pm 1/\sqrt{k^2-1}$.</li>
+        </ul>
+    </li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Homogeneity substitution $v = y/x$.</p>
+<ol>
+    <li>Set $y = vx$, $y' = v + xv'$:
+    $$
+    v + xv' = -\frac{v + k}{1 + kv}
+    \quad\Longrightarrow\quad
+    xv' = -\frac{k + 2v + kv^2}{1 + kv} .
+    $$</li>
+    <li>Separate:
+    $$
+    \frac{(1+kv)\,dv}{k + 2v + kv^2} = -\frac{dx}{x} .
+    $$</li>
+    <li>The numerator is half the derivative of the denominator: $\frac{d}{dv}(k + 2v + kv^2) = 2(1+kv)$, so
+    $$
+    \frac12 \ln|k + 2v + kv^2| = -\ln|x| + C_0
+    \quad\Longrightarrow\quad
+    k + 2v + kv^2 = \frac{C}{x^2}.
+    $$</li>
+    <li>Undo the substitution: $kx^2 + 2xy + ky^2 = C$; with $y(1)=0$, $C = k$. The same conic family, obtained independently. The degenerate cases $k = \pm 1$ correspond to the linear numerator/denominator cancellation in the original equation; $v = -1/k$-type branches and $x = 0$ are handled by the implicit form.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>Implicit differentiation of $kx^2 + 2xy + ky^2 = k$:</p>
+$$
+2kx + 2y + 2xy' + 2kyy' = 0
+\quad\Longrightarrow\quad
+y'(x + ky) = -(kx + y)
+\quad\Longrightarrow\quad
+y' = -\frac{y + kx}{x + ky},
+$$
+<p>the original equation. Exactness: $M_y = N_x = 1$ (checked in Method 1, step 1). Initial condition: at $(1,0)$, $k + 0 + 0 = k$. Case checks: $k=1$: $y = 1-x$ gives $y' = -1 = -(y+x)/(x+y)$; $k=-1$: $y = x-1$ gives $y' = 1$; $k=0$: $y \equiv 0$ gives $0 = -0/x$. Validity: the implicit solution is smooth on the stated domains, with vertical tangents exactly where $x + ky = 0$ (for $|k| \gt 1$, the two endpoints of the arc).</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Equilibria: none except the constant solution $y \equiv 0$ in the case $k = 0$ (with data $y(1)=0$); the origin is the center of the conic family, not a solution point.</li>
+    <li>Existence/uniqueness: for $k \neq \pm 1$, the RHS is $C^1$ near $(1,0)$ (denominator $1 \neq 0$), so the IVP is locally unique; at $k = \pm 1$ the equation degenerates to $y' = \mp 1$ with the obvious unique solutions.</li>
+    <li>Geometry: closed orbits (ellipses) for $|k| \gt 1$ — the solution arc is not closed as a graph because of the two vertical tangents; unbounded branches for $|k| \lt 1$ with linear asymptotes; straight-line solutions at $k = \pm 1$; the degenerate pair of lines at $k = 0$.</li>
+    <li>Maximal interval: $\mathbb{R}$ for $|k| \le 1$ (the hyperbola branch and the lines); $(-k/\sqrt{k^2-1},\ k/\sqrt{k^2-1})$ for $|k| \gt 1$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+kx^2 + 2xy + ky^2 = k, \quad k \in \mathbb{R},
+\qquad \text{with } y(1) = 0,
+\quad \text{ellipses for } |k|\gt1,\ \text{hyperbolas for } |k|\lt1,\ \text{lines } y = 1-x\ (k=1),\ y = x-1\ (k=-1),\ y\equiv 0\ (k=0)
+$$
+</div>
+
+<hr>
+
+<h1>Problem 8 — An Implicit Solution via Reversing the Roles of $x$ and $y$</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order equation:</p>
+$$
+y' = \frac{y}{x + y\ln y}, \qquad y \gt 0, \qquad y(1) = 1.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>$y \gt 0$ (for $\ln y$); $x + y\ln y \neq 0$ in the solved form.</li>
+    <li>The condition-selected solution has $x + y\ln y = y(1 + \ln y + (\ln y)^2/2) \gt 0$ everywhere on the solution, which is defined on the maximal interval $x \in (0, \infty)$, with $y \to 0^+$ as $x \to 0^+$ and $y \to \infty$ as $x \to \infty$.</li>
+    <li>$y \equiv 0$ is a formal solution for $x \neq 0$ (the equation degenerates there); the point $(0,0)$ is a singular point of the equation.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: first-order equations solved "for $x$ as a function of $y$" (the role-reversal trick).</li>
+    <li>Why this is structurally non-routine: the equation is not separable, not homogeneous, not Bernoulli, and not linear in either variable in its given form, but reversing the roles of $x$ and $y$ turns it into the linear equation $dx/dy = x/y + \ln y$, whose solution $x = y\bigl(C + (\ln y)^2/2\bigr)$ is explicit in $x$ and genuinely implicit in $y$ (no elementary inverse exists). The logarithmic term is the structural feature that defeats all direct methods.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: the term $y\ln y$ is scale-breaking — under $(x,y)\mapsto(\lambda x,\lambda y)$ it becomes $\lambda y\ln(\lambda y) = \lambda y\ln y + \lambda y\ln\lambda$, i.e. it is not a homogeneous term; a translation in $y$ destroys the $\ln$ structure entirely. The equation is not obtainable from a standard template by relettering.</li>
+</ul>
+<p>Anti-template audit: $u = y/x$ fails (a $\ln y$ term survives); $u = 1/y$ fails ($u' = -u^2/(xu - \ln u)$, not separable or linear); $u = y^n$ fails; $u = ax+by$ fails (no such combination); log/exp substitutions do not decouple it; direct separation fails. The role reversal $x \leftrightarrow y$ is the key and is not on the routine-substitution list.</p>
+
+<h3>Solution method 1</h3>
+<p>Reverse the roles: solve for $x$ as a function of $y$.</p>
+<ol>
+    <li>By the inverse-function rule,
+    $$
+    \frac{dx}{dy} = \frac{1}{y'} = \frac{x + y\ln y}{y} = \frac{x}{y} + \ln y .
+    $$</li>
+    <li>This is a first-order linear equation in $x(y)$:
+    $$
+    \frac{dx}{dy} - \frac{1}{y}\,x = \ln y .
+    $$</li>
+    <li>Integrating factor $\mu = e^{-\int dy/y} = 1/y$:
+    $$
+    \frac{d}{dy}\!\left(\frac{x}{y}\right) = \frac{\ln y}{y} .
+    $$</li>
+    <li>Integrate (the right side is $\ln y\, d(\ln y)$):
+    $$
+    \frac{x}{y} = \frac{(\ln y)^2}{2} + C .
+    $$</li>
+    <li>Undo the role reversal: the general solution is
+    $$
+    x = y\left(C + \frac{(\ln y)^2}{2}\right).
+    $$</li>
+    <li>Apply $y(1) = 1$: $1 = 1\cdot(C + 0)$, so $C = 1$. Condition-selected solution:
+    <div class="boxed">
+    $$
+    x = y\left(1 + \frac{(\ln y)^2}{2}\right).
+    $$
+    </div></li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Independent power-series (reversion) derivation about $x = 1$.</p>
+<ol>
+    <li>Expand the condition-selected solution about $y = 1$: with $t = y - 1$,
+    $$
+    \ln(1+t) = t - \frac{t^2}{2} + \frac{t^3}{3} - \frac{t^4}{4} + \frac{t^5}{5} - \cdots,
+    \quad
+    \frac{(\ln(1+t))^2}{2} = \frac{t^2}{2} - \frac{t^3}{2} + \frac{11}{24}t^4 - \frac{5}{12}t^5 + \cdots,
+    $$
+    so
+    $$
+    x = (1+t)\left(1 + \frac{(\ln(1+t))^2}{2}\right)
+    = 1 + t + \frac{t^2}{2} + 0\cdot t^3 - \frac{1}{24}t^4 + \frac{1}{24}t^5 + O(t^6).
+    $$</li>
+    <li>Revert the series (Lagrange-style coefficient matching) to get $t = y - 1$ as a series in $s = x - 1$:
+    $$
+    y = 1 + s - \frac{s^2}{2} + \frac{s^3}{2} - \frac{7}{12}s^4 + \frac{19}{24}s^5 + O(s^6).
+    $$</li>
+    <li>Independent derivation from the ODE itself (Taylor method). At $x = 1$: $y'(1) = 1/(1 + 0) = 1$. Differentiating the ODE,
+    $$
+    y'' = \frac{y'(x + y\ln y) - y\bigl(1 + y'\ln y + y'\bigr)}{(x + y\ln y)^2},
+    $$
+    gives $y''(1) = [1\cdot 1 - 1(1+0+1)]/1 = -1$, so the coefficient of $s^2$ is $-1/2$. One more differentiation gives $y'''(1) = 3$ (computed from $y'' = N/D^2$ with $D = x + y\ln y$, $N = y'D - y(1 + y'\ln y + y')$: $D(1)=1$, $D'(1)=2$, $N(1)=-1$, $N'(1)=-1$, so $y'''(1) = (N'D - 2ND')/D^3 = -1 + 4 = 3$), hence the coefficient of $s^3$ is $1/2$.</li>
+    <li>Both routes agree term by term:
+    $$
+    y(x) = 1 + (x-1) - \frac{(x-1)^2}{2} + \frac{(x-1)^3}{2} + O\bigl((x-1)^4\bigr),
+    $$
+    which is exactly the reversion of the implicit solution.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>Differentiate the implicit solution with respect to $y$:</p>
+$$
+\frac{dx}{dy} = \frac{d}{dy}\Bigl(y + \frac{y(\ln y)^2}{2}\Bigr)
+= 1 + \frac{(\ln y)^2}{2} + \ln y .
+$$
+<p>But $x/y + \ln y = 1 + (\ln y)^2/2 + \ln y$, so $dx/dy = x/y + \ln y = (x + y\ln y)/y$, hence</p>
+$$
+\frac{dy}{dx} = \frac{y}{x + y\ln y},
+$$
+<p>the original equation. Initial condition: at $(x,y) = (1,1)$, $1 = 1\cdot(1 + 0)$. Series check: the coefficients $1, -1/2, 1/2$ obtained by reversion equal those from the Taylor method. Validity: $dx/dy = ((1+\ln y)^2 + 1)/2 \gt 0$ for all $y \gt 0$, so $x(y)$ is strictly increasing — the inverse $y(x)$ exists on $x \in (0,\infty)$.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Singular point: $(0,0)$ is a singular point of the equation; the solution enters it tangentially ($y'(x) \to 0^+$ as $x \to 0^+$, since $y' = 2/((1+\ln y)^2 + 1) \to 0$ as $y \to 0^+$).</li>
+    <li>Existence/uniqueness: the reversed equation is linear in $x$, so the solution through $(1,1)$ is unique; in the original variables the RHS is $C^1$ near $(1,1)$ ($x + y\ln y = 1 \neq 0$).</li>
+    <li>Monotonicity: $y' = y/(x + y\ln y) \gt 0$ on the solution — strictly increasing; no turning points.</li>
+    <li>Asymptotics: as $x \to 0^+$, $y \to 0^+$ (tangentially); as $x \to \infty$, $x \sim y(\ln y)^2/2$, so $y$ grows sublinearly, $y \sim 2x/(\ln x)^2$.</li>
+    <li>Maximal interval: $(0,\infty)$.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+x = y\left(1 + \frac{(\ln y)^2}{2}\right), \qquad y \gt 0,\ x \in (0,\infty),
+\qquad\text{(implicit in } y,\ \text{no elementary inverse)}
+$$
+</div>
+
+<hr>
+
+<h1>Problem 9 — A Third-Order Equation with Exponential-Core Factorization</h1>
+
+<h3>Equation and conditions</h3>
+<p>Third-order equation:</p>
+$$
+y''' = \frac{(y'')^2}{y'}, \qquad y(0) = 0, \quad y'(0) = 1, \quad y''(0) = -1.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>$y' \neq 0$ is required; the initial data satisfy $y'(0) = 1 \neq 0$.</li>
+    <li>The constant solutions $y \equiv c$ (with $y' \equiv 0$) are the degenerate solutions, where the equation is not defined as written but which are limits of the regular family.</li>
+    <li>The condition-selected solution $y = 1 - e^{-x}$ is defined for all $x \in \mathbb{R}$, with $y' = e^{-x} \neq 0$.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: higher-order equations with a factorization structure, e.g. linear constant-coefficient equations written via characteristic polynomials; also the second-order class $u'' = (u')^2/u$.</li>
+    <li>Why this is structurally non-routine: the equation is nonlinear and third-order, yet it factorizes through a single logarithmic derivative: $y'''/y' - (y''/y')^2 = (\ln y')'' = 0$. Every regular solution is an affine image of an exponential core, $y = C_1 e^{ax} + C_2$, a two-mode family (constant mode + exponential mode) for a third-order equation. The coefficient structure $(y'')^2/y'$ is exactly the obstruction to $(\ln y')'$ being constant, which is the hidden factorization.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: the equation is not linear (the quadratic term $(y'')^2$ with the $y'$-denominator is essential); multiplying by $y'$ or shifting $y$ does not linearize it; the structure is the <em>logarithmic second derivative</em> of $y'$, which is invariant under $y \mapsto ay + b$ (an invariance the family $y = C_1e^{ax}+C_2$ exhibits). No standard named equation matches it.</li>
+</ul>
+<p>Anti-template audit: the routine first-order substitutions do not apply to a third-order equation; the standard reductions are the two used as methods below, and neither is a restatement of the other: Method 1 integrates the whole equation in one step via the invariant; Method 2 performs the classical double reduction of order. The equation is not a constant-coefficient linear equation, not an Euler equation, and not a standard "missing $y$" template such as $y''' = f(x)$.</p>
+
+<h3>Solution method 1</h3>
+<p>One-step invariant integration: $(\ln y')'' = 0$.</p>
+<ol>
+    <li>Divide by $y'$ and recognize the logarithmic-derivative structure:
+    $$
+    \frac{y'''}{y'} - \left(\frac{y''}{y'}\right)^2 = 0 .
+    $$</li>
+    <li>The left side is $(\ln y')''$: with $w = \ln y'$,
+    $$
+    w'' = \left(\frac{y''}{y'}\right)' = \frac{y'''y' - (y'')^2}{(y')^2} = 0
+    \quad\Longleftrightarrow\quad
+    y''' = \frac{(y'')^2}{y'} .
+    $$</li>
+    <li>Integrate twice:
+    $$
+    (\ln y')' = \frac{y''}{y'} = a
+    \quad\Longrightarrow\quad
+    \ln y' = ax + b_0
+    \quad\Longrightarrow\quad
+    y' = e^{b_0} e^{ax}.
+    $$</li>
+    <li>Integrate once more: the general solution is
+    $$
+    y = C_1 e^{ax} + C_2, \qquad C_1 \neq 0,\ a \in \mathbb{R},
+    $$
+    (three parameters: $a$, $C_1$, $C_2$ — correct for third order), plus the degenerate constants $y \equiv c$.</li>
+    <li>Apply the conditions: $a = y''(0)/y'(0) = -1$; $y'(0) = C_1a e^0 = C_1(-1) = 1$, so $C_1 = -1$; $y(0) = C_1 + C_2 = 0$, so $C_2 = 1$. Condition-selected solution:
+    <div class="boxed">
+    $$
+    y = 1 - e^{-x}.
+    $$
+    </div></li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Double reduction of order: $p = y'$, then $q(p) = p'$.</p>
+<ol>
+    <li>First reduction: $p = y'$ gives $y''' = p''$, so
+    $$
+    p'' = \frac{(p')^2}{p},
+    $$
+    a second-order equation for $p$ in which $x$ is missing.</li>
+    <li>Second reduction: set $q(p) = p'$, so $p'' = q\,dq/dp$:
+    $$
+    q\,\frac{dq}{dp} = \frac{q^2}{p}
+    \quad\Longrightarrow\quad
+    \frac{dq}{q} = \frac{dp}{p}
+    \quad\Longrightarrow\quad
+    q = ap .
+    $$</li>
+    <li>Undo the second reduction: $p' = ap \Rightarrow p = be^{ax}$.</li>
+    <li>Undo the first reduction: $y' = be^{ax} \Rightarrow y = (b/a)e^{ax} + C$, i.e. $y = C_1e^{ax} + C_2$ — the same family, here obtained through the classical chain of reductions rather than the single invariant step.</li>
+    <li>Conditions as in Method 1: $a = -1$, $b = 1$, $C = 1$: $y = 1 - e^{-x}$.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>For $y = 1 - e^{-x}$: $y' = e^{-x}$, $y'' = -e^{-x}$, $y''' = e^{-x}$, and</p>
+$$
+\frac{(y'')^2}{y'} = \frac{e^{-2x}}{e^{-x}} = e^{-x} = y'''.
+$$
+<p>Initial conditions: $y(0) = 0$, $y'(0) = 1$, $y''(0) = -1$. General family check: $y = C_1e^{ax} + C_2$ has $y' = C_1ae^{ax}$, $y'' = C_1a^2e^{ax}$, $y''' = C_1a^3e^{ax}$, and $(y'')^2/y' = C_1^2a^4e^{2ax}/(C_1ae^{ax}) = C_1a^3e^{ax}$. Validity: $y' = e^{-x} \neq 0$ for all $x$, so the solution is regular on $\mathbb{R}$.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Degenerate solutions: the constants $y \equiv c$ (where $y' \equiv 0$) are the only solutions excluded from the regular family; the equation is undefined on them as written, but they are uniform limits of regular solutions (e.g. $C_1 \to 0$ with $C_1a$ fixed).</li>
+    <li>Existence/uniqueness: near the initial data $y' \neq 0$, the RHS $(y'')^2/y'$ is $C^\infty$, so the third-order IVP has a unique local solution; the solution extends to $\mathbb{R}$.</li>
+    <li>Behavior of the selected solution: $y' = e^{-x} \gt 0$ (strictly increasing), $y'' = -e^{-x} \lt 0$ (concave), monotone exponential relaxation to the limit $y \to 1^-$ as $x \to \infty$, with $y \to -\infty$ as $x \to -\infty$; no oscillation, no turning points (for this IVP).</li>
+    <li>General family: exponential growth ($a\gt0$) or decay ($a\lt0$) on top of a constant level $C_2$; the family is invariant under $y \mapsto \alpha y + \beta$, reflecting the invariance of the equation.</li>
+    <li>Maximal interval: $\mathbb{R}$ for every regular solution.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+y(x) = 1 - e^{-x}, \qquad x \in \mathbb{R}.
+\qquad \text{General solution:}\quad y = C_1e^{ax} + C_2,\ C_1 \neq 0,\ \text{plus}\ y \equiv \text{const}
+$$
+</div>
+
+<hr>
+
+<h1>Problem 10 — The Exponential-Integral Inverse: A Series-and-Special-Function Solution</h1>
+
+<h3>Equation and conditions</h3>
+<p>First-order equation:</p>
+$$
+(1 - xy)\,y' = y, \qquad y(0) = 1.
+$$
+
+<h3>Domain</h3>
+<ul>
+    <li>The solved form $y' = y/(1 - xy)$ requires $1 - xy \neq 0$; the IVP data satisfy $1 - 0\cdot 1 = 1 \neq 0$.</li>
+    <li>The condition-selected solution has $y \gt 0$, $xy \lt 1$ on its branch; it is defined on the maximal interval $x \in (-\infty, x^\ast)$, where $x^\ast$ (the first point where $xy = 1$ along the solution curve, i.e. the first branch point of the inverse function) satisfies $x^\ast \approx 0.427$. The curve $x = e^{-y}(\operatorname{Ei}(y) - \operatorname{Ei}(1))$, $y \in (0,\infty)$, is the maximal solution curve; the IVP selects its first branch.</li>
+</ul>
+
+<h3>Originality note</h3>
+<p>Originality note: This is designed as a structurally non-routine problem rather than a cosmetic variation of a standard textbook equation. Absolute literature-wide uniqueness cannot be guaranteed.</p>
+<ul>
+    <li>Nearest familiar equation class: equations solved by swapping dependent and independent variable; Riccati-like multiplicative couplings of $x$ and $y$.</li>
+    <li>Why this is structurally non-routine: the equation is not separable (the coupling $1 - xy$ involves both variables), not homogeneous, not Bernoulli, and not Riccati; the role reversal gives the linear equation $dx/dy = 1/y - x$, whose solution requires the exponential integral $\operatorname{Ei}$ — a named special function that is warranted here because it is the exact, rigorous closed form, not decoration. The solution is an inverse-function pair, and the power series in $x$ has a clean recurrence and a finite radius of convergence governed by a branch point, both of which are demonstrable independently.</li>
+    <li>Why it is not merely a rescaling, translation, or constant-modified textbook exercise: translating $x$ or $y$ destroys the multiplicative structure $1 - xy$ (the constant term is pinned by the requirement that the swapped equation be solvable in closed form via Ei); scaling $x, y$ changes the location of the singularity $xy = 1$ and of the initial data nontrivially. The Ei-structure, not the constants, is the content.</li>
+</ul>
+<p>Anti-template audit: $u = y/x$ fails; $u = 1/y$ fails; $u = xy$ fails (unlike Problem 2, here $u = xy$ does not eliminate $x$: $xu' = u(1-u) + ...$ check: with $u = xy$, $y' = (u'x - u)/x^2$ and the equation becomes $xu' - u = u/(1-u)\cdot x...$ — it retains $x$ nontrivially, so no separation); log/exp substitutions fail; the equation is not linear in $y$. The role reversal is the key step and yields a linear equation.</p>
+
+<h3>Solution method 1</h3>
+<p>Role reversal and the exponential integral.</p>
+<ol>
+    <li>Treat $x$ as a function of $y$ (the solution satisfies $y'(0) = 1/(1-0) = 1 \neq 0$, so the inverse exists locally):
+    $$
+    \frac{dx}{dy} = \frac{1 - xy}{y} = \frac{1}{y} - x .
+    $$</li>
+    <li>This is a first-order linear equation:
+    $$
+    \frac{dx}{dy} + x = \frac{1}{y}.
+    $$</li>
+    <li>Integrating factor $e^y$:
+    $$
+    \frac{d}{dy}\bigl(x\,e^{y}\bigr) = \frac{e^{y}}{y}
+    \quad\Longrightarrow\quad
+    x\,e^{y} = \operatorname{Ei}(y) + C,
+    \qquad \operatorname{Ei}(y) = \int_{-\infty}^{y} \frac{e^{t}}{t}\,dt .
+    $$</li>
+    <li>Apply the condition in swapped form $(x,y) = (0,1)$: $0 = \operatorname{Ei}(1) + C$, so $C = -\operatorname{Ei}(1)$. Condition-selected solution:
+    <div class="boxed">
+    $$
+    x = e^{-y}\bigl(\operatorname{Ei}(y) - \operatorname{Ei}(1)\bigr).
+    $$
+    </div></li>
+    <li>This defines $y(x)$ implicitly (no elementary inverse); the power series of $y$ about $x = 0$ is given in Method 2.</li>
+</ol>
+
+<h3>Solution method 2</h3>
+<p>Power series with recurrence, cross-checked by Lagrange reversion of the Ei-solution.</p>
+<ol>
+    <li>Substitute $y = \sum_{n\ge 0} a_n x^n$, $a_0 = 1$, into $(1-xy)y' = y$, i.e. $y' = y + xyy'$. With $c_n = [x^n](y\cdot y') = \sum_{i+j=n} a_i\,(j+1)a_{j+1}$, matching coefficients gives the recurrence
+    $$
+    (n+1)a_{n+1} = a_n + c_{n-1}, \qquad c_{-1} = 0.
+    $$</li>
+    <li>Compute:
+    $$
+    a_0 = 1,\quad a_1 = 1,\quad a_2 = 1,\quad a_3 = \frac{4}{3},\quad a_4 = \frac{25}{12},\quad a_5 = \frac{71}{20},
+    $$
+    so
+    $$
+    y = 1 + x + x^2 + \frac43 x^3 + \frac{25}{12}x^4 + \frac{71}{20}x^5 + O(x^6).
+    $$</li>
+    <li>Independent cross-check by Lagrange reversion of the exact solution. Expand $\operatorname{Ei}(1+t) = \operatorname{Ei}(1) + e\bigl[t + t^3/6 - t^4/12 + (3/40)t^5 + \cdots\bigr]$ (from $\operatorname{Ei}' = e^y/y$, successive derivatives at $y=1$: $e, 0, e, -2e, 9e$), so with $t = y - 1$,
+    $$
+    x = e^{-t}\Bigl[t + \frac{t^3}{6} - \frac{t^4}{12} + \frac{3}{40}t^5 + \cdots\Bigr]
+    = t - t^2 + \frac23 t^3 - \frac{5}{12}t^4 + \frac{17}{60}t^5 + \cdots
+    $$</li>
+    <li>Reverting this series gives
+    $$
+    t = x + x^2 + \frac43 x^3 + \frac{25}{12}x^4 + \frac{71}{20}x^5 + \cdots,
+    $$
+    in exact agreement with the recurrence (the reversion of the first four terms checks $a_2, a_3, a_4$; the fifth term checks $a_5 = 71/20$).</li>
+    <li>Radius of convergence: $y(x)$ is the inverse of $x(y)$; its singularities lie over the critical values of $x(y)$. Since $dx/dy = 1/y - x = (1-xy)/y$, the critical points satisfy $xy = 1$, i.e. $y\,e^{-y}(\operatorname{Ei}(y)-\operatorname{Ei}(1)) = 1$ for $y \gt 1$. This has a first solution at $y^\ast \approx 2.35$, giving the branch point $x^\ast = 1/y^\ast \approx 0.427$, so the series has radius of convergence $R = x^\ast \approx 0.427$ — finite, and governed by the vertical tangent of $y(x)$, a qualitative insight the numerical value serves to make concrete.</li>
+</ol>
+
+<h3>Verification</h3>
+<p>Differentiate the exact solution:</p>
+$$
+\frac{dx}{dy} = -e^{-y}\bigl(\operatorname{Ei}(y) - \operatorname{Ei}(1)\bigr) + e^{-y}\cdot\frac{e^{y}}{y}
+= \frac{1}{y} - x,
+$$
+<p>so $dy/dx = 1/(1/y - x) = y/(1 - xy)$, i.e. $(1-xy)y' = y$. Initial condition: at $(x,y) = (0,1)$, $0 = e^{-1}(\operatorname{Ei}(1) - \operatorname{Ei}(1)) = 0$. Series verification by direct substitution: with $y = 1 + x + x^2 + (4/3)x^3 + (25/12)x^4 + \cdots$ and $y' = 1 + 2x + 4x^2 + (25/3)x^3 + \cdots$, the product $(1 - x - x^2 - x^3 - \cdots)(1 + 2x + 4x^2 + (25/3)x^3 + \cdots)$ has coefficients $1, 1, 1, 4/3$ (e.g. $[x^3] = 25/3 - 4 - 2 - 1 = 4/3$), matching $a_0, a_1, a_2, a_3$. Validity: on the stated branch, $y \gt 0$ and $1 - xy \gt 0$, so the solved form is regular there.</p>
+
+<h3>Qualitative behavior</h3>
+<ul>
+    <li>Singular structure: $y \equiv 0$ is a formal solution ($y' = 0 = 0/(1-0)$) but not in the domain of interest; the curve $1 - xy = 0$ is the singular set, hit by the solution at the branch point $x^\ast \approx 0.427$.</li>
+    <li>Existence/uniqueness: the RHS is $C^1$ near $(0,1)$ with $1 - xy = 1 \neq 0$, so the IVP is locally unique; the maximal solution curve is $x = e^{-y}(\operatorname{Ei}(y)-\operatorname{Ei}(1))$, $y \in (0,\infty)$, whose first branch (through $(0,1)$) is the IVP solution on $(-\infty, x^\ast)$.</li>
+    <li>Monotonicity: $y' = y/(1-xy) \gt 0$ on the branch — strictly increasing; $y \to 0^+$ as $x \to -\infty$ at the exponential rate $y \sim \text{const}\cdot e^{x}$ (from $\operatorname{Ei}(y) \sim \gamma + \ln y$ as $y \to 0^+$); at $x = x^\ast$ the tangent is vertical.</li>
+    <li>Blow-up: none in the IVP direction; the vertical tangent at $x^\ast$ bounds the maximal interval $(-\infty, x^\ast)$.</li>
+    <li>The full curve has two further branches (between the two critical points and beyond the second), all governed by the same implicit relation — a standard inverse-function portrait.</li>
+</ul>
+
+<h3>Final answer</h3>
+<div class="boxed">
+$$
+x = e^{-y}\bigl(\operatorname{Ei}(y) - \operatorname{Ei}(1)\bigr),
+\qquad y \in (0, y^\ast),\ x \in (-\infty, x^\ast),\ x^\ast \approx 0.427,
+$$
+$$
+y(x) = 1 + x + x^2 + \frac43 x^3 + \frac{25}{12}x^4 + \frac{71}{20}x^5 + O(x^6), \qquad |x| \lt x^\ast
+$$
+</div>
+
+<hr>
+
+<h1>Method diversity audit</h1>
+
+<p>Primary solution methods used, with usage counts:</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Technique</th>
+            <th>Problems</th>
+            <th>Uses</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Non-obvious integrating factor $\mu = 1/(x^2+y^2)$</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Product substitution $u = xy$</td>
+            <td>2</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Direct separation + partial fractions + phase line</td>
+            <td>3</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Scaling-symmetry reduction $u = y/x^2$</td>
+            <td>4</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Reduction of order $p(y)$ for a missing-$x$ equation</td>
+            <td>5</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Conserved-quantity discovery (Bernoulli step in $p$)</td>
+            <td>6</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Exact differential + parameter case analysis</td>
+            <td>7</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Role reversal $x \leftrightarrow y$ → linear first-order</td>
+            <td>8, 10</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>One-step invariant integration $(\ln y')'' = 0$</td>
+            <td>9</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Named special function (Ei) + power series</td>
+            <td>10</td>
+            <td>1</td>
+        </tr>
+    </tbody>
+</table>
+
+<p><strong>No primary method is used more than twice.</strong> Independent second methods provided: polar-coordinate geometric reduction (1), Taylor/series derivation (2), phase-line analysis without integration (3), hidden integrating factor $\mu = x^3y^{-3}$ (4), dependent-variable change $z = \tan y$ (5), direct integration of $(y'/y)'$ (6), homogeneity $v = y/x$ (7), series reversion (8), double reduction of order (9), Lagrange reversion of the Ei-expansion (10). In every case the second derivation is structurally different from the first (different transformation or different logical route), not a renaming of it.</p>
+
+<p>Counting constraints:</p>
+<ul>
+    <li>Separable equations as stated: exactly one (Problem 3), within the limit of two. Problems 2, 4, 5, 6, 7 pass through an <em>intermediate</em> separable quadrature after their primary reduction, but separation is not their primary structure.</li>
+    <li>First-order linear after transformation: exactly two (Problems 8 and 10, after role reversal), at the allowed limit.</li>
+    <li>Riccati-reducible: zero (limit one). Named-special-function reduction: one (Problem 10, $\operatorname{Ei}$), at the limit. Final solution an unevaluated quadrature: zero.</li>
+    <li>Problems requiring insight beyond direct separation: all ten except Problem 3 — nine problems, well above the required four.</li>
+    <li>Order mix: seven first-order (1–4, 7, 8, 10), two second-order (5, 6), one third-order (9).</li>
+    <li>Structural distinctness: no two problems share a primary method, and no problem is an affine/scaling/notation variant of another (audited per-problem above).</li>
+    <li>Level: all techniques are advanced-undergraduate (integrating factors, exact differentials, phase-line analysis, reduction of order, first integrals, similarity variables, series reversion, standard special functions); no Lie-group formalism or differential algebra is used.</li>
+</ul>
+
+</body>
+</html>
